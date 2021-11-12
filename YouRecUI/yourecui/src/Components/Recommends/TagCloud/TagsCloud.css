@@ -1,0 +1,11 @@
+.TagCloud {
+    float: none;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+span.tag-cloud-tag:hover{
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease all;
+}

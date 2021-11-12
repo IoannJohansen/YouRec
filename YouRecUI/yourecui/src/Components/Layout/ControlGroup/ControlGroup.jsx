@@ -3,7 +3,6 @@ import { faCog, faUser, faSignOutAlt, faStarOfLife } from '@fortawesome/free-sol
 import { Nav, Button, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 class ControlGroup extends Component {
 
     constructor(props) {

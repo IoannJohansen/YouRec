@@ -15,10 +15,12 @@ export default function Layout() {
                 <Navbar.Collapse className="justify-content-around" >
                     <NavHeader />
                     <SearchPanel />
-                    <ControlGroup isAdmin={true} isLoggedIn={true} />
+                    <ControlGroup isAdmin={true} isLoggedIn={false} />
                 </Navbar.Collapse>
             </Navbar>
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
         </>
     )
 }

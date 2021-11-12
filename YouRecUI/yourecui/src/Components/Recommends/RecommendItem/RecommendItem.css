@@ -1,0 +1,9 @@
+div.card:hover {
+    box-shadow: 4px 4px 4px lightgrey;
+    transform: scale(0.98);
+    cursor: pointer;
+}
+
+div.card {
+    transition: .3s;
+}
