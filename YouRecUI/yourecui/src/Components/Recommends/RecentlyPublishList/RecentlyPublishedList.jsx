@@ -3,19 +3,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RecommendItem from '../RecommendItem/RecommendItem';
 import { Row } from 'react-bootstrap';
 
-class RecenlyPublishedList extends Component {
+class RecomendsList extends Component {
     constructor() {
         super();
         this.state = {
-            recommends: ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"]
+            recommends: ["1", "1", "1", "1", "1" , "1"]
         }
     }
 
     render() {
         return (
             <div>
-                <h2 className="text-center m-4">Recently published</h2>
-                <Row xs={1} md={2} lg={4} className="g-4 m-2 d-flex justify-content-between">
+                <Row xs={1} md={2} lg={4} className="g-4 m-2 d-flex ">
                     {
                         this.state.recommends.map(item => {
                             return (
@@ -30,4 +29,4 @@ class RecenlyPublishedList extends Component {
 
 }
 
-export default RecenlyPublishedList;
+export default RecomendsList;
