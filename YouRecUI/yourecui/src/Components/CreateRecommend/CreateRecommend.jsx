@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function CreateRecommend(){
+export default function CreateRecommend() {
     return (
-        <container>
+        <div className="fluid">
             <p variant="primary" className="text-center h2">Create recommend</p>
-        </container>
+        </div>
     );
 }
