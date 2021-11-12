@@ -1,21 +1,14 @@
 import { React } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar } from 'react-bootstrap';
+import Header from '../Header/Header.jsx';
+import Router from '../../Router/Router.jsx';
 
-import NavHeader from '../Header/Navbar/Navbar';
-import SearchPanel from '../Header/SearchPanel/SearchPanel';
-import ControlGroup from '../Header/ControlGroup/ControlGroup';
 
 export default function App() {
   return (
-    <Navbar expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand>YouRec</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse className="justify-content-around" id="basic-navbar-nav">
-        <NavHeader />
-        <SearchPanel />
-        <ControlGroup />
-      </Navbar.Collapse>
-    </Navbar>
+    <div className="fluid">
+      <Header />
+      <Router />
+    </div>
   );
 }
