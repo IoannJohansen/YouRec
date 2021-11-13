@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "VE2vZv8pQ3JVg1+pB+fpPRfIu6pFloNoPE/qNAyCMAV5yEUeO8BWt0mNBnAUx2kljCdqwmVmZb5r7+35/umAaw==",
+  "success": true,
+  "projectFilePath": "D:\\Desktop\\Dev\\YouRec\\YouRec\\DAL\\DAL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Johny\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}
