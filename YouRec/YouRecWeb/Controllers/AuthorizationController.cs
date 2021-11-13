@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace YouRecWeb.Controllers
 {
@@ -6,8 +7,26 @@ namespace YouRecWeb.Controllers
     [ApiController]
     public class AuthorizationController
     {
+        public AuthorizationController()
+        {
 
+        }
+        
+        [HttpPost]
+        [Route("SignIn")]
+        public async Task<IActionResult> SignIn()
+        {
 
+            return null;
+        }
 
+        [HttpPost]
+
+        [Route("SignUp")]
+        public async Task<IActionResult> SignUp()
+        {
+
+            return null;
+        }
     }
 }

@@ -5,7 +5,7 @@
 }
 
 span.tag-cloud-tag:hover{
-    font-weight: bold;
+    font-weight: bolder;
     cursor: pointer;
     transition: 0.2s ease all;
 }

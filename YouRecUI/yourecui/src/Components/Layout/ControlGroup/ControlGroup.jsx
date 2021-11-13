@@ -2,6 +2,8 @@ import { React, Component } from 'react';
 import { faCog, faUser, faSignOutAlt, faStarOfLife } from '@fortawesome/free-solid-svg-icons';
 import { Nav, Button, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from 'react-router-dom';
+
 
 class ControlGroup extends Component {
 
@@ -15,7 +17,7 @@ class ControlGroup extends Component {
 
     renderAdminButton = () => this.state.isAdmin ? <Button variant="warning" ><FontAwesomeIcon icon={faStarOfLife} /></Button> : null
 
-    renderSignInbutton = () => this.state.isLoggedIn ? <Button variant="success" ><FontAwesomeIcon icon={faSignOutAlt} /></Button> : <Button variant="danger" ><FontAwesomeIcon icon={faSignOutAlt} /></Button>
+    renderSignInbutton = () => this.state.isLoggedIn ? <Link to="/SignIn" className="btn btn-success"><FontAwesomeIcon icon={faSignOutAlt} /></Link> : <Link to="/Recs" className="btn btn-danger" ><FontAwesomeIcon icon={faSignOutAlt} /></Link>
 
     render() {
         return (

@@ -20,7 +20,7 @@ const options = {
 
 export default function TagsCloud() {
     return (
-        <div>
+        <div className="container">
             <p bg="primary" className="text-center h3">Available tags</p>
             <TagCloud
                 className="TagCloud col-sm-4"

@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "khBlD8dfIeEuhTmLvpp2OmeQ1LWUuVB6bs0gmbVqCTKingM6524zufbXWvdWBKUSxeGHhGwgTC+sgMtPFG98zw==",
+  "dgSpecHash": "nIp7F7VjT45cT6hMu04u57DwJzXzk4xYh44Db+YM8Qbxhp8cRTxjlMEIwMCYucHbry1TQxOFFMCdtzo6AMUHtw==",
   "success": true,
   "projectFilePath": "D:\\Desktop\\Dev\\YouRec\\YouRec\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Johny\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+    "C:\\Users\\Johny\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\Johny\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\Johny\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
