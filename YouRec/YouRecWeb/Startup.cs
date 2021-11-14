@@ -29,7 +29,6 @@ namespace YouRecWeb
             });
 
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

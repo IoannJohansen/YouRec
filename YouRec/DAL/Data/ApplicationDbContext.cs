@@ -1,4 +1,5 @@
-﻿using DAL.Model;
+﻿using DAL.Helper;
+using DAL.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +24,7 @@ namespace DAL.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Recommend>().HasOne(r => r.Group).WithOne(g => g.Recommend).HasForeignKey<Recommend>(r=>r.GroupId);
+            builder.Seed();
             base.OnModelCreating(builder);
         }
     }

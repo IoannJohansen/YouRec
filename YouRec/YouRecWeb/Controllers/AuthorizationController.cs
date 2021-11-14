@@ -11,7 +11,15 @@ namespace YouRecWeb.Controllers
         {
 
         }
-        
+
+        [HttpGet]
+        [Route("peptar")]
+        public async Task<IActionResult> HelloKitty()
+        {
+
+            return null;
+        }
+
         [HttpPost]
         [Route("SignIn")]
         public async Task<IActionResult> SignIn()
