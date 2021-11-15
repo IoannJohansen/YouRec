@@ -1,14 +1,13 @@
 ﻿using BLL.DTO;
-using BLL.Interfaces;
-using DAL.Model;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System;
-using System.Threading.Tasks;
-using YouRecWeb.Model;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using YouRecWeb.Core.Auth;
 
 namespace YouRecWeb.Controllers
 {
@@ -16,43 +15,28 @@ namespace YouRecWeb.Controllers
     [ApiController]
     public class AuthenticationController : Controller
     {
-        public AuthenticationController(IAuthService authenticationService, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
-        {
-            this._authenticationService = authenticationService;
-            this._userManager = userManager;
-            this._signInManager = signInManager;
-        }
-
-        private IAuthService _authenticationService;
-        private UserManager<IdentityUser> _userManager;
-        private SignInManager<IdentityUser> _signInManager;
-
-        [HttpPost]
-        [Route("SignIn")]
-        public IActionResult SignIn(RequestLoginDto signInData)
-        {
-            Console.WriteLine(signInData);
-            return Created("Success", signInData);
-        }
-
-        [HttpPost]
-
         [Route("SignUp")]
-        public async Task<IActionResult> SignUp()
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult SignUp(RegisterRequestDto registerRequestDto)
         {
-
-            return null;
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, registerRequestDto.FirstName),
+                new Claim(JwtRegisteredClaimNames.Email, registerRequestDto.Email)
+            };
+            var signingCredentials = new SigningCredentials(KeyGenerator.GenerateSymmetricKey(JwtOptions.KEY), SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(JwtOptions.ISSUER, JwtOptions.AUDIENCE, claims, DateTime.Now, DateTime.Now.AddMinutes(60), signingCredentials );
+            var value = new JwtSecurityTokenHandler().WriteToken(token);
+            Console.WriteLine(value);
+            return Ok(200);
         }
 
-        public async Task<IActionResult> Logout()
+        [Authorize]
+        [Route("Secure")]
+        public IActionResult SecuredMethod()
         {
-            return null;
-        }
-
-        public async Task<IActionResult> IsLoggedId()
-        {
-
-            return null;
+            return Ok(200);
         }
     }
 }

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace DAL.Infrastructure.Interfaces
 {
     public interface IUnitOfWork
     {
-        public IGroupRepository GroupRepository { get; }
-        
-        public ITagRepository TagRepository { get; }
+
 
         Task SaveAsync();
     }

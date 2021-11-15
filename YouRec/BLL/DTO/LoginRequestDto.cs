@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace BLL.DTO
 {
-    public class RequestLoginDto
+    public class LoginRequestDto
     {
         public string Email { get; set; }
 
         public string Password { get; set; }
-
     }
 }

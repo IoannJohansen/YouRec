@@ -1,9 +1,7 @@
-using BLL.Interfaces;
-using BLL.Services;
 using DAL.Data;
 using DAL.Infrastructure.Interfaces;
 using DAL.Infrastructure.UnitOfWork;
-using DAL.Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using YouRecWeb.Core.Auth;
 
 namespace YouRecWeb
 {
@@ -31,11 +31,21 @@ namespace YouRecWeb
             {
                 options.UseSqlServer(Configuration["ConnectionString:DefaultConnection"]);
             });
-
+            
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IAuthService, AuthService>();
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            {
+                options.TokenValidationParameters = JwtOptions.GetTokenValidationParameters();
+            });
+
+            //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -46,10 +56,11 @@ namespace YouRecWeb
             }
 
             app.UseHttpsRedirection();
+            
+            app.UseAuthentication();
 
             app.UseRouting();
 
-            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

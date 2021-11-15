@@ -73,7 +73,6 @@ D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Humanizer.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.Design.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\BLL.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\BLL.pdb
-D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\obj\Debug\net5.0-windows\YouRecWeb.MvcApplicationPartsAssemblyInfo.cs
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.Extensions.Configuration.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.Extensions.Configuration.FileExtensions.dll
@@ -86,3 +85,11 @@ D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.Extens
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\System.Runtime.CompilerServices.Unsafe.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\System.Text.Encodings.Web.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\System.Text.Json.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\System.Web.Mvc.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\System.Web.Razor.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\System.Web.Helpers.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\System.Web.WebPages.Deployment.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\System.Web.WebPages.Razor.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\System.Web.WebPages.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.Web.Infrastructure.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.AspNetCore.Authentication.JwtBearer.dll
