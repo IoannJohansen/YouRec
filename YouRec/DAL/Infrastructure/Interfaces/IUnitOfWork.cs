@@ -9,6 +9,9 @@ namespace DAL.Infrastructure.Interfaces
     public interface IUnitOfWork
     {
         public IGroupRepository GroupRepository { get; }
+        
+        public ITagRepository TagRepository { get; }
+
         Task SaveAsync();
     }
 }

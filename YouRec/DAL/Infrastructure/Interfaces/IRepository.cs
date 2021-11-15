@@ -11,7 +11,7 @@ namespace DAL.Infrastructure.Interfaces
         Task<T> GetAsync(int id);
         Task<IEnumerable<T>> GetItemsAsync();
         Task<T> CreateAsync(T item);
-        Task<T> Delete(int id);
+        Task Delete(T item);
         Task<T> UpdateAsync(T item);
         Task<int> GetCount();
     }

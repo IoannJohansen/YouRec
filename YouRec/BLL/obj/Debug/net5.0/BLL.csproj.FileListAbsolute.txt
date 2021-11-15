@@ -1,4 +1,3 @@
-D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Debug\net5.0\BLL.csproj.AssemblyReference.cache
 D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Debug\net5.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
 D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Debug\net5.0\BLL.AssemblyInfoInputs.cache
 D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Debug\net5.0\BLL.AssemblyInfo.cs
@@ -10,3 +9,4 @@ D:\Desktop\Dev\YouRec\YouRec\BLL\bin\Debug\net5.0\BLL.pdb
 D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Debug\net5.0\BLL.dll
 D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Debug\net5.0\ref\BLL.dll
 D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Debug\net5.0\BLL.pdb
+D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Debug\net5.0\BLL.csproj.AssemblyReference.cache

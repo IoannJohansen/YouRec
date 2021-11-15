@@ -1,4 +1,8 @@
+using BLL.Interfaces;
+using BLL.Services;
 using DAL.Data;
+using DAL.Infrastructure.Interfaces;
+using DAL.Infrastructure.UnitOfWork;
 using DAL.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,10 +29,13 @@ namespace YouRecWeb
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration["ConnectionString:DefaultConnection"]);
             });
 
-            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IAuthService, AuthService>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

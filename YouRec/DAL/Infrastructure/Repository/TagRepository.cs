@@ -1,6 +1,7 @@
 ﻿using DAL.Data;
 using DAL.Infrastructure.Interfaces;
 using DAL.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,43 +10,53 @@ using System.Threading.Tasks;
 
 namespace DAL.Infrastructure.Repository
 {
-    internal class TagRepository : IRepository<Tag>
+    internal class TagRepository : ITagRepository
     {
         public TagRepository(ApplicationDbContext applicationDbContext)
         {
-
+            this._dbContext = applicationDbContext;
         }
 
+        private readonly ApplicationDbContext _dbContext;
+
+        public async Task<Tag> CreateAsync(Tag item) =>
+            (await _dbContext.Tags.AddAsync(item)).Entity;
 
 
-        public Task<Tag> CreateAsync(Tag item)
+        public async Task Delete(Tag item) => await Task.Run(() =>
         {
-            throw new NotImplementedException();
+            _dbContext.Tags.Remove(item);
+        });
+
+        public async Task<Tag> GetAsync(int id)
+        {
+            return await _dbContext.Tags.FirstOrDefaultAsync(t=>t.Id== id);
         }
 
-        public Task<Tag> Delete(int id)
+        public async Task<int> GetCount()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Tags.CountAsync();
         }
 
-        public Task<Tag> GetAsync(int id)
+        public async Task<IEnumerable<Tag>> GetItemsAsync()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Tags.ToListAsync();
         }
 
-        public Task<int> GetCount()
+        public async Task<Tag> UpdateAsync(Tag item) => await Task.Run(() =>
         {
-            throw new NotImplementedException();
-        }
+            return _dbContext.Tags.Update(item).Entity;
+        });
 
-        public Task<IEnumerable<Tag>> GetItemsAsync()
+        public async Task<bool> IsExist(Tag item) => await Task.Run(() =>
         {
-            throw new NotImplementedException();
-        }
+            var tag = _dbContext.Tags.FirstOrDefaultAsync(t => t.Id == item.Id);
+            return tag != null;
+        });
 
-        public Task<Tag> UpdateAsync(Tag item)
+        public async Task AddTags(IEnumerable<Tag> items)
         {
-            throw new NotImplementedException();
+            await _dbContext.Tags.AddRangeAsync(items);
         }
     }
 }

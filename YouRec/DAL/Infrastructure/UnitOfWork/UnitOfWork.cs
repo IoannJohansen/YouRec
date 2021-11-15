@@ -15,15 +15,21 @@ namespace DAL.Infrastructure.UnitOfWork
         {
             this._appDbContext = applicationDbContext;
             _groupRepository = new GroupRepository(applicationDbContext);
+            _tagRepository = new TagRepository(applicationDbContext);
+
         }
 
         private ApplicationDbContext _appDbContext;
 
         private IGroupRepository _groupRepository;
 
-
+        private ITagRepository _tagRepository;
 
         public IGroupRepository GroupRepository => _groupRepository;
+
+        public ITagRepository TagRepository => _tagRepository;
+
+
 
         public async Task SaveAsync()
         {
