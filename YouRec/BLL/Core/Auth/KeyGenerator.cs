@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace YouRecWeb.Core.Auth
+namespace BLL.Core.Auth
 {
     public class KeyGenerator
     {
@@ -9,6 +9,5 @@ namespace YouRecWeb.Core.Auth
         {
             return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
         }
-
     }
 }

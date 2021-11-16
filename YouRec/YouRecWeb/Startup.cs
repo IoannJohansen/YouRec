@@ -1,3 +1,6 @@
+using BLL.Core.Auth;
+using BLL.Interfaces;
+using BLL.Services;
 using DAL.Data;
 using DAL.Infrastructure.Interfaces;
 using DAL.Infrastructure.UnitOfWork;
@@ -9,8 +12,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
-using YouRecWeb.Core.Auth;
 
 namespace YouRecWeb
 {
@@ -34,17 +35,22 @@ namespace YouRecWeb
             
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
+            services.AddTransient<IAuthService, AuthService>();
+
             services.AddAuthentication(options =>
             {
+                options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
             .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
             {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = true;
                 options.TokenValidationParameters = JwtOptions.GetTokenValidationParameters();
             });
 
-            //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
         }
 

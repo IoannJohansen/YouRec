@@ -1,12 +1,12 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 
-namespace YouRecWeb.Core.Auth
+namespace BLL.Core.Auth
 {
     public static class JwtOptions
     {
-        public const string ISSUER = "YouRec";
+        public const string ISSUER = "YouRecWeb";
 
-        public const string AUDIENCE = "YouRec";
+        public const string AUDIENCE = "YouRecClient";
 
         public const string KEY = "MyLargeSuperSecretSecureKeyForSecurityOfMeinApplication";
 
@@ -24,6 +24,5 @@ namespace YouRecWeb.Core.Auth
             };
             return validationRules;
         }
-
     }
 }

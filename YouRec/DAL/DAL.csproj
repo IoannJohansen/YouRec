@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Infrastructure\Config\" />
     <Folder Include="Infrastructure\Repository\" />
   </ItemGroup>
 
