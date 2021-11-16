@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -23,13 +24,16 @@ namespace BLL.Services
         private UserManager<IdentityUser> _userManager;
         private SignInManager<IdentityUser> _signInManager;
 
-        public Task SignIn(LoginRequestDto loginRequestDto)
+        public async Task<AuthResult> SignIn(LoginRequestDto loginRequestDto)
         {
-            // get claims from jwt
-            // find in db user account
-            // if found, then generate new token
-            // else return error msg with hcode
-            return null;
+            var user = await _userManager.FindByEmailAsync(loginRequestDto.Email);
+            if (user != null && (await _userManager.CheckPasswordAsync(user, loginRequestDto.Password)))
+            {
+                var role = await _userManager.GetRolesAsync(user);
+                var token = CreateTokenForUser(user.UserName, user.Email, role.First());
+                return new AuthResult { Success = true, Token = token, IsAdmin = role.First() == "Admin" };
+            }
+            return new AuthResult { Success = false };
         }
 
         public async Task<AuthResult> SignUp(RegisterRequestDto registerRequestDto)
@@ -39,21 +43,25 @@ namespace BLL.Services
             var resultCreation = await _userManager.CreateAsync(newUser, registerRequestDto.Password);
             if (resultCreation.Succeeded)
             {
-                await _signInManager.SignInAsync(newUser, true);
+                await _signInManager.SignInAsync(newUser, false);
                 await _userManager.AddToRoleAsync(newUser, UserRole.User.ToString());
+                result.Token = CreateTokenForUser(registerRequestDto.FirstName, registerRequestDto.Email, UserRole.User.ToString());
                 result.Success = true;
             }
-            var token = CreateTokenForUser(registerRequestDto, UserRole.User);
+            else
+            {
+                result.ErrorMsg = resultCreation.Errors;
+            }
             return result;
         }
 
-        private string CreateTokenForUser(RegisterRequestDto registerRequestDto, UserRole userRole)
+        private string CreateTokenForUser(string firstName, string email, string userRole)
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, registerRequestDto.FirstName),
-                new Claim(JwtRegisteredClaimNames.Email, registerRequestDto.Email),
-                new Claim("Role", userRole.ToString())
+                new Claim(ClaimTypes.Name, firstName),
+                new Claim(ClaimTypes.Email, email),
+                new Claim(ClaimTypes.Role, userRole)
             };
             var signingCredentials = new SigningCredentials(KeyGenerator.GenerateSymmetricKey(JwtOptions.KEY), SecurityAlgorithms.HmacSha256);
             var jwtSecureToken = new JwtSecurityToken(JwtOptions.ISSUER, JwtOptions.AUDIENCE, claims, DateTime.Now, DateTime.Now.AddMinutes(60), signingCredentials);

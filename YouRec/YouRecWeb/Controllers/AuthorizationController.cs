@@ -2,14 +2,7 @@
 using BLL.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using Serilog;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using YouRecWeb.Model;
 
@@ -36,7 +29,7 @@ namespace YouRecWeb.Controllers
             if (res.Success)
             {
                 res.IsAdmin = false;
-                res.Username = $"{registerRequestDto.FirstName} {registerRequestDto.LastName}";
+                res.Username = registerRequestDto.FirstName;
             }
             return res;
         }
@@ -44,17 +37,9 @@ namespace YouRecWeb.Controllers
         [Route("SignIn")]
         [AllowAnonymous]
         [HttpPost]
-        public async Task<UserViewModel> SignIn(LoginRequestDto loginRequestDto)
+        public async Task<AuthResult> SignIn(LoginRequestDto loginRequestDto)
         {
-            await _authService.SignIn(loginRequestDto);
-            return new UserViewModel {};
-        }
-
-        [Route("SecureTest")]
-        [HttpGet]
-        public string SecuredMethod()
-        {
-            return ($"User name: {HttpContext.User.Identity.Name}, Auth: {HttpContext.User.Identity.IsAuthenticated}");
+            return await _authService.SignIn(loginRequestDto);
         }
     }
 }

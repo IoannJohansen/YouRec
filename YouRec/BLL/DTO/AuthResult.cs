@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,10 @@ namespace BLL.DTO
 
         public bool IsAdmin { get; set; }
 
+        public string Token { get; set; }
+
         public string Username { get; set; }
+
+        public IEnumerable<IdentityError> ErrorMsg { get; set; }
     }
 }

@@ -37,7 +37,7 @@ namespace DAL.Data
 
         private void SeedRoles(ModelBuilder builder)
         {
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "USER", NormalizedName = "USER" }, new IdentityRole { Name = "ADMIN", NormalizedName = "ADMIN" });
+            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "User", NormalizedName = "USER" }, new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" });
         }
     }
 }
