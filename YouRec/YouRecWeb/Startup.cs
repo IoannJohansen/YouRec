@@ -26,6 +26,8 @@ namespace YouRecWeb
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddControllers();
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -66,6 +68,12 @@ namespace YouRecWeb
             app.UseAuthentication();
 
             app.UseRouting();
+
+            app.UseCors(options =>
+            {
+                options.AllowAnyOrigin();
+                options.AllowAnyHeader();
+            });
 
             app.UseAuthorization();
 

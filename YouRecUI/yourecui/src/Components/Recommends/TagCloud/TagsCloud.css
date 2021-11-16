@@ -4,8 +4,8 @@
     padding: 5px;
 }
 
-span.tag-cloud-tag:hover{
-    font-weight: bolder;
+span.tag-cloud-tag:hover {
+    text-decoration: underline;
     cursor: pointer;
     transition: 0.2s ease all;
 }

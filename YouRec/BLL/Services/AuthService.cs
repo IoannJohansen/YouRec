@@ -31,7 +31,7 @@ namespace BLL.Services
             {
                 var role = await _userManager.GetRolesAsync(user);
                 var token = CreateTokenForUser(user.UserName, user.Email, role.First());
-                return new AuthResult { Success = true, Token = token, IsAdmin = role.First() == "Admin" };
+                return new AuthResult { Success = true, Token = token, Username = user.UserName , IsAdmin = role.First() == "Admin" };
             }
             return new AuthResult { Success = false };
         }
