@@ -15,7 +15,6 @@ export default function Router() {
                 <Route path="/MyRecs" element={<MyRecommends />} />
                 <Route path="/CreateRec" element={<CreateRecommend />} />
                 <Route path="/SignIn" element={<LoginForm />} />
-
                 <Route path="*" element={<NoMatch />} />
             </Route>
         </Routes>

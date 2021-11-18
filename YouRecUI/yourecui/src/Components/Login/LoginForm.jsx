@@ -1,14 +1,18 @@
-import { React, useState } from 'react';
+import { React, useState, useContext } from 'react';
 import { Form, Button, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import axios from 'axios';
 import Parameteres from '../../Api/ApiParameteres';
 import { useNavigate } from "react-router-dom";
+import { UserContext } from '../App/App';
 
-export default function LoginForm(props) {
+export default function LoginForm() {
 
     const navigate = useNavigate();
+    const [Email, SetEmail] = useState("");
+    const [Password, SetPassword] = useState("");
+    const userContext = useContext(UserContext);
 
     let onSubmitHandle = (e) => {
         e.preventDefault();
@@ -18,21 +22,17 @@ export default function LoginForm(props) {
         }
 
         axios.post(Parameteres.API_URL + Parameteres.SIGN_IN_PATH, JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).then(response => {
-            console.log(response);
             if (response.status === 200 && response.data.success) {
+                userContext.setInitState(true, response.data.isAdmin, response.data.username)
+                localStorage.setItem("jwt", response.data.token);
                 navigate('/Recs');
             } else {
-
+                alert("Bad login");
             }
         }).catch(error => {
             console.log(`Error: ${error}`);
         });
     }
-
-    alert(props.location.state.name)
-
-    const [Email, SetEmail] = useState("");
-    const [Password, SetPassword] = useState("");
 
     return (
         <div className="container col-sm-4">

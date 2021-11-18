@@ -40,5 +40,13 @@ namespace YouRecWeb.Controllers
         {
             return await _authService.SignIn(loginRequestDto);
         }
+
+        [Authorize(Roles = "User")]
+        [Route("Test")]
+        public async Task<IActionResult> Test()
+        {
+
+            return Ok("Hello world!");
+        }
     }
 }
