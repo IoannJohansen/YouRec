@@ -30,7 +30,6 @@ export default function RegisterForm() {
             if (response.status === 200 && response.data.success) {
                 userContext.setInitState(true, true, response.data.username)
                 localStorage.setItem("jwt", response.data.token);
-                alert(response.data);
                 navigate('/Recs');
             } else {
                 alert("Bad login");
