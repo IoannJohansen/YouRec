@@ -121,7 +121,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Desktop\\Dev\\YouRec\\YouRec\\BLL\\BLL.csproj": {
+                "projectPath": "D:\\Desktop\\Dev\\YouRec\\YouRec\\BLL\\BLL.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

@@ -24,4 +24,8 @@
     <Folder Include="Infrastructure\Repository\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj" />
+  </ItemGroup>
+
 </Project>

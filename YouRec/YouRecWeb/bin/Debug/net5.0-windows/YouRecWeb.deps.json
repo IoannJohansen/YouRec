@@ -2012,6 +2012,7 @@
       },
       "DAL/1.0.0": {
         "dependencies": {
+          "BLL": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.12",
           "Microsoft.EntityFrameworkCore": "5.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.12"

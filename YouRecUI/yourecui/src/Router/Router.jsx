@@ -5,7 +5,7 @@ import NoMatch from '../Components/NoMatch/NoMatch';
 import Layout from '../Components/Layout/Layout.jsx'
 import RecommendsPage from '../Components/Recommends/RecommendsPage';
 import LoginForm from '../Components/Login/LoginForm';
-
+import Register from '../Components/Register/RegisterForm'
 
 export default function Router() {
     return (
@@ -15,6 +15,8 @@ export default function Router() {
                 <Route path="/MyRecs" element={<MyRecommends />} />
                 <Route path="/CreateRec" element={<CreateRecommend />} />
                 <Route path="/SignIn" element={<LoginForm />} />
+                <Route path="/Register" element={<Register />} />
+
                 <Route path="*" element={<NoMatch />} />
             </Route>
         </Routes>

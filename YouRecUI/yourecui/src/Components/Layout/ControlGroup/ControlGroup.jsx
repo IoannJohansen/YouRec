@@ -3,7 +3,7 @@ import { faCog, faUser, faStarOfLife, faSignInAlt, faSignOutAlt } from '@fortawe
 import { Nav, ButtonGroup, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
-import {UserContext} from '../../App/App';
+import { UserContext } from '../../App/App';
 
 function ControlGroup(props) {
 
@@ -11,7 +11,7 @@ function ControlGroup(props) {
 
     const signOutClick = () => {
         localStorage.removeItem("jwt");
-        userContext.setLoginState(false);
+        userContext.setInitState(false, false, "Guest");
     }
 
     return (

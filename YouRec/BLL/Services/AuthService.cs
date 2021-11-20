@@ -39,7 +39,7 @@ namespace BLL.Services
         public async Task<AuthResult> SignUp(RegisterRequestDto registerRequestDto)
         {
             var result = new AuthResult();
-            IdentityUser newUser = new IdentityUser { Email = registerRequestDto.Email, UserName = registerRequestDto.FirstName };
+            IdentityUser newUser = new() { Email = registerRequestDto.Email, UserName = registerRequestDto.FirstName };
             var resultCreation = await _userManager.CreateAsync(newUser, registerRequestDto.Password);
             if (resultCreation.Succeeded)
             {
@@ -47,6 +47,7 @@ namespace BLL.Services
                 await _userManager.AddToRoleAsync(newUser, UserRole.User.ToString());
                 result.Token = CreateTokenForUser(registerRequestDto.FirstName, registerRequestDto.Email, UserRole.User.ToString());
                 result.Success = true;
+                result.Username = registerRequestDto.FirstName;
             }
             else
             {

@@ -2,16 +2,21 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DAL.Data
 {
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration) : base(options)
         {
+            this.Configuration = configuration;
             Database.EnsureCreated();
         }
+
+        private IConfiguration Configuration;
 
         public virtual DbSet<Recommend> Recommends { get; set; }
 
@@ -28,6 +33,7 @@ namespace DAL.Data
             base.OnModelCreating(builder);
             SeedGroups(builder);
             SeedRoles(builder);
+            SeedUsers(builder);
         }
 
         private void SeedGroups(ModelBuilder builder)
@@ -37,7 +43,15 @@ namespace DAL.Data
 
         private void SeedRoles(ModelBuilder builder)
         {
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "User", NormalizedName = "USER" }, new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" });
+            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "User", NormalizedName = "USER", Id = Configuration["USER:RoleID"] }, new IdentityRole { Name = "Admin", NormalizedName = "ADMIN", Id = Configuration["ADMIN:RoleID"] });
+        }
+
+        private void SeedUsers(ModelBuilder builder)
+        {
+            var passwordHasher = new PasswordHasher<IdentityUser>();
+            var admin = new IdentityUser { Email = Configuration["ADMIN:Email"], NormalizedEmail = Configuration["ADMIN:Email"].ToUpper(), UserName = "Admin", PasswordHash = passwordHasher.HashPassword(null, Configuration["ADMIN:Password"]) };
+            builder.Entity<IdentityUser>().HasData(admin);
+            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> { RoleId = Configuration["ADMIN:RoleID"], UserId = admin.Id });
         }
     }
 }

@@ -36,8 +36,8 @@ namespace YouRecWeb
             });
             
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-
             services.AddTransient<IAuthService, AuthService>();
+            services.AddSingleton<IConfiguration>(Configuration);
 
             services.AddAuthentication(options =>
             {
@@ -53,7 +53,6 @@ namespace YouRecWeb
             });
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -62,7 +61,7 @@ namespace YouRecWeb
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseHttpsRedirection();
             
             app.UseAuthentication();
