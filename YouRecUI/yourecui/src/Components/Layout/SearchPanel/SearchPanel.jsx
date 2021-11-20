@@ -1,11 +1,19 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FormControl, Nav } from 'react-bootstrap';
+import { FormControl, Nav, Form, Button } from 'react-bootstrap';
 
 export default function SearchPanel() {
     return (
         <Nav>
-            <FormControl type="Search" aria-label="Search" placeholder="Search" />
+            <Form className="d-flex justify-content-around">
+                <FormControl
+                    type="search"
+                    placeholder="Search"
+                    className="m-1"
+                    aria-label="Search"
+                />
+                <Button variant="success" className="btn-sm m-1">Search</Button>
+            </Form>
         </Nav>
     );
 }

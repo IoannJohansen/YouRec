@@ -15,6 +15,7 @@ export default function LoginForm() {
     const [Email, SetEmail] = useState("");
     const [Password, SetPassword] = useState("");
     const userContext = useContext(UserContext);
+    const [status, setStatus] = useState(null);
 
     const {
         register,
@@ -34,26 +35,29 @@ export default function LoginForm() {
                 localStorage.setItem("jwt", response.data.token);
                 navigate('/Recs');
             } else {
-                alert("Bad login");
+                setStatus("Invalid login or password");
             }
         }).catch(error => {
-            console.log(`Error: ${error}`);
+            setStatus("Invalid login or password");
         });
     }
 
     return (
         <div className="container col-sm-4">
             <p className="h2 text-center m-4">Login</p>
+            {status &&
+                <div className={'alert alert-danger'}>{status}</div>
+            }
             <Form noValidate>
-                {errors?.Email && <p className="text-danger">{errors?.Email?.message}</p>}
-                {errors?.Password && <p className="text-danger">{errors?.Password?.message}</p>}
                 <Form.Group controlId="formBasicEmail" className="mb-4">
                     <Form.Label>Email</Form.Label>
+                    {errors?.Email && <p className="text-danger">{errors?.Email?.message}</p>}
                     <Form.Control maxLength={40} {...register("Email", EmailValidationOptions)} value={Email} onChange={event => SetEmail(event.target.value)} placeholder="irecommend@mail.com" type="email" />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
+                    {errors?.Password && <p className="text-danger">{errors?.Password?.message}</p>}
                     <Form.Control maxLength={40} {...register("Password", PasswordValidationOptions)} value={Password} onChange={event => SetPassword(event.target.value)} placeholder="Password" type="password" />
                 </Form.Group>
 
