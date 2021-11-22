@@ -1,13 +1,14 @@
 import { React, useState, useContext } from 'react';
 import { Form, Button, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faGit, faGithub, faGitlab, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import axios from 'axios';
 import Parameteres from '../../Api/ApiParameteres';
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../App/App';
 import { useForm } from 'react-hook-form';
 import { EmailValidationOptions, PasswordValidationOptions } from '../../Helper/Validator';
+import { SignInGoogle, HandleSuccessLogin } from '../../Api/Auth';
 
 export default function LoginForm() {
 
@@ -30,13 +31,7 @@ export default function LoginForm() {
         }
 
         axios.post(Parameteres.API_URL + Parameteres.SIGN_IN_PATH, JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).then(response => {
-            if (response.status === 200 && response.data.success) {
-                userContext.setInitState(true, response.data.isAdmin, response.data.username)
-                localStorage.setItem("jwt", response.data.token);
-                navigate('/Recs');
-            } else {
-                setStatus("Invalid login or password");
-            }
+            HandleSuccessLogin(response, navigate, userContext, setStatus);
         }).catch(error => {
             setStatus("Invalid login or password");
         });
@@ -68,9 +63,11 @@ export default function LoginForm() {
 
                 <p className="h2 text-center mt-5">Or use external networks:</p>
                 <div className="d-flex justify-content-around">
+
                     <ButtonGroup>
-                        <Button className="btn-lg"><FontAwesomeIcon icon={faFacebook} /></Button>
-                        <Button className="btn-lg"><FontAwesomeIcon icon={faGoogle} /></Button>
+                        <SignInGoogle />
+                        {/* <Button className="btn-lg"><FontAwesomeIcon icon={faGoogle} /></Button> */}
+                        <Button className="btn-lg"><FontAwesomeIcon icon={faGithub} /></Button>
                     </ButtonGroup>
 
                 </div>

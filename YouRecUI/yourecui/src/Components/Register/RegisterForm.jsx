@@ -8,6 +8,8 @@ import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { UserContext } from '../App/App';
 import { useForm } from 'react-hook-form';
 import { EmailValidationOptions, PasswordValidationOptions, FirstNameValidationOptions, LastNameValidationOptions } from '../../Helper/Validator';
+import { HandleSuccessLogin } from '../../Api/Auth';
+
 
 export default function RegisterForm() {
     const navigate = useNavigate();
@@ -33,13 +35,7 @@ export default function RegisterForm() {
         }
 
         axios.post(Parameteres.API_URL + Parameteres.SIGN_UP_PATH, JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).then(response => {
-            if (response.status === 200 && response.data.success) {
-                userContext.setInitState(true, true, response.data.username)
-                localStorage.setItem("jwt", response.data.token);
-                navigate('/Recs');
-            } else {
-                setStatus(response.data.error);
-            }
+            HandleSuccessLogin(response, navigate, userContext, setStatus);
         }).catch(error => {
             setStatus("Invalid login or password");
         });

@@ -34,10 +34,10 @@ namespace YouRecWeb
             {
                 options.UseSqlServer(Configuration["ConnectionString:DefaultConnection"]);
             });
-            
+
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IAuthService, AuthService>();
-            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton(Configuration);
 
             services.AddAuthentication(options =>
             {
@@ -57,6 +57,7 @@ namespace YouRecWeb
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = true;
                 options.Password.RequireUppercase = false;
+                options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
         }
 
@@ -66,9 +67,9 @@ namespace YouRecWeb
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+
             app.UseHttpsRedirection();
-            
+
             app.UseAuthentication();
 
             app.UseRouting();

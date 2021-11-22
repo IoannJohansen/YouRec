@@ -94,3 +94,9 @@ D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\System.Web.WebPa
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.Web.Infrastructure.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\microsoft.identitymodel.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.AspNetCore.Authentication.Facebook.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.AspNetCore.Authentication.Google.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Google.Apis.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Google.Apis.Auth.PlatformServices.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Google.Apis.Auth.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Google.Apis.Core.dll

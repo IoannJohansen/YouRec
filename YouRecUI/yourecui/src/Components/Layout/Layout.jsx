@@ -7,7 +7,6 @@ import SearchPanel from './SearchPanel/SearchPanel.jsx';
 import ControlGroup from './ControlGroup/ControlGroup.jsx';
 import { Outlet } from 'react-router-dom';
 import { UserContext } from '../App/App';
-import { Link } from 'react-router-dom';
 
 export default function Layout() {
     return (
