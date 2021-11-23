@@ -4,12 +4,12 @@ import Router from '../../Router/Router.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import jwt from 'jsonwebtoken';
 
+//-----------------------------------------------------------------
 export const UserContext = createContext({
   isLoggedIn: false,
-  userName: "Hell",
+  userName: "",
   isAdmin: false
 });
-
 class App extends Component {
 
   constructor() {
@@ -46,6 +46,7 @@ class App extends Component {
     isLoggedIn: this.state.isLoggedIn,
     isAdmin: this.state.isAdmin,
     userName: this.state.userName,
+
     setAdmin: this.setAdmin,
     setLoginState: this.setLoginState,
     setUserNameState: this.setUserNameState,
@@ -53,7 +54,6 @@ class App extends Component {
   })
 
   render() {
-
     return (
       <div>
         <UserContext.Provider value={this.createContextValue()}>

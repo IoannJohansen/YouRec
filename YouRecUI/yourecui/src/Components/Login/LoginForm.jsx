@@ -1,14 +1,12 @@
-import { React, useState, useContext } from 'react';
-import { Form, Button, ButtonGroup } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGit, faGithub, faGitlab, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { React, useState, useContext, useEffect } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import Parameteres from '../../Api/ApiParameteres';
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../App/App';
 import { useForm } from 'react-hook-form';
 import { EmailValidationOptions, PasswordValidationOptions } from '../../Helper/Validator';
-import { SignInGoogle, HandleSuccessLogin } from '../../Api/Auth';
+import { SignInGoogleButton, HandleSuccessLogin, SignInMicrosoftButton } from '../../Api/Auth';
 
 export default function LoginForm() {
 
@@ -22,7 +20,6 @@ export default function LoginForm() {
         register,
         handleSubmit,
         formState: { errors } } = useForm();
-
 
     let onSubmitHandle = () => {
         let data = {
@@ -62,14 +59,9 @@ export default function LoginForm() {
                 </div>
 
                 <p className="h2 text-center mt-5">Or use external networks:</p>
-                <div className="d-flex justify-content-around">
-
-                    <ButtonGroup>
-                        <SignInGoogle />
-                        {/* <Button className="btn-lg"><FontAwesomeIcon icon={faGoogle} /></Button> */}
-                        <Button className="btn-lg"><FontAwesomeIcon icon={faGithub} /></Button>
-                    </ButtonGroup>
-
+                <div className="d-flex flex-column text-center">
+                    <SignInGoogleButton />
+                    <SignInMicrosoftButton />
                 </div>
 
             </Form>
