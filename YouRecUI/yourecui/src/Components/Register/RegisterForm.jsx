@@ -1,14 +1,14 @@
-import { React, useContext, useState } from 'react';
+import { React, useState } from 'react';
 import { Form, Button, ButtonGroup } from 'react-bootstrap'
 import axios from 'axios';
 import Parameteres from '../../Api/ApiParameteres';
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { UserContext } from '../App/App';
 import { useForm } from 'react-hook-form';
 import { EmailValidationOptions, PasswordValidationOptions, FirstNameValidationOptions, LastNameValidationOptions } from '../../Helper/Validator';
 import { HandleSuccessLogin } from '../../Api/Auth';
+import { useDispatch } from 'react-redux';
 
 
 export default function RegisterForm() {
@@ -17,14 +17,13 @@ export default function RegisterForm() {
     const [Password, SetPassword] = useState("");
     const [FirstName, SetFirstName] = useState("");
     const [Lastname, SetLastName] = useState("");
-    const userContext = useContext(UserContext);
     const [status, setStatus] = useState(null);
 
     const {
         register,
         handleSubmit,
         formState: { errors } } = useForm();
-
+    const dispatch = useDispatch();
 
     let onSubmitHandle = (e) => {
         let data = {
@@ -35,7 +34,7 @@ export default function RegisterForm() {
         }
 
         axios.post(Parameteres.API_URL + Parameteres.SIGN_UP_PATH, JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).then(response => {
-            HandleSuccessLogin(response, navigate, userContext, setStatus);
+            HandleSuccessLogin(response, navigate, setStatus, dispatch);
         }).catch(error => {
             setStatus("Invalid login or password");
         });

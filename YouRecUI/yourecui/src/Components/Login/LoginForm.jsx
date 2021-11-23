@@ -1,21 +1,20 @@
-import { React, useState, useContext, useEffect } from 'react';
+import { React, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import Parameteres from '../../Api/ApiParameteres';
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from '../App/App';
 import { useForm } from 'react-hook-form';
 import { EmailValidationOptions, PasswordValidationOptions } from '../../Helper/Validator';
 import { SignInGoogleButton, HandleSuccessLogin, SignInMicrosoftButton } from '../../Api/Auth';
+import { useDispatch } from 'react-redux';
 
 export default function LoginForm() {
 
     const navigate = useNavigate();
     const [Email, SetEmail] = useState("");
     const [Password, SetPassword] = useState("");
-    const userContext = useContext(UserContext);
     const [status, setStatus] = useState(null);
-
+    const dispatch = useDispatch();
     const {
         register,
         handleSubmit,
@@ -28,8 +27,11 @@ export default function LoginForm() {
         }
 
         axios.post(Parameteres.API_URL + Parameteres.SIGN_IN_PATH, JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).then(response => {
-            HandleSuccessLogin(response, navigate, userContext, setStatus);
+            
+            HandleSuccessLogin(response, navigate, setStatus, dispatch);
+
         }).catch(error => {
+            console.log("ERROR " + error);
             setStatus("Invalid login or password");
         });
     }
