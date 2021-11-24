@@ -1,3 +1,4 @@
+using BLL.Core.Auth.Jwt;
 using BLL.Interfaces;
 using BLL.Services;
 using DAL.Data;
@@ -11,7 +12,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BLL.Core.Auth.Jwt;
 
 namespace YouRecWeb
 {

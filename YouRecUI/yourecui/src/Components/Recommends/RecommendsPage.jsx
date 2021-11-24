@@ -10,6 +10,7 @@ class RecommendsPage extends Component {
         }
     }
 
+    //TODO:     make query and fill state, then put into lists with props
     render() {
         return (
             <>

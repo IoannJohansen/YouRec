@@ -60,9 +60,7 @@ export default function LoginForm() {
                     <Link to="/Register" className="mt-4 btn btn-success" type="submit" variant="success">Register</Link>
                 </div>
 
-                <p className="h2 text-center mt-5">Or use external networks:</p>
-
-                <div className="d-flex flex-column text-center">
+                <div className="d-flex flex-column text-center mt-3">
                     <SignInGoogleButton onfail={() => setStatus("Google authentication failure")} />
                     <SignInMicrosoftButton onfail={() => setStatus("Microsoft authentication failure")} />
                 </div>

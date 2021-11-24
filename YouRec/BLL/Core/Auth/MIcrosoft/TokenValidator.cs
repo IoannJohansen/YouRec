@@ -1,14 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.Core.Auth.MIcrosoft
@@ -41,7 +39,7 @@ namespace BLL.Core.Auth.MIcrosoft
                 var tokenHandler = new JwtSecurityTokenHandler();
 
                 UserClaims = new List<Claim>(tokenHandler.ValidateToken(token, validationParameteres, out _).Identities.FirstOrDefault().Claims);
-                
+
                 Log.Warning("Microsoft token successfully validated");
                 return true;
             }

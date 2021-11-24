@@ -1,15 +1,12 @@
 import { React, useState } from 'react';
-import { Form, Button, ButtonGroup } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import axios from 'axios';
 import Parameteres from '../../Api/ApiParameteres';
 import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useForm } from 'react-hook-form';
 import { EmailValidationOptions, PasswordValidationOptions, FirstNameValidationOptions, LastNameValidationOptions } from '../../Helper/Validator';
-import { HandleSuccessLogin } from '../../Api/Auth';
+import { HandleSuccessLogin, SignInGoogleButton, SignInMicrosoftButton } from '../../Api/Auth';
 import { useDispatch } from 'react-redux';
-
 
 export default function RegisterForm() {
     const navigate = useNavigate();
@@ -76,13 +73,9 @@ export default function RegisterForm() {
                     <Link to="/SignIn" className="mt-4 btn btn-success" type="submit" variant="primary">Login</Link>
                 </div>
 
-                <p className="h2 text-center mt-5">Or use external networks:</p>
-                <div className="d-flex justify-content-around">
-                    <ButtonGroup>
-                        <Button className="btn-lg"><FontAwesomeIcon icon={faFacebook} /></Button>
-                        <Button className="btn-lg"><FontAwesomeIcon icon={faGoogle} /></Button>
-                    </ButtonGroup>
-
+                <div className="d-flex flex-column text-center  mt-3">
+                    <SignInGoogleButton onfail={() => setStatus("Google authentication failure")} />
+                    <SignInMicrosoftButton onfail={() => setStatus("Microsoft authentication failure")} />
                 </div>
             </Form>
         </div>

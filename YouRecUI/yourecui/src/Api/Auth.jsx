@@ -1,4 +1,4 @@
-import { API_URL, SIGN_IN_GOOGLE, MICROSOFT_SIGN_IN } from './ApiParameteres';
+import { API_URL, SIGN_IN_GOOGLE, MICROSOFT_SIGN_IN, GOOGLE_CLIENT_ID, MICROSOFT_CLIENT_ID } from './ApiParameteres';
 import { React } from 'react'
 import axios from 'axios';
 import { MicrosoftLogin } from "react-microsoft-login";
@@ -34,7 +34,6 @@ export function SignInGoogleButton(props) {
     }
 
     const HandlAuthResponse = (res) => {
-        console.log(res);
         if (res.status === 200) {
             dispatch(login({ isAdmin: false, userName: res.data.username }))
             localStorage.setItem("jwt", res.data.token);
@@ -47,7 +46,7 @@ export function SignInGoogleButton(props) {
     return (
         <GoogleLogin
             theme="light"
-            clientId={'467666703976-2v1pdp4p8v5rtho06lo6b5uvmv09jnfd.apps.googleusercontent.com'}
+            clientId={GOOGLE_CLIENT_ID}
             onSuccess={successAuthHandler}
             onFailure={props.onfail}
             cookiePolicy={'single_host_origin'}
@@ -61,18 +60,21 @@ export function SignInMicrosoftButton(props) {
     const navigate = useNavigate();
 
     const authHandler = (err, data) => {
-        console.log(data);
+        if (data == null) {
+            props.onfail();
+            return;
+        }
         axios.post(API_URL + MICROSOFT_SIGN_IN, {
             Id_token: data.idToken.rawIdToken,
             Provider: "microsoft"
         }).then(res => {
-            console.log(res);
             if (res.status === 200) {
                 dispatch(login({ isAdmin: false, userName: res.data.username }))
                 localStorage.setItem("jwt", res.data.token);
                 navigate("/Recs");
             } else {
                 console.log("Error");
+                props.onfail();
             }
         })
         sessionStorage.clear();
@@ -80,7 +82,7 @@ export function SignInMicrosoftButton(props) {
 
     return (
         <MicrosoftLogin
-            clientId={"2a72ff00-fc7d-4aff-96ea-09f592f8dc1a"}
+            clientId={MICROSOFT_CLIENT_ID}
             authCallback={authHandler}
             children={<MicrosoftLoginButton />}
         />
