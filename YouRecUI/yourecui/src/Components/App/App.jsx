@@ -9,7 +9,6 @@ class App extends Component {
   componentDidMount() {
     const { login } = this.props;
     if (localStorage.getItem("jwt") != null) {
-
       const token = localStorage.getItem("jwt");
       let decodedToken = jwt.decode(token, { complete: true });
       var dateNow = new Date();

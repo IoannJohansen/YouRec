@@ -5,6 +5,8 @@ import { MicrosoftLogin } from "react-microsoft-login";
 import { GoogleLoginButton, MicrosoftLoginButton } from "react-social-login-buttons";
 import { GoogleLogin } from 'react-google-login';
 import { login } from '../Store/Actions/UserActions/UserActions';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export function HandleSuccessLogin(authResponse, navigate, setStatus, dispatch) {
     if (authResponse.status === 200 && authResponse.data.success) {
@@ -17,67 +19,70 @@ export function HandleSuccessLogin(authResponse, navigate, setStatus, dispatch) 
     }
 }
 
-//TODO: parms: login dto | simple login
-// export function Login() {
+export function SignInGoogleButton(props) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-// }
+    const successAuthHandler = (res) => {
+        axios.post(API_URL + SIGN_IN_GOOGLE, {
+            Id_token: res.tokenId,
+            Provider: "google"
+        }).then(res => {
+            console.log(res);
+            HandlAuthResponse(res);
+        })
+    }
 
-//TODO: reg reg dto | simple register
-export function Register() {
+    const HandlAuthResponse = (res) => {
+        console.log(res);
+        if (res.status === 200) {
+            dispatch(login({ isAdmin: false, userName: res.data.username }))
+            localStorage.setItem("jwt", res.data.token);
+            navigate("/Recs");
+        } else {
+            console.log("Error");
+        }
+    }
 
-}
-
-//TODO: validate token
-export function ValidateToken() {
-
-}
-
-export function SignInGoogleButton() {
     return (
         <GoogleLogin
             theme="light"
             clientId={'467666703976-2v1pdp4p8v5rtho06lo6b5uvmv09jnfd.apps.googleusercontent.com'}
-            onSuccess={successLogginGoogle}
+            onSuccess={successAuthHandler}
+            onFailure={props.onfail}
             cookiePolicy={'single_host_origin'}
             render={GoogleLoginButton}
         />
     );
 }
 
-export function SignInMicrosoftButton() {
+export function SignInMicrosoftButton(props) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
+    const authHandler = (err, data) => {
+        console.log(data);
+        axios.post(API_URL + MICROSOFT_SIGN_IN, {
+            Id_token: data.idToken.rawIdToken,
+            Provider: "microsoft"
+        }).then(res => {
+            console.log(res);
+            if (res.status === 200) {
+                dispatch(login({ isAdmin: false, userName: res.data.username }))
+                localStorage.setItem("jwt", res.data.token);
+                navigate("/Recs");
+            } else {
+                console.log("Error");
+            }
+        })
+        sessionStorage.clear();
+    }
 
     return (
         <MicrosoftLogin
-            clientId={"b95edfca-7e7a-47e1-b184-908e978aec1d"}
+            clientId={"2a72ff00-fc7d-4aff-96ea-09f592f8dc1a"}
             authCallback={authHandler}
             children={<MicrosoftLoginButton />}
         />
     );
 }
-
-export function HandleAuthResponse(AuthResult) {
-    console.log(AuthResult);
-    login({ isAdmin: false, userName: AuthResult.data.username });
-    localStorage.setItem("jwt", AuthResult.data.token);
-}
-
-function authHandler(err, data) {
-    axios.post(API_URL + MICROSOFT_SIGN_IN, {
-        Id_token: data.idToken.rawIdToken,
-        Provider: "microsoft"
-    }).then(res => {
-        HandleAuthResponse(res);
-    })
-    sessionStorage.clear();
-}
-
-function successLogginGoogle(response) {
-    axios.post(API_URL + SIGN_IN_GOOGLE, {
-        Id_token: response.tokenId,
-        Provider: "google"
-    }).then(res => {
-        HandleAuthResponse(res);
-    })
-}
-

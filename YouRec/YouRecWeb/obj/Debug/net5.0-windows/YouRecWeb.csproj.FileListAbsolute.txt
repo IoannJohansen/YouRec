@@ -100,3 +100,5 @@ D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Google.Apis.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Google.Apis.Auth.PlatformServices.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Google.Apis.Auth.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Google.Apis.Core.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.AspNetCore.Authorization.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.AspNetCore.Metadata.dll

@@ -1,6 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using BLL.Core.Auth.Jwt;
 
-namespace BLL.Core.Auth
+namespace BLL.Core.Auth.Jwt
 {
     public static class JwtOptions
     {

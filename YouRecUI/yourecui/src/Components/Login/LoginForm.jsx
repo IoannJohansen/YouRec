@@ -27,7 +27,7 @@ export default function LoginForm() {
         }
 
         axios.post(Parameteres.API_URL + Parameteres.SIGN_IN_PATH, JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).then(response => {
-            
+
             HandleSuccessLogin(response, navigate, setStatus, dispatch);
 
         }).catch(error => {
@@ -61,9 +61,10 @@ export default function LoginForm() {
                 </div>
 
                 <p className="h2 text-center mt-5">Or use external networks:</p>
+
                 <div className="d-flex flex-column text-center">
-                    <SignInGoogleButton />
-                    <SignInMicrosoftButton />
+                    <SignInGoogleButton onfail={() => setStatus("Google authentication failure")} />
+                    <SignInMicrosoftButton onfail={() => setStatus("Microsoft authentication failure")} />
                 </div>
 
             </Form>

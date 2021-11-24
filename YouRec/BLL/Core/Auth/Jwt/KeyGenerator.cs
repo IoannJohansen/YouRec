@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace BLL.Core.Auth
+namespace BLL.Core.Auth.Jwt
 {
     public class KeyGenerator
     {

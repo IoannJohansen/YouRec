@@ -8,5 +8,7 @@ namespace BLL.Interfaces
         Task<AuthResult> SignIn(LoginRequestDto loginRequestDto);
         Task<AuthResult> SignUp(RegisterRequestDto registerRequestDto);
         Task<AuthResult> LoginGoogle(SocialNetworkRequestDto socialNetworkRequest);
+        Task<AuthResult> LoginMicrosoft(SocialNetworkRequestDto socialNetworkRequest);
+
     }
 }

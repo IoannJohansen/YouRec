@@ -10,6 +10,6 @@ namespace BLL.DTO
     {
         public string Id_token { get; set; }
 
-        public string Email { get; set; }
+        public string Provider { get; set; }
     }
 }

@@ -61,5 +61,13 @@ namespace YouRecWeb.Controllers
         {
             return await _authService.LoginGoogle(socialNetworkRequest);
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("microsoft")]
+        public async Task<AuthResult> LoginMicrosoft(SocialNetworkRequestDto socialNetworkRequest)
+        {
+            return await _authService.LoginMicrosoft(socialNetworkRequest);
+        }
     }
 }
