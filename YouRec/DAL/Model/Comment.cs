@@ -9,9 +9,9 @@ namespace DAL.Model
 {
     public class Comment : BaseEntity
     {
-        public int RecommendId { get; set; }
-
         public string CommentMessage { get; set; }
+
+        public int RecommendId { get; set; }
 
         public virtual Recommend Recommend { get; set; }
     }

@@ -13,7 +13,9 @@ namespace DAL.Model
 
         public string Text { get; set; }
 
-        public virtual int GroupId { get; set; }
+        public DateTime CreationDate { get; set; }
+
+        public int GroupId { get; set; }
 
         public virtual Group Group { get; set; }
 
@@ -22,5 +24,7 @@ namespace DAL.Model
         public virtual ICollection<Tag> Tags { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

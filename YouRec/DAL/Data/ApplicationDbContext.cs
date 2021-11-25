@@ -26,7 +26,7 @@ namespace DAL.Data
 
         public virtual DbSet<Images> Images { get; set; }
 
-
+        public virtual DbSet<Rating> Ratings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

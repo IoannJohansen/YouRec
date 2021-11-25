@@ -10,5 +10,7 @@ namespace DAL.Model
     public class Group : BaseEntity
     {
         public string GroupName { get; set; }
+
+        public virtual ICollection<Recommend> Recommends { get; set; }
     }
 }

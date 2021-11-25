@@ -9,9 +9,9 @@ namespace DAL.Model
 {
     public class Tag : BaseEntity
     {
-        public int RecommendId { get; set; }
-
         public string TagName { get; set; }
+
+        public int RecommendId { get; set; }
 
         public virtual Recommend Recommend{ get; set; }
     }

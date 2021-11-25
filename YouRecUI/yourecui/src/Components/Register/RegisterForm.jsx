@@ -5,7 +5,7 @@ import Parameteres from '../../Api/ApiParameteres';
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { EmailValidationOptions, PasswordValidationOptions, FirstNameValidationOptions, LastNameValidationOptions } from '../../Helper/Validator';
-import { HandleSuccessLogin, SignInGoogleButton, SignInMicrosoftButton } from '../../Api/Auth';
+import { HandleSuccessLogin, SignInGoogleButton, SignInMicrosoftButton } from '../../Api/ApiAuth';
 import { useDispatch } from 'react-redux';
 
 export default function RegisterForm() {

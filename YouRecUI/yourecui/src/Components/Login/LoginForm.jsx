@@ -5,7 +5,7 @@ import Parameteres from '../../Api/ApiParameteres';
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { EmailValidationOptions, PasswordValidationOptions } from '../../Helper/Validator';
-import { SignInGoogleButton, HandleSuccessLogin, SignInMicrosoftButton } from '../../Api/Auth';
+import { SignInGoogleButton, HandleSuccessLogin, SignInMicrosoftButton } from '../../Api/ApiAuth';
 import { useDispatch } from 'react-redux';
 
 export default function LoginForm() {

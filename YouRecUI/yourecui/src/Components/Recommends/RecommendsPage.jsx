@@ -1,5 +1,5 @@
 import { React, Component } from 'react';
-import RecomendsList from './RecentlyPublishList/RecentlyPublishedList';
+import RecomendsList from './RecommendsList/RecommendsList';
 import TagsCloud from './TagCloud/TagsCloud';
 
 class RecommendsPage extends Component {
@@ -8,6 +8,10 @@ class RecommendsPage extends Component {
         this.state = {
 
         }
+    }
+
+    componentDidMount() {
+        
     }
 
     //TODO:     make query and fill state, then put into lists with props

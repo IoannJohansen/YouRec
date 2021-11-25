@@ -5,12 +5,12 @@ import { Card, Col } from 'react-bootstrap';
 import './RecommendItem.css';
 
 class RecommendItem extends Component {
+    
     constructor(props) {
         super();
         this.state = {
             title: props.title,
             group: props.group,
-            tags: props.tags,
             text: props.text,
             imageRef: props.imageRef,
             rating: props.rating

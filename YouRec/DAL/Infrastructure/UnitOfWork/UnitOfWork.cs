@@ -6,13 +6,17 @@ namespace DAL.Infrastructure.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public UnitOfWork(ApplicationDbContext applicationDbContext)
+        public UnitOfWork(ApplicationDbContext applicationDbContext, IRecommendsRepository recommendsRepository)
         {
-            this._appDbContext = applicationDbContext;
-
+            _appDbContext = applicationDbContext;
+            _recommendsRepository = recommendsRepository;
         }
-
+        
         private ApplicationDbContext _appDbContext;
+
+        private IRecommendsRepository _recommendsRepository;
+
+        public IRecommendsRepository RecommendsRepository => _recommendsRepository;
 
         public async Task SaveAsync()
         {
