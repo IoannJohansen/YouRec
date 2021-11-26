@@ -23,8 +23,4 @@
     <Folder Include="Infrastructure\Config\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj" />
-  </ItemGroup>
-
 </Project>

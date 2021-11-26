@@ -11,7 +11,7 @@ namespace DAL.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration) : base(options)
         {
             this.Configuration = configuration;
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         private IConfiguration Configuration;

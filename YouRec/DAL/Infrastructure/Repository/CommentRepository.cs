@@ -30,7 +30,7 @@ namespace DAL.Infrastructure.Repository
             _applicationDbContext.Comments.Remove(item);
         });
 
-        public async Task<IEnumerable<Comment>> GetAsync(Expression<Func<Comment, bool>> predicate)
+        public async Task<IEnumerable<Comment>> GetFilteredAsync(Expression<Func<Comment, bool>> predicate)
         {
             return await _applicationDbContext.Comments.Where(predicate).ToListAsync();
         }

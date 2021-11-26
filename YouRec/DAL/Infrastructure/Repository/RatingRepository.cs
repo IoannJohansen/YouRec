@@ -28,5 +28,11 @@ namespace DAL.Infrastructure.Repository
         {
             return _applicationDbContext.Ratings.Update(rating).Entity;
         });
+
+        public async Task DeleteAsync(int id) => await Task.Run(() =>
+        {
+            var ratingInDb = _applicationDbContext.Ratings.FindAsync(id).Result;
+            _applicationDbContext.Ratings.Remove(ratingInDb);
+        });
     }
 }

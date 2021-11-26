@@ -1,11 +1,11 @@
-import { faStarOfDavid } from '@fortawesome/free-solid-svg-icons';
+import { faStarOfDavid, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { React, Component } from 'react';
 import { Card, Col } from 'react-bootstrap';
 import './RecommendItem.css';
 
 class RecommendItem extends Component {
-    
+
     constructor(props) {
         super();
         this.state = {
@@ -29,10 +29,10 @@ class RecommendItem extends Component {
                             {this.state.text.length > 300 ? this.state.text.substr(0, 100).concat("...") : this.state.text}
                         </p>
                         <div className="d-flex justify-content-between">
-                            <div className="h3 m-0">
-                                <FontAwesomeIcon className="text-warning" icon={faStarOfDavid} />
-                                <span>
-                                    {this.state.rating}/10
+                            <div className="h4 m-0">
+                                <FontAwesomeIcon className="text-primary" icon={faUsers} />
+                                <span className="ml-1">
+                                    {this.state.rating}/5
                                 </span>
                             </div>
                             <div className="h5 text-right">

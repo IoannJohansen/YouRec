@@ -27,7 +27,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Desktop\\Dev\\YouRec\\YouRec\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\Desktop\\Dev\\YouRec\\YouRec\\DAL\\DAL.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -40,6 +44,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
             "Google.Apis.Auth": {
               "target": "Package",
               "version": "[1.55.0, )"
@@ -137,11 +145,7 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {
-              "D:\\Desktop\\Dev\\YouRec\\YouRec\\BLL\\BLL.csproj": {
-                "projectPath": "D:\\Desktop\\Dev\\YouRec\\YouRec\\BLL\\BLL.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {

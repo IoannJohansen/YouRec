@@ -1,17 +1,17 @@
-﻿using System.Threading.Tasks;
-using DAL.Infrastructure.Interfaces;
-using DAL.Model;
+﻿using DAL.Model;
+using System.Threading.Tasks;
 
 namespace DAL.Infrastructure.Interfaces
 {
     public interface IUnitOfWork
     {
 
-        IRepository<Recommend> RecommendsRepository { get; }
+        IRecommendRepository RecommendsRepository { get; }
         ITagRepository TagRepository { get; }
-        IImageRepository ImageRepository { get; }   
+        IImageRepository ImageRepository { get; }
         IGroupRepository GroupRepository { get; }
         IRepository<Comment> Commentrepository { get; }
+        IRatingRepository RatingRepository { get; }
 
         Task SaveAsync();
     }

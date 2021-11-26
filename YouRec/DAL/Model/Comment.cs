@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL.Model.Base;
+﻿using DAL.Model.Base;
+using System.Text.Json.Serialization;
 
 namespace DAL.Model
 {
@@ -11,8 +7,11 @@ namespace DAL.Model
     {
         public string CommentMessage { get; set; }
 
+        public string UserId { get; set; }
+
         public int RecommendId { get; set; }
 
-        public virtual Recommend Recommend { get; set; }
+        [JsonIgnore]
+        public Recommend Recommend { get; set; }
     }
 }

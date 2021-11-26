@@ -1,5 +1,5 @@
-﻿using BLL.Interfaces;
-using DAL.Model;
+﻿using BLL.DTO;
+using BLL.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,10 +22,9 @@ namespace YouRecWeb.Controllers
 
         [HttpGet]
         [Route("data")]
-        public async Task<IActionResult> GetData()
+        public async Task<TopRecommendsListDto> GetStartList()
         {
-            return Ok("Okss");
+            return await this._recommendService.GetStartData();
         }
-
     }
 }

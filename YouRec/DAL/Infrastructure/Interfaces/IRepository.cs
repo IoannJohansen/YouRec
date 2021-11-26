@@ -13,6 +13,6 @@ namespace DAL.Infrastructure.Interfaces
         Task DeleteAsync(T item);
         Task<T> UpdateAsync(T item);
         Task<int> GetCountAsync();
-        Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate);
+        Task<IEnumerable<T>> GetFilteredAsync(Expression<Func<T, bool>> predicate);
     }
 }

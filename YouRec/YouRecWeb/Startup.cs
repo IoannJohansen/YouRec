@@ -1,3 +1,4 @@
+using AutoMapper;
 using BLL.Core.Auth.Jwt;
 using BLL.Interfaces;
 using BLL.Services;
@@ -12,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json.Serialization;
+using YouRecWeb.Core.Mapper;
 
 namespace YouRecWeb
 {
@@ -35,9 +38,16 @@ namespace YouRecWeb
                 options.UseSqlServer(Configuration["ConnectionString:DefaultConnection"]);
             });
 
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            var mapperConfig = new MapperConfiguration(config =>
+            {
+                config.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<ITagService, TagService>();
             services.AddTransient<IRecommendService, RecommendService>();
 
             services.AddSingleton(Configuration);

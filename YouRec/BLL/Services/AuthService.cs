@@ -95,7 +95,7 @@ namespace BLL.Services
                 new Claim(ClaimTypes.Role, userRole)
             };
             var signingCredentials = new SigningCredentials(KeyGenerator.GenerateSymmetricKey(JwtOptions.KEY), SecurityAlgorithms.HmacSha256);
-            var jwtSecureToken = new JwtSecurityToken(JwtOptions.ISSUER, JwtOptions.AUDIENCE, claims, DateTime.Now, DateTime.Now.AddMinutes(60), signingCredentials);
+            var jwtSecureToken = new JwtSecurityToken(JwtOptions.ISSUER, JwtOptions.AUDIENCE, claims, DateTime.Now, DateTime.Now.AddMinutes(120), signingCredentials);
             var token = new JwtSecurityTokenHandler().WriteToken(jwtSecureToken);
             return token;
         }

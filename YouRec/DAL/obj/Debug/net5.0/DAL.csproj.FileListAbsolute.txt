@@ -13,6 +13,3 @@ D:\Desktop\Dev\YouRec\YouRec\DAL\obj\Debug\net5.0\ref\DAL.dll
 D:\Desktop\Dev\YouRec\YouRec\DAL\obj\Debug\net5.0\DAL.pdb
 D:\Desktop\Dev\YouRec\YouRec\DAL\obj\Debug\net5.0\DAL.genruntimeconfig.cache
 D:\Desktop\Dev\YouRec\YouRec\DAL\obj\Debug\net5.0\DAL.csproj.AssemblyReference.cache
-D:\Desktop\Dev\YouRec\YouRec\DAL\bin\Debug\net5.0\BLL.dll
-D:\Desktop\Dev\YouRec\YouRec\DAL\bin\Debug\net5.0\BLL.pdb
-D:\Desktop\Dev\YouRec\YouRec\DAL\obj\Debug\net5.0\DAL.csproj.CopyComplete

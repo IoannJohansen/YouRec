@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6zNbcb7L5GAYoGhg46GUpKmw6cH73a2NLqJAxsMSj07PM0SBLwEVxSqqGhAGpyZ9x+qxPeNngDN5zBeiM8eiNA==",
+  "dgSpecHash": "kakbYKdhlGcgTuwhr3fq9uToouEPT96+NaFivWxYJF+EjNIRtnzswoVG3cazyqi3iTRI83MMrA8uh7DfI0PSwg==",
   "success": true,
   "projectFilePath": "D:\\Desktop\\Dev\\YouRec\\YouRec\\YouRecWeb\\YouRecWeb.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Johny\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Johny\\.nuget\\packages\\google.apis\\1.55.0\\google.apis.1.55.0.nupkg.sha512",
     "C:\\Users\\Johny\\.nuget\\packages\\google.apis.auth\\1.55.0\\google.apis.auth.1.55.0.nupkg.sha512",
     "C:\\Users\\Johny\\.nuget\\packages\\google.apis.core\\1.55.0\\google.apis.core.1.55.0.nupkg.sha512",
@@ -126,7 +127,7 @@
     "C:\\Users\\Johny\\.nuget\\packages\\system.private.datacontractserialization\\4.3.0\\system.private.datacontractserialization.4.3.0.nupkg.sha512",
     "C:\\Users\\Johny\\.nuget\\packages\\system.private.uri\\4.3.2\\system.private.uri.4.3.2.nupkg.sha512",
     "C:\\Users\\Johny\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
-    "C:\\Users\\Johny\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
+    "C:\\Users\\Johny\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\Johny\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
     "C:\\Users\\Johny\\.nuget\\packages\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
     "C:\\Users\\Johny\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Infrastructure.Repository
 {
-    public class RecommendRepository : IRepository<Recommend>
+    public class RecommendRepository : IRecommendRepository
     {
         public RecommendRepository(ApplicationDbContext applicationDbContext)
         {
@@ -49,9 +49,19 @@ namespace DAL.Infrastructure.Repository
             return _applicationDbContext.Recommends.Update(item).Entity;
         });
 
-        public async Task<IEnumerable<Recommend>> GetAsync(Expression<Func<Recommend, bool>> predicate)
+        public async Task<IEnumerable<Recommend>> GetFilteredAsync(Expression<Func<Recommend, bool>> predicate)
         {
             return await _applicationDbContext.Recommends.Where(predicate).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Recommend>> GetRecentlyCreatedAsync(int amount)
+        {
+            return await _applicationDbContext.Recommends.OrderByDescending(r => r.CreationDate).Take(amount).Include(r => r.Ratings).Include(r => r.Group).Include(r => r.Images).ToArrayAsync();
+        }
+
+        public async Task<IEnumerable<Recommend>> GetMostRatedAsync(int amount)
+        {
+            return await _applicationDbContext.Recommends.ToArrayAsync();
         }
     }
 }
