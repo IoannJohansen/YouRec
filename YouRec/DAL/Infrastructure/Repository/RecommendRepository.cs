@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Infrastructure.Repository
 {
-    public class RecommendRepository : IRecommendsRepository
+    public class RecommendRepository : IRepository<Recommend>
     {
         public RecommendRepository(ApplicationDbContext applicationDbContext)
         {
@@ -24,7 +24,7 @@ namespace DAL.Infrastructure.Repository
             return (await _applicationDbContext.Recommends.AddAsync(item)).Entity;
         }
 
-        public async Task Delete(Recommend item) => await Task.Run(() =>
+        public async Task DeleteAsync(Recommend item) => await Task.Run(() =>
         {
             _applicationDbContext.Remove(item);
         });
@@ -34,7 +34,7 @@ namespace DAL.Infrastructure.Repository
             return await _applicationDbContext.Recommends.FindAsync(id);
         }
 
-        public async Task<int> GetCount()
+        public async Task<int> GetCountAsync()
         {
             return await _applicationDbContext.Recommends.CountAsync();
         }
@@ -49,7 +49,7 @@ namespace DAL.Infrastructure.Repository
             return _applicationDbContext.Recommends.Update(item).Entity;
         });
 
-        public async Task<IEnumerable<Recommend>> Get(Expression<Func<Recommend, bool>> predicate)
+        public async Task<IEnumerable<Recommend>> GetAsync(Expression<Func<Recommend, bool>> predicate)
         {
             return await _applicationDbContext.Recommends.Where(predicate).ToListAsync();
         }

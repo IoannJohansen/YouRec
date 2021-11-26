@@ -24,7 +24,7 @@ namespace DAL.Data
 
         public virtual DbSet<Group> Groups { get; set; }
 
-        public virtual DbSet<Images> Images { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
 
         public virtual DbSet<Rating> Ratings { get; set; }
 

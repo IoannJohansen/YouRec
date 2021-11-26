@@ -19,7 +19,7 @@ namespace DAL.Model
 
         public virtual Group Group { get; set; }
 
-        public virtual ICollection<Images> Images { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
 

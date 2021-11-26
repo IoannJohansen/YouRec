@@ -3,7 +3,6 @@ using BLL.Interfaces;
 using BLL.Services;
 using DAL.Data;
 using DAL.Infrastructure.Interfaces;
-using DAL.Infrastructure.Repository;
 using DAL.Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -37,11 +36,10 @@ namespace YouRecWeb
             });
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IRecommendsRepository, RecommendRepository>();
-            
+
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IRecommendService, RecommendService>();
-            
+
             services.AddSingleton(Configuration);
 
             services.AddAuthentication(options =>

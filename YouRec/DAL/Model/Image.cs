@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL.Model.Base;
+﻿using DAL.Model.Base;
 
 namespace DAL.Model
 {
-    public class Images : BaseEntity
+    public class Image : BaseEntity
     {
         public string Link { get; set; }
 
