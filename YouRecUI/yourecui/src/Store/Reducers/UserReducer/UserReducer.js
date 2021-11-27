@@ -9,7 +9,6 @@ import {
 export const userReducer = (state = initState, action) => {
     switch (action.type) {
         case USER_ACTION_LOGIN: {
-            console.log(action);
             return {
                 ...state,
                 isLoggedIn: true,

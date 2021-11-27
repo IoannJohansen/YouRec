@@ -33,11 +33,13 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RecommendId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -114,11 +116,13 @@ namespace DAL.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RecommendId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Ratings");
                 });
@@ -146,11 +150,13 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GroupId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Recommends");
                 });
@@ -205,14 +211,14 @@ namespace DAL.Migrations
                         new
                         {
                             Id = "45179130-4f5e-4aa5-b1d0-de2a2d618313",
-                            ConcurrencyStamp = "3321b974-3f32-477d-95fa-1267dbf526e2",
+                            ConcurrencyStamp = "6c58c265-d822-4f90-ac17-d36fb02ddd5e",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "f08ad8e1-e9ac-49e4-80f6-9ed07a854761",
-                            ConcurrencyStamp = "41026a65-5755-4cd8-bab5-177b8e5c9137",
+                            ConcurrencyStamp = "9887efe0-0fea-4075-9041-37c11d00c1cb",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -309,16 +315,16 @@ namespace DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "200d7d50-189b-4b9c-8046-9fb9800c7752",
+                            Id = "30ff516e-d736-4825-a925-1b22a902df4b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8d525e21-3188-4143-8834-7287ed842392",
+                            ConcurrencyStamp = "f9dfc88b-80e8-49fb-9a72-892ca1c4f817",
                             Email = "urecmainkun@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "URECMAINKUN@MAIL.RU",
-                            PasswordHash = "AQAAAAEAACcQAAAAELPqeMhUkVOfr11V7DQLujk2yZQ6ipcTyzGZYDXlt/HgbRH9NunEwK63XIc6fmhLYg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFLXdBdqKqsS+pJeovVYEyIeyIlVfcjxinqTaGXsqikNIH0Z/SQ7EiEvlJDYOfRnfw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fed450ca-1afb-4644-bc90-284bbb185c29",
+                            SecurityStamp = "be19f6f1-41e0-4f9b-9664-75db2231f7ac",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -387,7 +393,7 @@ namespace DAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "200d7d50-189b-4b9c-8046-9fb9800c7752",
+                            UserId = "30ff516e-d736-4825-a925-1b22a902df4b",
                             RoleId = "f08ad8e1-e9ac-49e4-80f6-9ed07a854761"
                         });
                 });
@@ -419,7 +425,13 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Recommend");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DAL.Model.Image", b =>
@@ -441,7 +453,15 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Recommend");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DAL.Model.Recommend", b =>
@@ -452,7 +472,13 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Group");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DAL.Model.Tag", b =>

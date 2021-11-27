@@ -1,4 +1,5 @@
 ﻿using BLL.DTO;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace BLL.Interfaces
 {
     public interface IRecommendService
     {
-        Task<TopRecommendsListDto> GetStartData();
+        Task<IEnumerable<Recommend>> GetStartData();
 
     }
 }

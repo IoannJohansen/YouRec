@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211126202054_addUserRatingTableMig")]
-    partial class addUserRatingTableMig
+    [Migration("20211127125843_initMig")]
+    partial class initMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -115,6 +115,7 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -131,6 +132,9 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AuthorRating")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -144,11 +148,13 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GroupId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Recommends");
                 });
@@ -171,31 +177,6 @@ namespace DAL.Migrations
                     b.HasIndex("RecommendId");
 
                     b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("DAL.Model.UserRating", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Rate")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecommendId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RecommendId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserRatings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -228,14 +209,14 @@ namespace DAL.Migrations
                         new
                         {
                             Id = "45179130-4f5e-4aa5-b1d0-de2a2d618313",
-                            ConcurrencyStamp = "da4fdf3e-bc6c-4eb4-824b-02b6c8e4438c",
+                            ConcurrencyStamp = "51dec82b-9649-4163-89c5-167bfe0b6853",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "f08ad8e1-e9ac-49e4-80f6-9ed07a854761",
-                            ConcurrencyStamp = "b89e84f3-955b-41cd-b2ac-cd2194eebe53",
+                            ConcurrencyStamp = "15268a39-6f36-4ee0-bba1-81361094f221",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -332,16 +313,16 @@ namespace DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a81d6952-1d40-44e3-9ddf-cebb636c9138",
+                            Id = "b0443725-5978-4656-9b60-53c6bbcc9675",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "43354f54-a2ac-4097-a6b5-e2289c2bb366",
+                            ConcurrencyStamp = "afbae9ab-97a1-409b-ab52-fe5d4ca942da",
                             Email = "urecmainkun@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "URECMAINKUN@MAIL.RU",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAmKiJRksyGEP6yQDC6ZI5OnTewJtd2mkbaCqEN396rH06I9Lbvh4dUC1faH+lIQ7g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMHcfo3qtr8h/IURpDBJdxSlanE2/I0Rk6eBoyJj0Im/1Vlv1Ijx7PBAsqw0/gnDQA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f9234a3f-8fd7-43bb-a175-b89dbc53a271",
+                            SecurityStamp = "6e25bbc9-b7a7-4963-82d4-7f462627fe33",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -410,7 +391,7 @@ namespace DAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "a81d6952-1d40-44e3-9ddf-cebb636c9138",
+                            UserId = "b0443725-5978-4656-9b60-53c6bbcc9675",
                             RoleId = "f08ad8e1-e9ac-49e4-80f6-9ed07a854761"
                         });
                 });
@@ -475,7 +456,13 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Group");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DAL.Model.Tag", b =>
@@ -487,23 +474,6 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Recommend");
-                });
-
-            modelBuilder.Entity("DAL.Model.UserRating", b =>
-                {
-                    b.HasOne("DAL.Model.Recommend", "Recommend")
-                        .WithMany()
-                        .HasForeignKey("RecommendId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Recommend");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

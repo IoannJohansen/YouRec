@@ -1,18 +1,20 @@
-﻿using BLL.Interfaces;
+﻿using AutoMapper;
+using BLL.Interfaces;
 using DAL.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using YouRecWeb.Controllers.Base;
 
 namespace YouRecWeb.Controllers
 {
     [ApiController]
     [Route("api/tags")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User,Admin")]
-    public class TagController : Controller
+    public class TagController : BaseController
     {
-        public TagController(ITagService _tagService)
+        public TagController(ITagService _tagService, IMapper mapper) : base(mapper) 
         {
             this._tagService = _tagService;
 

@@ -7,12 +7,13 @@ import { GoogleLogin } from 'react-google-login';
 import { login } from '../Store/Actions/UserActions/UserActions';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { SetJwt } from '../Helper/jwtHelper';
 
 export function HandleSuccessLogin(authResponse, navigate, setStatus, dispatch) {
     if (authResponse.status === 200 && authResponse.data.success) {
         console.log(authResponse);
         dispatch(login({ isAdmin: authResponse.data.isAdmin, userName: authResponse.data.username }));
-        localStorage.setItem("jwt", authResponse.data.token);
+        SetJwt(authResponse.data.token);
         navigate('/Recs');
     } else {
         setStatus("Invalid login or password");
@@ -36,7 +37,7 @@ export function SignInGoogleButton(props) {
     const HandlAuthResponse = (res) => {
         if (res.status === 200) {
             dispatch(login({ isAdmin: false, userName: res.data.username }))
-            localStorage.setItem("jwt", res.data.token);
+            SetJwt(res.data.token);
             navigate("/Recs");
         } else {
             console.log("Error");
@@ -70,7 +71,7 @@ export function SignInMicrosoftButton(props) {
         }).then(res => {
             if (res.status === 200) {
                 dispatch(login({ isAdmin: false, userName: res.data.username }))
-                localStorage.setItem("jwt", res.data.token);
+                SetJwt(res.data.token);
                 navigate("/Recs");
             } else {
                 console.log("Error");

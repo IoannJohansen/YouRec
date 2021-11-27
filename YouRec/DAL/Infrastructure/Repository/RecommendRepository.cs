@@ -56,7 +56,7 @@ namespace DAL.Infrastructure.Repository
 
         public async Task<IEnumerable<Recommend>> GetRecentlyCreatedAsync(int amount)
         {
-            return await _applicationDbContext.Recommends.OrderByDescending(r => r.CreationDate).Take(amount).Include(r => r.Ratings).Include(r => r.Group).Include(r => r.Images).ToArrayAsync();
+            return await _applicationDbContext.Recommends.OrderByDescending(r => r.CreationDate).Take(amount).Include(r => r.Ratings).Include(r => r.Group).Include(r => r.Images).Include(r=>r.User).ToArrayAsync();
         }
 
         public async Task<IEnumerable<Recommend>> GetMostRatedAsync(int amount)

@@ -30,7 +30,9 @@ const WrapperAppComponent = connect(mapStateToProps, mapActionsToProps)(App);
 
 ReactDOM.render(
   <Provider store={store} >
-    <WrapperAppComponent />
+    <React.StrictMode>
+      <WrapperAppComponent />
+    </React.StrictMode>
   </Provider>,
   document.getElementById('root')
 );

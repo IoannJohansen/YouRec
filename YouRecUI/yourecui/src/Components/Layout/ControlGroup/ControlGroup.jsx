@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { logout } from '../../../Store/Actions/UserActions/UserActions';
+import { ClearJwt } from '../../../Helper/jwtHelper';
 
 function ControlGroup(props) {
     const dispatch = useDispatch();
@@ -13,11 +14,9 @@ function ControlGroup(props) {
     const isAdmin = useSelector(state => state.isAdmin);
 
     const signOutClick = () => {
-        localStorage.removeItem("jwt");
+        ClearJwt();
         dispatch(logout());
     }
-
-
 
     return (
         <Nav>

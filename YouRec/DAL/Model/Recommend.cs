@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Model.Base;
+using Microsoft.AspNetCore.Identity;
 
 namespace DAL.Model
 {
@@ -32,5 +33,7 @@ namespace DAL.Model
         public ICollection<Comment> Comments { get; set; }
 
         public ICollection<Rating> Ratings { get; set; }
+
+        public IdentityUser User { get; set; }
     }
 }

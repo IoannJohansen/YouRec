@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Router from '../../Router/Router.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import jwt from 'jsonwebtoken';
+import { ClearJwt } from '../../Helper/jwtHelper.js';
 
 class App extends Component {
 
@@ -15,7 +16,7 @@ class App extends Component {
       if (decodedToken.payload.exp * 1000 > dateNow.getTime()) {
         login({ isAdmin: decodedToken.payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] === "Admin", userName: decodedToken.payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"] })
       } else {
-        localStorage.removeItem("jwt");
+        ClearJwt();
       }
     }
   }

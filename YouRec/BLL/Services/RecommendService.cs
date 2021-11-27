@@ -3,6 +3,7 @@ using BLL.DTO;
 using BLL.Interfaces;
 using BLL.Services.Base;
 using DAL.Infrastructure.Interfaces;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +19,13 @@ namespace BLL.Services
 
         }
 
-        public async Task<TopRecommendsListDto> GetStartData()
+        const int pageSize = 10;
+
+        public async Task<IEnumerable<Recommend>> GetStartData()
         {
-            var res = new TopRecommendsListDto
-            {
-                Recommends = await unitOfWork.RecommendsRepository.GetRecentlyCreatedAsync(TopRecommendsListDto.PageSize)
-            };
-            res.CurrentCount = res.Recommends.Count();
-            return res;
+            return await unitOfWork.RecommendsRepository.GetRecentlyCreatedAsync(pageSize);
         }
+
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DAL.Model.Base;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,5 +21,7 @@ namespace DAL.Model
         public int RecommendId { get; set; }
         [JsonIgnore]
         public Recommend Recommend { get; set; }
+
+        public IdentityUser User { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAL.Migrations
 {
-    public partial class addUserRatingTableMig : Migration
+    public partial class initMig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -172,14 +172,21 @@ namespace DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AuthorRating = table.Column<int>(type: "int", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     GroupId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Recommends", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Recommends_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Recommends_Groups_GroupId",
                         column: x => x.GroupId,
@@ -235,7 +242,7 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rate = table.Column<int>(type: "int", nullable: false),
                     RecommendId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -270,46 +277,19 @@ namespace DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "UserRatings",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Rate = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    RecommendId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserRatings", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserRatings_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_UserRatings_Recommends_RecommendId",
-                        column: x => x.RecommendId,
-                        principalTable: "Recommends",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "45179130-4f5e-4aa5-b1d0-de2a2d618313", "da4fdf3e-bc6c-4eb4-824b-02b6c8e4438c", "User", "USER" },
-                    { "f08ad8e1-e9ac-49e4-80f6-9ed07a854761", "b89e84f3-955b-41cd-b2ac-cd2194eebe53", "Admin", "ADMIN" }
+                    { "45179130-4f5e-4aa5-b1d0-de2a2d618313", "51dec82b-9649-4163-89c5-167bfe0b6853", "User", "USER" },
+                    { "f08ad8e1-e9ac-49e4-80f6-9ed07a854761", "15268a39-6f36-4ee0-bba1-81361094f221", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a81d6952-1d40-44e3-9ddf-cebb636c9138", 0, "43354f54-a2ac-4097-a6b5-e2289c2bb366", "urecmainkun@mail.ru", false, false, null, "URECMAINKUN@MAIL.RU", null, "AQAAAAEAACcQAAAAEAmKiJRksyGEP6yQDC6ZI5OnTewJtd2mkbaCqEN396rH06I9Lbvh4dUC1faH+lIQ7g==", null, false, "f9234a3f-8fd7-43bb-a175-b89dbc53a271", false, "Admin" });
+                values: new object[] { "b0443725-5978-4656-9b60-53c6bbcc9675", 0, "afbae9ab-97a1-409b-ab52-fe5d4ca942da", "urecmainkun@mail.ru", false, false, null, "URECMAINKUN@MAIL.RU", null, "AQAAAAEAACcQAAAAEMHcfo3qtr8h/IURpDBJdxSlanE2/I0Rk6eBoyJj0Im/1Vlv1Ijx7PBAsqw0/gnDQA==", null, false, "6e25bbc9-b7a7-4963-82d4-7f462627fe33", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Groups",
@@ -325,7 +305,7 @@ namespace DAL.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "f08ad8e1-e9ac-49e4-80f6-9ed07a854761", "a81d6952-1d40-44e3-9ddf-cebb636c9138" });
+                values: new object[] { "f08ad8e1-e9ac-49e4-80f6-9ed07a854761", "b0443725-5978-4656-9b60-53c6bbcc9675" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -387,19 +367,14 @@ namespace DAL.Migrations
                 column: "GroupId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Recommends_UserId",
+                table: "Recommends",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tags_RecommendId",
                 table: "Tags",
                 column: "RecommendId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserRatings_RecommendId",
-                table: "UserRatings",
-                column: "RecommendId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserRatings_UserId",
-                table: "UserRatings",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -432,16 +407,13 @@ namespace DAL.Migrations
                 name: "Tags");
 
             migrationBuilder.DropTable(
-                name: "UserRatings");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Recommends");
 
             migrationBuilder.DropTable(
-                name: "Recommends");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Groups");
