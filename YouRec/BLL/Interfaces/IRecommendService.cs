@@ -10,7 +10,8 @@ namespace BLL.Interfaces
 {
     public interface IRecommendService
     {
-        Task<IEnumerable<Recommend>> GetStartData();
-
+        Task<IEnumerable<Recommend>> GetRecentlyUploaded();
+        Task<IEnumerable<Recommend>> GetMostRated();
+        
     }
 }

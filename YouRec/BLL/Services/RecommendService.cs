@@ -21,11 +21,14 @@ namespace BLL.Services
 
         const int pageSize = 10;
 
-        public async Task<IEnumerable<Recommend>> GetStartData()
+        public async Task<IEnumerable<Recommend>> GetRecentlyUploaded()
         {
-            return await unitOfWork.RecommendsRepository.GetRecentlyCreatedAsync(pageSize);
+            return await unitOfWork.RecommendsRepository.GetRecentlyUploaded(pageSize);
         }
 
-
+        public async Task<IEnumerable<Recommend>> GetMostRated()
+        {
+            return await unitOfWork.RecommendsRepository.GetMostRatedAsync(pageSize);
+        }
     }
 }

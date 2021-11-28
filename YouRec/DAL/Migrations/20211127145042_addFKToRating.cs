@@ -11,11 +11,6 @@ namespace DAL.Migrations
                 keyColumns: new[] { "RoleId", "UserId" },
                 keyValues: new object[] { "f08ad8e1-e9ac-49e4-80f6-9ed07a854761", "b0443725-5978-4656-9b60-53c6bbcc9675" });
 
-            migrationBuilder.DeleteData(
-                table: "AspNetUsers",
-                keyColumn: "Id",
-                keyValue: "b0443725-5978-4656-9b60-53c6bbcc9675");
-
             migrationBuilder.AlterColumn<string>(
                 name: "UserId",
                 table: "Ratings",

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using YouRecWeb.Controllers.Base;
 using YouRecWeb.Model;
@@ -29,9 +30,19 @@ namespace YouRecWeb.Controllers
         [AllowAnonymous]
         public async Task<RecommendListViewModel> GetRecentlyUploaded()
         {
-            var recentlyUploadedRecommends = await _recommendService.GetStartData();
+            var recentlyUploadedRecommends = await _recommendService.GetRecentlyUploaded();
              var recentlyUploadedRecsDto = mapper.Map<IEnumerable<Recommend>, IEnumerable<RecommendViewModel>>(recentlyUploadedRecommends);
-            return new RecommendListViewModel { RecommendList = recentlyUploadedRecsDto };
+            return new RecommendListViewModel { Recommends = recentlyUploadedRecsDto, CurrentCount = recentlyUploadedRecsDto.Count() };
+        }
+
+        [HttpGet]
+        [Route("mostrated")]
+        [AllowAnonymous]
+        public async Task<RecommendListViewModel> GetMostRated()
+        {
+            var recentlyUploadedRecommends = await _recommendService.GetMostRated();
+            var recentlyUploadedRecsDto = mapper.Map<IEnumerable<Recommend>, IEnumerable<RecommendViewModel>>(recentlyUploadedRecommends);
+            return new RecommendListViewModel { Recommends = recentlyUploadedRecsDto, CurrentCount = recentlyUploadedRecsDto.Count() };
         }
     }
 }

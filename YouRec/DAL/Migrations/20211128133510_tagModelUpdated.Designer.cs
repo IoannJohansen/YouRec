@@ -4,14 +4,16 @@ using DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211128133510_tagModelUpdated")]
+    partial class tagModelUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,10 +192,15 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("RecommendId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TagName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RecommendId");
 
                     b.ToTable("Tags");
                 });
@@ -228,14 +235,14 @@ namespace DAL.Migrations
                         new
                         {
                             Id = "45179130-4f5e-4aa5-b1d0-de2a2d618313",
-                            ConcurrencyStamp = "a6ac4b5e-cf8a-4a93-ad0f-daaf6c52a336",
+                            ConcurrencyStamp = "f2e40d52-2b39-4b92-9906-21545fc0223d",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "f08ad8e1-e9ac-49e4-80f6-9ed07a854761",
-                            ConcurrencyStamp = "8e251221-ac4c-4b95-b5d6-98389a39d284",
+                            ConcurrencyStamp = "443cc37e-0f21-42e0-bc3f-ad4526b52e9a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -332,16 +339,16 @@ namespace DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "986be3f4-294d-4c66-afe0-edc80abfcfb7",
+                            Id = "04cc9f90-089b-47df-b0e1-c2c069b905b8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "09c6d080-f46b-4298-934b-0d76a3ced8ef",
+                            ConcurrencyStamp = "b1337156-09b7-4e0a-9f16-d4de21c1f3fa",
                             Email = "urecmainkun@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "URECMAINKUN@MAIL.RU",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPQUpuSGqMPSk66SXErDU22Av9MutwTXCUZPR194Rtv3zsUtYM/QFR57g0FSzNlVJQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMag34njsgqAl0PK1PRBvz2OxV9INoxpt2eGpVRgMbEwBDjMgl45jraGYf5HXuPJlg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "46fae3d2-c115-4c12-a643-8e8d461602f7",
+                            SecurityStamp = "7a5b2bf5-3bb0-4966-b737-ae54595e08b3",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -410,7 +417,7 @@ namespace DAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "986be3f4-294d-4c66-afe0-edc80abfcfb7",
+                            UserId = "04cc9f90-089b-47df-b0e1-c2c069b905b8",
                             RoleId = "f08ad8e1-e9ac-49e4-80f6-9ed07a854761"
                         });
                 });
@@ -501,7 +508,7 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Model.RecommendTag", b =>
                 {
                     b.HasOne("DAL.Model.Recommend", "Recommend")
-                        .WithMany("Tags")
+                        .WithMany()
                         .HasForeignKey("RecommendId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -515,6 +522,13 @@ namespace DAL.Migrations
                     b.Navigation("Recommend");
 
                     b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("DAL.Model.Tag", b =>
+                {
+                    b.HasOne("DAL.Model.Recommend", null)
+                        .WithMany("Tags")
+                        .HasForeignKey("RecommendId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

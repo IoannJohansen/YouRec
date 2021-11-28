@@ -10,7 +10,13 @@ namespace YouRecWeb.Core.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Recommend, RecommendViewModel>(MemberList.None).ForMember(m => m.AverageUserRating, vm => vm.MapFrom(r => r.Ratings.Sum(x => x.Rate) / r.Ratings.Count)).ForMember(m => m.Group, vm => vm.MapFrom(r => r.Group.GroupName)).ForMember(m => m.AuthorName, vm => vm.MapFrom(r => r.User.UserName));
+            CreateMap<Recommend, RecommendViewModel>().ForMember(m => m.AverageUserRating,  memberOptions =>
+            {
+                memberOptions.PreCondition(x=>x.Ratings.Count > 0);
+                memberOptions.MapFrom(r => r.Ratings.Sum(x => x.Rate) / r.Ratings.Count);
+            }).ForMember(m => m.Group, vm => vm.MapFrom(r => r.Group.GroupName)).ForMember(m => m.AuthorName, vm => vm.MapFrom(r => r.User.UserName));
+
+            CreateMap<Tag, TagViewModel>().ForMember(m => m.Value, f => f.MapFrom(m => m.TagName)).ForMember(m=>m.Count, vm => vm.MapFrom(m=>m.RecommendTags.Count));
 
         }
     }

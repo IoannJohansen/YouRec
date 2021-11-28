@@ -17,7 +17,7 @@ namespace DAL.Infrastructure.Interfaces
         Task<Recommend> UpdateAsync(Recommend item);
         Task<int> GetCountAsync();
         Task<IEnumerable<Recommend>> GetFilteredAsync(Expression<Func<Recommend, bool>> predicate);
-        Task<IEnumerable<Recommend>> GetRecentlyCreatedAsync(int amount);
+        Task<IEnumerable<Recommend>> GetRecentlyUploaded(int amount);
         Task<IEnumerable<Recommend>> GetMostRatedAsync(int amount);
     }
 }

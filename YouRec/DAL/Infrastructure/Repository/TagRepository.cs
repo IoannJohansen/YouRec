@@ -40,11 +40,6 @@ namespace DAL.Infrastructure.Repository
             return await _applicationDbContext.Tags.ToListAsync();
         }
 
-        public async Task<IEnumerable<Tag>> GetByRecommendIdAsync(int recommendId)
-        {
-            return await _applicationDbContext.Tags.Where(t => t.Recommend.Id == recommendId).ToListAsync();
-        }
-
         public async Task<IEnumerable<Tag>> GetTopTagsAsync(int amount)
         {
             return await _applicationDbContext.Tags.Take(amount).ToListAsync();
@@ -60,5 +55,10 @@ namespace DAL.Infrastructure.Repository
         {
             return _applicationDbContext.Tags.Update(tag).Entity;
         });
+
+        public async Task<IEnumerable<Tag>> GetTopTags(int amount)
+        {
+            return await _applicationDbContext.Tags.OrderByDescending(t => t.RecommendTags.Count()).Take(amount).Include(t=>t.RecommendTags).ToListAsync();
+        }
     }
 }

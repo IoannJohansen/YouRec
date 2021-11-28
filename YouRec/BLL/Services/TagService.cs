@@ -3,10 +3,7 @@ using BLL.Interfaces;
 using BLL.Services.Base;
 using DAL.Infrastructure.Interfaces;
 using DAL.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.Services
@@ -36,6 +33,13 @@ namespace BLL.Services
         public async Task<Tag> UpdateTag(Tag tag)
         {
             return await unitOfWork.TagRepository.UpdateAsync(tag);
+        }
+
+        const int CountOfTagsToSelect = 10;
+
+        public async Task<IEnumerable<Tag>> GetTopTags()
+        {
+            return await unitOfWork.TagRepository.GetTopTags(CountOfTagsToSelect);
         }
     }
 }

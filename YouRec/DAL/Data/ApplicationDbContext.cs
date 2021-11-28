@@ -28,6 +28,8 @@ namespace DAL.Data
 
         public virtual DbSet<Rating> Ratings { get; set; }
 
+        public virtual DbSet<RecommendTag> RecommendTags { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

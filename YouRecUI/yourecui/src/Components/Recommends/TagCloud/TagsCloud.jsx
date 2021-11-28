@@ -1,17 +1,7 @@
+import { useEffect, useState } from 'react';
 import { TagCloud } from 'react-tagcloud';
+import { getTagList } from '../../../Api/ApiRecommendsList';
 import './TagsCloud.css';
-
-const data = [
-    { value: 'JavaScript', count: 38, key: 1 },
-    { value: 'React', count: 30, key: 2 },
-    { value: 'Nodejs', count: 28, key: 3 },
-    { value: 'Express.js', count: 25, key: 4 },
-    { value: 'HTML5', count: 33, key: 5 },
-    { value: 'MongoDB', count: 18, key: 6 },
-    { value: 'CSS3', count: 20, key: 7 },
-    { value: 'JavaScript', count: 38, key: 8 },
-    { value: 'React', count: 30, key: 9 }
-];
 
 const options = {
     luminosity: 'light',
@@ -19,15 +9,27 @@ const options = {
 }
 
 export default function TagsCloud() {
+
+    const [tags, setTags] = useState([]);
+
+    useEffect(() => {
+        getTagList().then(data => {
+            setTags(data.tags);
+        })
+    }, []);
+
+
+    // TODO: ADD ONCLICK EVENT : REDIRECT TO SEARCH LIST WITH SELECTED TAG
     return (
         <div className="container">
             <p bg="primary" className="text-center h3">Available tags</p>
             <TagCloud
                 className="TagCloud col-sm-4"
-                minSize={12}
+                minSize={15}
+                disableRandomColor={false}
                 maxSize={35}
                 colorOptions={options}
-                tags={data}
+                tags={tags}
                 onClick={tag => alert(`'${tag.value}' was selected!`)}
             />
         </div>

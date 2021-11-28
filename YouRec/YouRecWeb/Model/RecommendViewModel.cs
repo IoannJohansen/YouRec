@@ -18,6 +18,6 @@ namespace YouRecWeb.Model
 
         public string AuthorName { get; set; }
 
-        public int AverageUserRating { get; set; }
+        public double AverageUserRating { get; set; }
     }
 }

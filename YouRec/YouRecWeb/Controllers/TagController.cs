@@ -4,8 +4,10 @@ using DAL.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using YouRecWeb.Controllers.Base;
+using YouRecWeb.Model;
 
 namespace YouRecWeb.Controllers
 {
@@ -14,7 +16,7 @@ namespace YouRecWeb.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User,Admin")]
     public class TagController : BaseController
     {
-        public TagController(ITagService _tagService, IMapper mapper) : base(mapper) 
+        public TagController(ITagService _tagService, IMapper mapper) : base(mapper)
         {
             this._tagService = _tagService;
 
@@ -23,19 +25,14 @@ namespace YouRecWeb.Controllers
         private ITagService _tagService;
 
         [HttpGet]
-        [Route("getall")]
-        public async Task<IActionResult> GetTags()
+        [Route("getalltags")]
+        [AllowAnonymous]
+        public async Task<TagListViewModel> GetTags()
         {
-            var tagList = await _tagService.GetAllTags();
-            return Ok(tagList);
-        }
-
-        [HttpPost]
-        [Route("updateTag")]
-        public async Task<IActionResult> UpdateTag(Tag tag)
-        {
-            var res = await _tagService.UpdateTag(tag);
-            return Ok(res);
+           var tagList = await _tagService.GetTopTags();
+            var tagVM = new TagListViewModel();
+            tagVM.Tags = mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(tagList);
+            return tagVM;
         }
     }
 }

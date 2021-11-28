@@ -10,5 +10,6 @@ namespace BLL.Interfaces
         Task<IEnumerable<Tag>> GetTags(int amount);
         Task<IEnumerable<Tag>> GetAllTags();
         Task<Tag> UpdateTag(Tag tag);
+        Task<IEnumerable<Tag>> GetTopTags();
     }
 }

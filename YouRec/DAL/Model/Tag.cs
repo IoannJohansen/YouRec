@@ -12,9 +12,6 @@ namespace DAL.Model
     {
         public string TagName { get; set; }
 
-
-        public int RecommendId { get; set; }
-        [JsonIgnore]
-        public Recommend Recommend{ get; set; }
+        public ICollection<RecommendTag> RecommendTags { get; set; }
     }
 }

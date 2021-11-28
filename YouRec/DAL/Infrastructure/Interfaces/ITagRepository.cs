@@ -16,6 +16,6 @@ namespace DAL.Infrastructure.Interfaces
         Task DeleteAsync(int id);
         Task<bool> TagIsExistAsync(Tag tag);
         Task<IEnumerable<Tag>> GetTopTagsAsync(int amount);
-        Task<IEnumerable<Tag>> GetByRecommendIdAsync(int recommendId);
+        Task<IEnumerable<Tag>> GetTopTags(int amount);
     }
 }
