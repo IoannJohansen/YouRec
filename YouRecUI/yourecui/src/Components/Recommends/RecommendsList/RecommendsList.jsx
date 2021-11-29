@@ -17,7 +17,7 @@ export function RecomendsList(props) {
                 <Row xs={1} md={2} lg={3} xl={4} xxl={4} className="g-5 m-2">
                     {
                         recommends.map((item, index) => (
-                            <RecommendItem key={index} title={item.name} text={item.text} PublishDateTime={item.creationDate} group={item.group} author={item.authorName} rating={item.averageUserRating} imageRef={item.images.length !== 0 ? item.images[0].link : PICTURE_DEFAULT}
+                            <RecommendItem key={index} id={item.id} title={item.name} text={item.text} PublishDateTime={item.creationDate} group={item.group} author={item.authorName} rating={item.averageUserRating} imageRef={item.images.length !== 0 ? item.images[0].original : PICTURE_DEFAULT}
                             />
                         ))
                     }

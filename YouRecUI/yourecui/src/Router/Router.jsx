@@ -6,12 +6,14 @@ import Layout from '../Components/Layout/Layout.jsx'
 import RecommendsPage from '../Components/Recommends/RecommendsPage';
 import LoginForm from '../Components/Login/LoginForm';
 import Register from '../Components/Register/RegisterForm'
+import RecommendDescriptionPage from '../Components/RecommendDescriptionPage/RecomendDescription';
 
 export default function Router() {
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index path="/Recs" element={<RecommendsPage />} />
+                <Route path="/Recs/:id" element={<RecommendDescriptionPage />} />
                 <Route path="/MyRecs" element={<MyRecommends />} />
                 <Route path="/CreateRec" element={<CreateRecommend />} />
                 <Route path="/SignIn" element={<LoginForm />} />

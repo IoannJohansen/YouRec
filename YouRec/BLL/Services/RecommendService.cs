@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
-using BLL.DTO;
 using BLL.Interfaces;
 using BLL.Services.Base;
 using DAL.Infrastructure.Interfaces;
 using DAL.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.Services
@@ -29,6 +25,17 @@ namespace BLL.Services
         public async Task<IEnumerable<Recommend>> GetMostRated()
         {
             return await unitOfWork.RecommendsRepository.GetMostRatedAsync(pageSize);
+        }
+
+        public async Task<Recommend> GetBaseRecommendDescription(int recommendId)
+        {
+            return await unitOfWork.RecommendsRepository.GetAsync(recommendId);
+        }
+
+        public async Task<Recommend> GetFullRecommendDescription(int recommendId)
+        {
+            var rec = await unitOfWork.RecommendsRepository.GetAsync(recommendId);
+            return rec;
         }
     }
 }

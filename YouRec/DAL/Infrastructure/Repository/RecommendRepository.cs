@@ -31,7 +31,7 @@ namespace DAL.Infrastructure.Repository
 
         public async Task<Recommend> GetAsync(int id)
         {
-            return await _applicationDbContext.Recommends.FindAsync(id);
+            return await _applicationDbContext.Recommends.Include(t=>t.RecommendTags).ThenInclude(t=>t.Tag).Include(r=>r.RecommendTags).Include(r => r.Group).Include(r => r.Comments).Include(r => r.Ratings).Include(r => r.Images).Include(r => r.User).FirstOrDefaultAsync(r=>r.Id == id);
         }
 
         public async Task<int> GetCountAsync()

@@ -5,9 +5,10 @@ namespace DAL.Model
 {
     public class Image : BaseEntity
     {
-        public string Link { get; set; }
+        public string Original { get; set; }
 
         public int RecommendId { get; set; }
+        
         [JsonIgnore]
         public Recommend Recommend { get; set; }
     }

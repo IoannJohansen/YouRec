@@ -1,4 +1,4 @@
-import { API_URL, SIGN_IN_GOOGLE, MICROSOFT_SIGN_IN, GOOGLE_CLIENT_ID, MICROSOFT_CLIENT_ID } from './ApiParameteres';
+import { API_URL, SIGN_IN_GOOGLE, MICROSOFT_SIGN_IN, GOOGLE_CLIENT_ID, MICROSOFT_CLIENT_ID, CHECK_AUTH } from './ApiParameteres';
 import { React } from 'react'
 import axios from 'axios';
 import { MicrosoftLogin } from "react-microsoft-login";
@@ -7,7 +7,16 @@ import { GoogleLogin } from 'react-google-login';
 import { login } from '../Store/Actions/UserActions/UserActions';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { SetJwt } from '../Helper/jwtHelper';
+import { getJwt, SetJwt } from '../Helper/jwtHelper';
+
+export const CheckUserAuthentication = async () => {
+    const response = await axios.get(API_URL + CHECK_AUTH, {
+        headers: {
+            "Authorization": `Bearer ${getJwt()}`
+        }
+    });
+    return response.status;
+}
 
 export function HandleSuccessLogin(authResponse, navigate, setStatus, dispatch) {
     if (authResponse.status === 200 && authResponse.data.success) {

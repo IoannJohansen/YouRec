@@ -19,9 +19,11 @@ namespace DAL.Model
         public int Rate{ get; set; }
 
         public int RecommendId { get; set; }
+        
         [JsonIgnore]
         public Recommend Recommend { get; set; }
-
+        
+        [JsonIgnore]
         public IdentityUser User { get; set; }
     }
 }

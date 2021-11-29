@@ -69,5 +69,12 @@ namespace YouRecWeb.Controllers
         {
             return await _authService.LoginMicrosoft(socialNetworkRequest);
         }
+
+        [HttpGet]
+        [Route("checkauth")]
+        public IActionResult CheckUserAuth()
+        {
+            return Ok(true);
+        }
     }
 }

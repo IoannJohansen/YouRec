@@ -44,5 +44,23 @@ namespace YouRecWeb.Controllers
             var recentlyUploadedRecsDto = mapper.Map<IEnumerable<Recommend>, IEnumerable<RecommendViewModel>>(recentlyUploadedRecommends);
             return new RecommendListViewModel { Recommends = recentlyUploadedRecsDto, CurrentCount = recentlyUploadedRecsDto.Count() };
         }
+
+        [HttpGet]
+        [Route("getrecommend")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetBaseRecommendDescription(int id)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated) 
+               return RedirectToAction(nameof(GetBaseRecommendDescription), new { id = id });
+            var baseRecommend = await _recommendService.GetBaseRecommendDescription(id);
+            var res = mapper.Map<Recommend, RecommendDescriptionViewModel>(baseRecommend);
+            return Ok(res);
+        }
+
+        public async Task<IActionResult> GetFullRecommendDescription(int id)
+        {
+
+            return Ok("From Authenticated " + id);
+        }
     }
 }

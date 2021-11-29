@@ -28,7 +28,7 @@ namespace DAL.Model
 
         public ICollection<Image> Images { get; set; }
 
-        public ICollection<RecommendTag> Tags { get; set; }
+        public ICollection<RecommendTag> RecommendTags { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
 
