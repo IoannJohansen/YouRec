@@ -26,7 +26,7 @@ namespace DAL.Infrastructure.UnitOfWork
         private ITagRepository _tagRepository;
         private IImageRepository _imageRepository;
         private IGroupRepository _groupRepository;
-        private IRepository<Comment> _commentrepository;
+        private ICommentRepository _commentrepository;
         private IRatingRepository _ratingRepository;
         private ILikeRepository _likeRepository;
 
@@ -34,7 +34,7 @@ namespace DAL.Infrastructure.UnitOfWork
         public ITagRepository TagRepository => _tagRepository;
         public IImageRepository ImageRepository => _imageRepository;
         public IGroupRepository GroupRepository => _groupRepository;
-        public IRepository<Comment> Commentrepository => _commentrepository;
+        public ICommentRepository Commentrepository => _commentrepository;
         public IRatingRepository RatingRepository => _ratingRepository;
         public ILikeRepository LikeRepository => _likeRepository;
 

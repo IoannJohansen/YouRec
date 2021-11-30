@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Infrastructure.Repository
 {
-    public class CommentRepository : IRepository<Comment>
+    public class CommentRepository : ICommentRepository
     {
         public CommentRepository(ApplicationDbContext applicationDbContext)
         {
@@ -20,39 +20,14 @@ namespace DAL.Infrastructure.Repository
 
         private ApplicationDbContext _applicationDbContext;
 
-        public async Task<Comment> CreateAsync(Comment item)
+        public async Task<int> GetCountForRecommendAsync(int recommendId)
         {
-            return (await _applicationDbContext.AddAsync(item)).Entity;
+            return await _applicationDbContext.Comments.CountAsync(c => c.RecommendId == recommendId);
         }
 
-        public async Task DeleteAsync(Comment item) => await Task.Run(() =>
+        public async Task<IEnumerable<Comment>> GetPagedAsync(int recommendId, int pageNum, int pageSize)
         {
-            _applicationDbContext.Comments.Remove(item);
-        });
-
-        public async Task<IEnumerable<Comment>> GetFilteredAsync(Expression<Func<Comment, bool>> predicate)
-        {
-            return await _applicationDbContext.Comments.Where(predicate).ToListAsync();
+            return await _applicationDbContext.Comments.Skip(pageNum*pageSize).Where(c=>c.RecommendId==recommendId).Take(pageSize).Include(c=>c.User).ToListAsync();
         }
-
-        public async Task<Comment> GetAsync(int id)
-        {
-            return await _applicationDbContext.Comments.FindAsync(id);
-        }
-
-        public async Task<int> GetCountAsync()
-        {
-            return await _applicationDbContext.Comments.CountAsync();
-        }
-
-        public async Task<IEnumerable<Comment>> GetItemsAsync()
-        {
-            return await _applicationDbContext.Comments.ToListAsync();
-        }
-
-        public async Task<Comment> UpdateAsync(Comment item) => await Task.Run(() =>
-        {
-            return _applicationDbContext.Comments.Update(item).Entity;
-        });
     }
 }

@@ -25,7 +25,7 @@ namespace YouRecWeb.Model
 
         public ICollection<string> Tags { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public ICollection<CommentViewModel> Comments { get; set; }
 
         public float AverageUserRating { get; set; }
     }

@@ -1,0 +1,44 @@
+﻿using AutoMapper;
+using BLL.DTO;
+using BLL.Interfaces;
+using DAL.Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using YouRecWeb.Controllers.Base;
+using YouRecWeb.Model;
+
+namespace YouRecWeb.Controllers
+{
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Route("api/comments")]
+    [ApiController]
+    public class CommentController : BaseController
+    {
+        public CommentController(ICommentService _commentService, IMapper mapper) : base(mapper)
+        {
+            this._commentService = _commentService;
+        }
+
+        private ICommentService _commentService;
+
+        [Route("getcommentpaged")]
+        [HttpGet]
+        public async Task<PaginatedObjectDto<CommentViewModel>> GetCommentsPaged(int recommendId, int numPage, int pageSize)
+        {
+            var paginatedComments = await _commentService.GetPagedAsync(recommendId, numPage, pageSize);
+            var mappedComments = mapper.Map<IEnumerable<Comment>,IEnumerable<CommentViewModel>>(paginatedComments);
+            return new PaginatedObjectDto<CommentViewModel> { ItemCount = paginatedComments.Count(), Items = mappedComments };
+        }
+
+        //[Route("getcount")]
+        //public async Task<int> GetCountForRecommend(int id)
+        //{
+
+        //    return await _commentService.GetCountAsync(id);
+        //}
+    }
+}

@@ -50,6 +50,7 @@ namespace YouRecWeb
             services.AddTransient<ITagService, TagService>();
             services.AddTransient<IRecommendService, RecommendService>();
             services.AddTransient<ILikeService, LikeService>();
+            services.AddTransient<ICommentService, CommentService>();
 
             services.AddSingleton(Configuration);
 

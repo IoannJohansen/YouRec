@@ -10,7 +10,7 @@ namespace DAL.Infrastructure.Interfaces
         ITagRepository TagRepository { get; }
         IImageRepository ImageRepository { get; }
         IGroupRepository GroupRepository { get; }
-        IRepository<Comment> Commentrepository { get; }
+        ICommentRepository Commentrepository { get; }
         IRatingRepository RatingRepository { get; }
         ILikeRepository LikeRepository { get; }
 

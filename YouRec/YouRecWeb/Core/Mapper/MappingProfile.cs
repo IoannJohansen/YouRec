@@ -19,12 +19,15 @@ namespace YouRecWeb.Core.Mapper
             
             CreateMap<Tag, TagViewModel>().ForMember(m => m.Value, f => f.MapFrom(m => m.TagName)).ForMember(m=>m.Count, vm => vm.MapFrom(m=>m.RecommendTags.Count));
 
-            CreateMap<Recommend, RecommendDescriptionViewModel>().ForMember(m => m.Tags, vm => vm.MapFrom(f => f.RecommendTags.Select(t => t.Tag.TagName))).ForMember(m => m.GroupName, vm => vm.MapFrom(f => f.Group.GroupName)).ForMember(t => t.ImageLinks, vm => vm.MapFrom(f => f.Images)).ForMember(t => t.UserName, vm => vm.MapFrom(t => t.User.UserName))
-            .ForMember(m => m.AverageUserRating, memberOptions =>
+            CreateMap<Recommend, RecommendDescriptionViewModel>().ForMember(m => m.Tags, vm => vm.MapFrom(f => f.RecommendTags.Select(t => t.Tag.TagName))).ForMember(m => m.GroupName, vm => vm.MapFrom(f => f.Group.GroupName)).ForMember(t => t.ImageLinks, vm => vm.MapFrom(f => f.Images)).ForMember(t => t.UserName, vm => vm.MapFrom(t => t.User.UserName)).ForMember(m => m.AverageUserRating, memberOptions =>
              {
                  memberOptions.PreCondition(l => l.Ratings.Count > 0);
                  memberOptions.MapFrom(l => l.Ratings.Average(x => x.Rate));
              });
+        
+            CreateMap<Comment, CommentViewModel>().ForMember(m=>m.Username, vm => vm.MapFrom(c=>c.User.UserName));
+
+
         }
     }
 }

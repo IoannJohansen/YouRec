@@ -22,16 +22,11 @@ function RecommendsPage() {
     return (
         <>
             <Tabs transition defaultActiveKey="Recently uploaded" id="uncontrolled-tab-example" className="mb-3">
-                <Tab active={false} title="Select recommends">
-                </Tab>
                 <Tab eventKey="Recently uploaded" title="Recently uploaded">
-                    <Tab.Container>
-                        <RecomendsList recommends={recentlyUploaded.recommends} />
-
-                    </Tab.Container>
+                    {recentlyUploaded.currentCount <= 0 ? <p className="h2 text-muted text-center">There's no items uploaded</p> : <RecomendsList recommends={recentlyUploaded.recommends} />}
                 </Tab>
                 <Tab eventKey="Most rated" title="Most rated">
-                    <RecomendsList recommends={mostRated.recommends} />
+                    {mostRated.currentCount <= 0 ? <p className="h2 text-muted text-center">There's no items uploaded</p> : <RecomendsList recommends={mostRated.recommends} />}
                 </Tab>
                 <Tab eventKey="Tags" title="Tags">
                     <TagsCloud />

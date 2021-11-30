@@ -15,6 +15,9 @@ const TAG_LIST = "tags/getalltags"
 
 const GET_LIKES_OF_USER = "like/getcountforuser"
 
+const GET_COMMENTS = "comments/getcount";
+const GET_PAGE_COMMENTS = "comments/getcommentpaged";
+
 const GOOGLE_CLIENT_ID = "467666703976-2v1pdp4p8v5rtho06lo6b5uvmv09jnfd.apps.googleusercontent.com";
 const MICROSOFT_CLIENT_ID = "2a72ff00-fc7d-4aff-96ea-09f592f8dc1a";
 
@@ -35,5 +38,7 @@ module.exports = {
     TAG_LIST,
     GET_REECOMMEND,
     CHECK_AUTH,
-    GET_LIKES_OF_USER
+    GET_LIKES_OF_USER,
+    GET_COMMENTS,
+    GET_PAGE_COMMENTS
 }

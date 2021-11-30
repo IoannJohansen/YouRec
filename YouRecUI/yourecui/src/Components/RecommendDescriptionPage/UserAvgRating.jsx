@@ -1,4 +1,4 @@
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 
@@ -13,7 +13,7 @@ export default function UserAvgRating(props) {
     return (
         <>
             <span>
-                <FontAwesomeIcon icon={faStar} />
+                <FontAwesomeIcon className="mr-1" icon={faUsers} />
                 {rating}
             </span>
         </>

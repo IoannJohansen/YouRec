@@ -1,16 +1,18 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace DAL.Model
 {
     public class AppUser : IdentityUser
     {
+        public int? ImageId { get; set; }
+
         [JsonIgnore]
         public ICollection<Like> Likes { get; set; }
+
+        [JsonIgnore]
+        public Image Image { get; set; }
     }
 }

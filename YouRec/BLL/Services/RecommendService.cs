@@ -12,7 +12,6 @@ namespace BLL.Services
     {
         public RecommendService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
-
         }
 
         const int pageSize = 10;
@@ -27,15 +26,9 @@ namespace BLL.Services
             return await unitOfWork.RecommendsRepository.GetMostRatedAsync(pageSize);
         }
 
-        public async Task<Recommend> GetBaseRecommendDescription(int recommendId)
+        public async Task<Recommend> GetRecommendDescription(int recommendId)
         {
-            return await unitOfWork.RecommendsRepository.GetFullDescriptionAsync(recommendId);
-        }
-
-        public async Task<Recommend> GetFullRecommendDescription(int recommendId)
-        {
-            var rec = await unitOfWork.RecommendsRepository.GetFullDescriptionAsync(recommendId);
-            return rec;
+            return await unitOfWork.RecommendsRepository.GetDescriptionAsync(recommendId);
         }
     }
 }

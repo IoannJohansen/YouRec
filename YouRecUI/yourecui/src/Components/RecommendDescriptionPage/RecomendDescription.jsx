@@ -1,5 +1,6 @@
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Button from '@restart/ui/esm/Button';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { FloatingLabel, Form } from 'react-bootstrap';
@@ -8,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { GetLikesOfUser, GetRecommendDescript } from '../../Api/ApiRecommendPage';
 import AuthorInfo from './AuthorInfo';
+import Comments from './Comments';
 import ImageCarousel from './ImageCarousel';
 import UserAvgRating from './UserAvgRating';
 
@@ -28,6 +30,8 @@ export default function RecommendDescriptionPage() {
     const [userId, setUserId] = useState("");
 
 
+    //TODO: create component for comments
+
     useEffect(() => {
         GetRecommendDescript(id).then(data => {
             settitle(data.data.name)
@@ -41,28 +45,29 @@ export default function RecommendDescriptionPage() {
             setAuthorRating(data.data.authorRating);
             setUserId(data.data.userId);
             setAverageUserRating(data.data.averageUserRating)
-            console.log(data);
+            setComments(data.data.comments);
         }).then(() => {
             GetLikesOfUser(userId).then(data => {
                 setAuthorLikes(data.data);
             })
-
         });
     }, [id, creationDate, userId, authorLikes])
 
     return (
-        <div className="p-2 vw-100 mt-3 d-flex row justify-content-center">
-            <div className="col-lg-5 col-sm-12">
+        <div className="p-2 m-0 w-100 d-flex row justify-content-center">
+            <div className="col-lg-5 col-md-12 col-sm-12">
                 <ImageCarousel images={imageLinks} />
             </div>
-            <div className="col-lg-4 col-sm-12 d-flex flex-column text-sm-center text-md-right">
-                <p className="h3">
-                    <span>{title} </span>
-                </p>
+            <div className="col-lg-4 col-sm-12 col-xs-12 d-flex flex-column text-xs-right text-lg-right text-xs-center text-sm-center ">
+                <p className="h3">{title} </p>
                 <p className="text-muted h4">{groupName}</p>
+                <p className="h4 mt-3">
+                    Rating of post
+                </p>
+                <p><Rating start={0} readonly initialRating={averageUserRating} stop={5} step={1} emptySymbol={<FontAwesomeIcon className="text-muted h3" icon={faStar} />} fullSymbol={<FontAwesomeIcon className="text-primary h3" icon={faStar} />} /></p>
                 <AuthorInfo authorName={authorname} authorLikes={authorLikes} />
             </div>
-            <div className="container col-lg-9">
+            <div className="containers col-lg-9">
                 <p>{text}</p>
                 <div>
                     <p className="h3 text-center">
@@ -70,12 +75,6 @@ export default function RecommendDescriptionPage() {
                     </p>
                     <div className="col-sm-12 text-center">
                         <Rating start={0} readonly initialRating={authorRating} stop={10} step={1} emptySymbol={<FontAwesomeIcon className="text-muted h3" icon={faStar} />} fullSymbol={<FontAwesomeIcon className="text-warning h3" icon={faStar} />} />
-                    </div>
-                    <p className="h3 text-center mt-3">
-                        Rating of post
-                    </p>
-                    <div className="text-center">
-                        <Rating start={0} readonly initialRating={averageUserRating} stop={5} step={1} emptySymbol={<FontAwesomeIcon className="text-muted h3" icon={faStar} />} fullSymbol={<FontAwesomeIcon className="text-primary h3" icon={faStar} />} />
                     </div>
 
                     <p className="h5 text-center mt-3">Tags:</p>
@@ -88,6 +87,9 @@ export default function RecommendDescriptionPage() {
                     </div>
 
                 </div>
+
+                <Comments id={id} />
+
             </div>
         </div>
     )

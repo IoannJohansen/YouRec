@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import UserAvgRating from '../../RecommendDescriptionPage/UserAvgRating';
 import './RecommendItem.css';
 
+
 class RecommendItem extends Component {
 
     constructor(props) {

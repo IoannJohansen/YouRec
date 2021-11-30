@@ -12,7 +12,6 @@ namespace BLL.Interfaces
     {
         Task<IEnumerable<Recommend>> GetRecentlyUploaded();
         Task<IEnumerable<Recommend>> GetMostRated();
-        Task<Recommend> GetBaseRecommendDescription(int recommendId);
-        Task<Recommend> GetFullRecommendDescription(int recommendId);
+        Task<Recommend> GetRecommendDescription(int recommendId);
     }
 }

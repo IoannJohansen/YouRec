@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211129212353_initMig")]
+    [Migration("20211130113952_initMig")]
     partial class initMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,9 @@ namespace DAL.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -75,6 +78,8 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ImageId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -88,16 +93,16 @@ namespace DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "036c64d4-d719-46c2-bfdc-52459c416f06",
+                            Id = "ada1c02d-53bf-40f1-a257-7a62f5a53209",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "154c400e-afa8-4c58-aa3b-8b16a943067b",
+                            ConcurrencyStamp = "d57286e3-3dcc-4f14-bbd3-8858e56ca2a6",
                             Email = "urecmainkun@mail.ru",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "URECMAINKUN@MAIL.RU",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIDOheA9tw1v9ziHDgF1J7ifuxD1zICh1eAnuxlIJBfPm3S/dIKv/rRkZ1j7Hq5svg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECNFCbK79zCNUIUsJsD/smJ4I8c2v2SPvpBIHpFidPE92jmR3z4HlL7Hu4PwpCITmg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "494c2c6d-5b71-4a27-bd91-8bc620b9b194",
+                            SecurityStamp = "5ff82bb6-52a6-48b7-9ce3-82281e489e11",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -334,14 +339,14 @@ namespace DAL.Migrations
                         new
                         {
                             Id = "45179130-4f5e-4aa5-b1d0-de2a2d618313",
-                            ConcurrencyStamp = "89303aa1-7694-4005-8dc7-fb5d50adaa6b",
+                            ConcurrencyStamp = "d371fdb5-3101-4140-986e-7c291382774e",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "f08ad8e1-e9ac-49e4-80f6-9ed07a854761",
-                            ConcurrencyStamp = "b3a4251e-e187-46b4-9b79-bf4ec672ea45",
+                            ConcurrencyStamp = "e8fcbaf6-9148-471f-86c5-3a3a805f7d3c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -434,7 +439,7 @@ namespace DAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "036c64d4-d719-46c2-bfdc-52459c416f06",
+                            UserId = "ada1c02d-53bf-40f1-a257-7a62f5a53209",
                             RoleId = "f08ad8e1-e9ac-49e4-80f6-9ed07a854761"
                         });
                 });
@@ -456,6 +461,15 @@ namespace DAL.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("DAL.Model.AppUser", b =>
+                {
+                    b.HasOne("DAL.Model.Image", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
+
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("DAL.Model.Comment", b =>

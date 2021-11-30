@@ -10,8 +10,7 @@ namespace DAL.Infrastructure.Interfaces
 {
     public interface IRecommendRepository
     {
-        Task<Recommend> GetFullDescriptionAsync(int id);
-        Task<Recommend> GetBaseDescriptionAsync(int id);
+        Task<Recommend> GetDescriptionAsync(int id);
         Task<IEnumerable<Recommend>> GetItemsAsync();
         Task<Recommend> CreateAsync(Recommend item);
         Task DeleteAsync(Recommend item);

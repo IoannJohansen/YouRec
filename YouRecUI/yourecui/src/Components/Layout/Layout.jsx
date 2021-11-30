@@ -13,7 +13,7 @@ export default function Layout() {
 
     return (
         <div>
-            <Navbar expand="lg" bg="dark" variant="dark">
+            <Navbar className="col-md-12 col-sm-12 col-xs-12" expand="lg" bg="dark" variant="dark">
                 <Navbar.Brand className="text-center h1">UREC</Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-around" >

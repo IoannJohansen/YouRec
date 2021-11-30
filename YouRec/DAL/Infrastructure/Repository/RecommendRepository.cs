@@ -29,14 +29,9 @@ namespace DAL.Infrastructure.Repository
             _applicationDbContext.Remove(item);
         });
 
-        public async Task<Recommend> GetFullDescriptionAsync(int id)
+        public async Task<Recommend> GetDescriptionAsync(int id)
         {
-            return await _applicationDbContext.Recommends.Include(t=>t.RecommendTags).ThenInclude(t=>t.Tag).Include(r=>r.RecommendTags).Include(r => r.Group).Include(r => r.Comments).Include(r => r.Ratings).Include(r => r.Images).Include(r=>r.Likes).Include(r => r.User).FirstOrDefaultAsync(r=>r.Id == id);
-        }
-
-        public async Task<Recommend> GetBaseDescriptionAsync(int id)
-        {
-            return await _applicationDbContext.Recommends.Include(t => t.RecommendTags).ThenInclude(t => t.Tag).Include(r => r.RecommendTags).Include(r => r.Group).Include(r => r.Ratings).Include(r => r.Images).Include(r => r.Likes).Include(r => r.User).FirstOrDefaultAsync(r => r.Id == id);
+            return await _applicationDbContext.Recommends.Include(t=>t.RecommendTags).ThenInclude(t=>t.Tag).Include(r=>r.RecommendTags).Include(r => r.Group).Include(r => r.Comments).Include(r => r.Ratings).Include(r => r.Images).Include(r => r.User).FirstOrDefaultAsync(r=>r.Id == id);
         }
 
         public async Task<int> GetCountAsync()
