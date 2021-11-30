@@ -19,6 +19,88 @@ namespace DAL.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("DAL.Model.AppUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "036c64d4-d719-46c2-bfdc-52459c416f06",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "154c400e-afa8-4c58-aa3b-8b16a943067b",
+                            Email = "urecmainkun@mail.ru",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "URECMAINKUN@MAIL.RU",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIDOheA9tw1v9ziHDgF1J7ifuxD1zICh1eAnuxlIJBfPm3S/dIKv/rRkZ1j7Hq5svg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "494c2c6d-5b71-4a27-bd91-8bc620b9b194",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin"
+                        });
+                });
+
             modelBuilder.Entity("DAL.Model.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -99,6 +181,28 @@ namespace DAL.Migrations
                     b.HasIndex("RecommendId");
 
                     b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("DAL.Model.Like", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("RecommendId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecommendId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("DAL.Model.Rating", b =>
@@ -228,14 +332,14 @@ namespace DAL.Migrations
                         new
                         {
                             Id = "45179130-4f5e-4aa5-b1d0-de2a2d618313",
-                            ConcurrencyStamp = "a68efa6f-d06a-4427-a2aa-74935638383c",
+                            ConcurrencyStamp = "89303aa1-7694-4005-8dc7-fb5d50adaa6b",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "f08ad8e1-e9ac-49e4-80f6-9ed07a854761",
-                            ConcurrencyStamp = "2b1407df-f25e-46a6-834f-a01ba90d2935",
+                            ConcurrencyStamp = "b3a4251e-e187-46b4-9b79-bf4ec672ea45",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -263,88 +367,6 @@ namespace DAL.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "9ef8569a-47bc-4870-8fcb-9a31e59ec830",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "5b94a058-ae03-4626-b991-d2c085d634ce",
-                            Email = "urecmainkun@mail.ru",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "URECMAINKUN@MAIL.RU",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBzk/uZ6BGewhOJIJl1yzCghOqo4GRe5R1H2SX2Jp+r/YXIfhpNiDXfxCAlBjGbBkQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "0073069c-ab94-4f16-88d3-5324ae36d7ab",
-                            TwoFactorEnabled = false,
-                            UserName = "Admin"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -410,7 +432,7 @@ namespace DAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "9ef8569a-47bc-4870-8fcb-9a31e59ec830",
+                            UserId = "036c64d4-d719-46c2-bfdc-52459c416f06",
                             RoleId = "f08ad8e1-e9ac-49e4-80f6-9ed07a854761"
                         });
                 });
@@ -442,7 +464,7 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("DAL.Model.AppUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
@@ -462,6 +484,23 @@ namespace DAL.Migrations
                     b.Navigation("Recommend");
                 });
 
+            modelBuilder.Entity("DAL.Model.Like", b =>
+                {
+                    b.HasOne("DAL.Model.Recommend", "Recommend")
+                        .WithMany("Likes")
+                        .HasForeignKey("RecommendId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAL.Model.AppUser", "User")
+                        .WithMany("Likes")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Recommend");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("DAL.Model.Rating", b =>
                 {
                     b.HasOne("DAL.Model.Recommend", "Recommend")
@@ -470,7 +509,7 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("DAL.Model.AppUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -489,7 +528,7 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("DAL.Model.AppUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
@@ -528,7 +567,7 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("DAL.Model.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -537,7 +576,7 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("DAL.Model.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -552,7 +591,7 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("DAL.Model.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -561,11 +600,16 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("DAL.Model.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DAL.Model.AppUser", b =>
+                {
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("DAL.Model.Group", b =>
@@ -578,6 +622,8 @@ namespace DAL.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Images");
+
+                    b.Navigation("Likes");
 
                     b.Navigation("Ratings");
 

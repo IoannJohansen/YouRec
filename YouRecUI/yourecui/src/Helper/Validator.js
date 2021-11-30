@@ -16,14 +16,8 @@ export const PasswordValidationOptions = {
     }
 }
 
-export const FirstNameValidationOptions = {
-    required: { value: true, message: "First name field is required" },
-    minLength: { value: 2, message: "Minimal First name length: 2" },
-    maxLength: { value: 25, message: "Maximal First name length: 25" }
-}
-
-export const LastNameValidationOptions = {
-    required: { value: true, message: "Last name field is required" },
-    minLength: { value: 2, message: "Minimal Last name name length: 2" },
-    maxLength: { value: 25, message: "Maximal Last name length: 25" }
+export const UserNameValidationOptions = {
+    required: { value: true, message: "Username field is required" },
+    minLength: { value: 5, message: "Minimal username length: 5" },
+    maxLength: { value: 25, message: "Maximal username length: 25" }
 }

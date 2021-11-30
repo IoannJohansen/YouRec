@@ -29,12 +29,12 @@ namespace BLL.Services
 
         public async Task<Recommend> GetBaseRecommendDescription(int recommendId)
         {
-            return await unitOfWork.RecommendsRepository.GetAsync(recommendId);
+            return await unitOfWork.RecommendsRepository.GetFullDescriptionAsync(recommendId);
         }
 
         public async Task<Recommend> GetFullRecommendDescription(int recommendId)
         {
-            var rec = await unitOfWork.RecommendsRepository.GetAsync(recommendId);
+            var rec = await unitOfWork.RecommendsRepository.GetFullDescriptionAsync(recommendId);
             return rec;
         }
     }

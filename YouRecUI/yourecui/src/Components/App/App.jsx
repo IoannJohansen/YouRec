@@ -7,13 +7,14 @@ import { ClearJwt, ValidateJwt } from '../../Helper/jwtHelper.js';
 class App extends Component {
 
   componentDidMount() {
+    // console.log(this.props)
     const { login } = this.props;
     if (localStorage.getItem("jwt") != null) {
       const token = localStorage.getItem("jwt");
       let validationResult = ValidateJwt(token);
-      if(validationResult.isValid){
-        login(validationResult.isAdmin, validationResult.userName);
-      }else{
+      if (validationResult.isValid) {
+        login({ isAdmin: validationResult.isAdmin, userName: validationResult.userName, userId: validationResult.userId });
+      } else {
         ClearJwt();
       }
     }

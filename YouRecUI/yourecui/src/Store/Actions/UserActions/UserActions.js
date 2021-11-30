@@ -1,4 +1,7 @@
-import { USER_ACTION_LOGIN, USER_ACTION_LOGOUT } from '../../ActionTypes/UserActionTypes';
+import {
+    USER_ACTION_LOGIN,
+    USER_ACTION_LOGOUT
+} from '../../ActionTypes/UserActionTypes';
 
 export const login = (authData) => {
     return {

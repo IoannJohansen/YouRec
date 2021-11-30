@@ -28,6 +28,7 @@ export default function LoginForm() {
 
         axios.post(Parameteres.API_URL + Parameteres.SIGN_IN_PATH, JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).then(response => {
             HandleSuccessLogin(response, navigate, setStatus, dispatch);
+            console.log(response)
         }).catch(error => {
             console.log("ERROR " + error);
             setStatus("Invalid login or password");

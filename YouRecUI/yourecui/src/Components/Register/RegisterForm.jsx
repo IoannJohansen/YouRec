@@ -4,7 +4,7 @@ import axios from 'axios';
 import Parameteres from '../../Api/ApiParameteres';
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
-import { EmailValidationOptions, PasswordValidationOptions, FirstNameValidationOptions, LastNameValidationOptions } from '../../Helper/Validator';
+import { EmailValidationOptions, PasswordValidationOptions, UserNameValidationOptions } from '../../Helper/Validator';
 import { HandleSuccessLogin, SignInGoogleButton, SignInMicrosoftButton } from '../../Api/ApiAuth';
 import { useDispatch } from 'react-redux';
 
@@ -12,8 +12,7 @@ export default function RegisterForm() {
     const navigate = useNavigate();
     const [Email, SetEmail] = useState("");
     const [Password, SetPassword] = useState("");
-    const [FirstName, SetFirstName] = useState("");
-    const [Lastname, SetLastName] = useState("");
+    const [Username, SetUsername] = useState("");
     const [status, setStatus] = useState(null);
 
     const {
@@ -26,8 +25,7 @@ export default function RegisterForm() {
         let data = {
             "Email": Email,
             "Password": Password,
-            "FirstName": FirstName,
-            "LastName": Lastname
+            "Username": Username
         }
 
         axios.post(Parameteres.API_URL + Parameteres.SIGN_UP_PATH, JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).then(response => {
@@ -51,15 +49,9 @@ export default function RegisterForm() {
                 </Form.Group>
 
                 <Form.Group className="mb-2">
-                    <Form.Label>First name</Form.Label>
-                    {errors?.FirstName && <p className="text-danger">{errors?.FirstName?.message}</p>}
-                    <Form.Control {...register("FirstName", FirstNameValidationOptions)} maxLength={25} value={FirstName} onChange={event => SetFirstName(event.target.value)} placeholder="First name" type="text" />
-                </Form.Group>
-
-                <Form.Group className="mb-2">
-                    <Form.Label>Last name</Form.Label>
-                    {errors?.LastName && <p className="text-danger">{errors?.LastName?.message}</p>}
-                    <Form.Control {...register("LastName", LastNameValidationOptions)} maxLength={25} value={Lastname} onChange={event => SetLastName(event.target.value)} placeholder="Last name" type="text" />
+                    <Form.Label>Username</Form.Label>
+                    {errors?.Username && <p className="text-danger">{errors?.Username?.message}</p>}
+                    <Form.Control {...register("Username", UserNameValidationOptions)} maxLength={25} value={Username} onChange={event => SetUsername(event.target.value)} placeholder="Username" type="text" />
                 </Form.Group>
 
                 <Form.Group className="mb-2">

@@ -5,6 +5,7 @@ using BLL.Services;
 using DAL.Data;
 using DAL.Infrastructure.Interfaces;
 using DAL.Infrastructure.UnitOfWork;
+using DAL.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,6 +49,7 @@ namespace YouRecWeb
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<ITagService, TagService>();
             services.AddTransient<IRecommendService, RecommendService>();
+            services.AddTransient<ILikeService, LikeService>();
 
             services.AddSingleton(Configuration);
 
@@ -64,7 +66,7 @@ namespace YouRecWeb
                 options.TokenValidationParameters = JwtOptions.GetTokenValidationParameters();
             });
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = true;

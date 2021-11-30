@@ -1,7 +1,11 @@
 import axios from 'axios'
-import { getJwt } from '../Helper/jwtHelper';
 import {
-    API_URL, GET_REECOMMEND
+    getJwt
+} from '../Helper/jwtHelper';
+import {
+    API_URL,
+    GET_LIKES_OF_USER,
+    GET_REECOMMEND
 } from './ApiParameteres'
 
 
@@ -12,6 +16,15 @@ export const GetRecommendDescript = async (id) => {
         },
         params: {
             id: id
+        }
+    })
+    return response;
+}
+
+export const GetLikesOfUser = async (userId) => {
+    const response = await axios.get(API_URL + GET_LIKES_OF_USER, {
+        params: {
+            userId: userId
         }
     })
     return response;

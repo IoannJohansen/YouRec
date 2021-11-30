@@ -3,6 +3,7 @@ using BLL.Core.Auth.MIcrosoft;
 using BLL.DTO;
 using BLL.Helper;
 using BLL.Interfaces;
+using DAL.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -19,15 +20,15 @@ namespace BLL.Services
 {
     public class AuthService : IAuthService
     {
-        public AuthService(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IConfiguration configuration)
+        public AuthService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IConfiguration configuration)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
             this.configuration = configuration;
         }
 
-        private UserManager<IdentityUser> _userManager;
-        private SignInManager<IdentityUser> _signInManager;
+        private UserManager<AppUser> _userManager;
+        private SignInManager<AppUser> _signInManager;
         private IConfiguration configuration;
 
         public async Task<AuthResult> SignIn(LoginRequestDto loginRequestDto)
@@ -36,9 +37,9 @@ namespace BLL.Services
             if (user != null && (await _userManager.CheckPasswordAsync(user, loginRequestDto.Password)))
             {
                 var role = await _userManager.GetRolesAsync(user);
-                var token = GenerateTokenForUser(user.UserName, user.Email, role.First());
+                var token = GenerateTokenForUser(user.UserName, user.Email, role.First(), user.Id);
                 Log.Error("Logged in success");
-                return new AuthResult { Success = true, Token = token, Username = user.Email, IsAdmin = role.First() == "Admin" };
+                return new AuthResult { Success = true, Token = token, Username = user.Email, IsAdmin = role.First() == "Admin", UserId = user.Id };
             }
             return new AuthResult { Success = false };
         }
@@ -46,17 +47,17 @@ namespace BLL.Services
         public async Task<AuthResult> SignUp(RegisterRequestDto registerRequestDto)
         {
             var result = new AuthResult();
-            IdentityUser newUser = new() { Email = registerRequestDto.Email, UserName = registerRequestDto.FirstName };
+            AppUser newUser = new() { Email = registerRequestDto.Email, UserName = registerRequestDto.UserName };
             var resultCreation = await _userManager.CreateAsync(newUser, registerRequestDto.Password);
             if (resultCreation.Succeeded)
             {
                 await _signInManager.SignInAsync(newUser, false);
                 await _userManager.AddToRoleAsync(newUser, UserRole.User.ToString());
-                result.Token = GenerateTokenForUser(registerRequestDto.FirstName, registerRequestDto.Email, UserRole.User.ToString());
+                result.Token = GenerateTokenForUser(registerRequestDto.UserName, registerRequestDto.Email, UserRole.User.ToString(), newUser.Id);
                 result.Success = true;
-                result.Username = $"{registerRequestDto.FirstName} {registerRequestDto.LastName}";
+                result.Username = registerRequestDto.UserName;
+                result.UserId = newUser.Id;
             }
-            result.IdentityError = resultCreation.Errors;
             return result;
         }
 
@@ -67,8 +68,8 @@ namespace BLL.Services
             if (payload.Audience.Equals(configuration["Authentication:Google:ClientId"]))
             {
                 var user = await GetExternalUser(socialNetworkRequest.Provider, payload.Subject, payload.Email, payload.GivenName);
-                var token = GenerateTokenForUser(payload.GivenName, user.Email, UserRole.User.ToString());
-                return new AuthResult { Success = true, Token = token, IsAdmin = false, Username = payload.GivenName };
+                var token = GenerateTokenForUser(payload.GivenName, user.Email, UserRole.User.ToString(), user.Id);
+                return new AuthResult { Success = true, Token = token, IsAdmin = false, Username = payload.GivenName, UserId = user.Id };
             }
             return new AuthResult { Success = false };
         }
@@ -79,20 +80,21 @@ namespace BLL.Services
             if (await tokenValidator.IsValid(socialNetworkRequest.Id_token))
             {
                 var (sub, name, email) = ParseClaims(TokenValidator.UserClaims);
-                await GetExternalUser(socialNetworkRequest.Provider, sub, email, name);
-                var token = GenerateTokenForUser(name, email, UserRole.User.ToString());
-                return new AuthResult { Success = true, Token = token, IsAdmin = false, Username = name };
+                var user = await GetExternalUser(socialNetworkRequest.Provider, sub, email, name);
+                var token = GenerateTokenForUser(name, email, UserRole.User.ToString(), user.Id);
+                return new AuthResult { Success = true, Token = token, IsAdmin = false, Username = name, UserId = user.Id };
             }
             return new AuthResult { Success = false };
         }
 
-        private string GenerateTokenForUser(string userName, string email, string userRole)
+        private string GenerateTokenForUser(string userName, string email, string userRole, string id)
         {
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, userName),
                 new Claim(ClaimTypes.Email, email),
-                new Claim(ClaimTypes.Role, userRole)
+                new Claim(ClaimTypes.Role, userRole),
+                new Claim(ClaimTypes.NameIdentifier, id)
             };
             var signingCredentials = new SigningCredentials(KeyGenerator.GenerateSymmetricKey(JwtOptions.KEY), SecurityAlgorithms.HmacSha256);
             var jwtSecureToken = new JwtSecurityToken(JwtOptions.ISSUER, JwtOptions.AUDIENCE, claims, DateTime.Now, DateTime.Now.AddMinutes(120), signingCredentials);
@@ -108,11 +110,11 @@ namespace BLL.Services
             return (sub, name, email);
         }
 
-        private async Task<IdentityUser> GetExternalUser(string provider, string key, string email, string name)
+        private async Task<AppUser> GetExternalUser(string provider, string key, string email, string name)
         {
             var user = await _userManager.FindByEmailAsync(email);
             if (user != null) return user;
-            user = new IdentityUser { Email = email, UserName = email };
+            user = new AppUser { Email = email, UserName = email };
             var resultCreation = await _userManager.CreateAsync(user);
             if (resultCreation.Succeeded)
             {

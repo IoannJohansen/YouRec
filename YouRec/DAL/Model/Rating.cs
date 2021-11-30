@@ -24,6 +24,6 @@ namespace DAL.Model
         public Recommend Recommend { get; set; }
         
         [JsonIgnore]
-        public IdentityUser User { get; set; }
+        public AppUser User { get; set; }
     }
 }

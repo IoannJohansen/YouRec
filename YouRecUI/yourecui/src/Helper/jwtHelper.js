@@ -24,7 +24,8 @@ export function ValidateJwt(token) {
         return {
             isValid: true,
             isAdmin: decodedToken.payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] === "Admin",
-            userName: decodedToken.payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
+            userName: decodedToken.payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"],
+            userId: decodedToken.payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]
         }
     } else {
         return {
@@ -32,4 +33,3 @@ export function ValidateJwt(token) {
         }
     }
 }
-

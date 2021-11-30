@@ -13,11 +13,12 @@ const GET_REECOMMEND = "recommends/getrecommend";
 
 const TAG_LIST = "tags/getalltags"
 
+const GET_LIKES_OF_USER = "like/getcountforuser"
 
 const GOOGLE_CLIENT_ID = "467666703976-2v1pdp4p8v5rtho06lo6b5uvmv09jnfd.apps.googleusercontent.com";
 const MICROSOFT_CLIENT_ID = "2a72ff00-fc7d-4aff-96ea-09f592f8dc1a";
 
-const PICTURE_DEFAULT = "https://the-flow.ru/uploads/images/resize/830x0/adaptiveResize/03/60/25/27/70/661efde40cd7.jpg";
+const PICTURE_DEFAULT = "https://images.hdqwalls.com/download/samsung-galaxy-s10-default-22-1920x1080.jpg";
 
 module.exports = {
     API_URL,
@@ -33,5 +34,6 @@ module.exports = {
     PICTURE_DEFAULT,
     TAG_LIST,
     GET_REECOMMEND,
-    CHECK_AUTH
+    CHECK_AUTH,
+    GET_LIKES_OF_USER
 }

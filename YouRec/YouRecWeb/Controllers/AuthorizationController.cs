@@ -1,5 +1,6 @@
 ﻿using BLL.DTO;
 using BLL.Interfaces;
+using DAL.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,13 +15,13 @@ namespace YouRecWeb.Controllers
     [ApiController]
     public class AuthenticationController : Controller
     {
-        public AuthenticationController(IAuthService authService, SignInManager<IdentityUser> signInManager)
+        public AuthenticationController(IAuthService authService, SignInManager<AppUser> signInManager)
         {
             this._authService = authService;
             this.signInManager = signInManager;
         }
 
-        private SignInManager<IdentityUser> signInManager;
+        private SignInManager<AppUser> signInManager;
 
         private IAuthService _authService;
 
@@ -33,7 +34,7 @@ namespace YouRecWeb.Controllers
             if (res.Success)
             {
                 res.IsAdmin = false;
-                res.Username = registerRequestDto.FirstName;
+                res.Username = registerRequestDto.UserName;
             }
             return res;
         }
@@ -44,14 +45,6 @@ namespace YouRecWeb.Controllers
         public async Task<AuthResult> SignIn(LoginRequestDto loginRequestDto)
         {
             return await _authService.SignIn(loginRequestDto);
-        }
-
-        [Authorize(Roles = "User")]
-        [Route("Test")]
-        public async Task<IActionResult> Test()
-        {
-            Log.Logger.Information($"User {HttpContext.User.Identity.Name} logged in");
-            return Ok("Hello world!");
         }
 
         [HttpPost]

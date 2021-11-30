@@ -13,7 +13,8 @@ export const userReducer = (state = initState, action) => {
                 ...state,
                 isLoggedIn: true,
                 isAdmin: action.payload.isAdmin,
-                userName: action.payload.userName
+                userName: action.payload.userName,
+                userId: action.payload.userId,
             }
         }
 
@@ -22,7 +23,8 @@ export const userReducer = (state = initState, action) => {
                 ...state,
                 isLoggedIn: false,
                 isAdmin: false,
-                userName: ''
+                userName: '',
+                userId: '',
             }
         }
 

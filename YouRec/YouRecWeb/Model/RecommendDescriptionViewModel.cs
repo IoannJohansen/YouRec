@@ -15,6 +15,8 @@ namespace YouRecWeb.Model
 
         public int AuthorRating { get; set; }
 
+        public string UserId { get; set; }
+
         public DateTime CreationDate { get; set; }
 
         public string GroupName { get; set; }
@@ -25,6 +27,6 @@ namespace YouRecWeb.Model
 
         public ICollection<Comment> Comments { get; set; }
 
-        public ICollection<Rating> Ratings { get; set; }
+        public float AverageUserRating { get; set; }
     }
 }

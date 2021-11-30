@@ -17,6 +17,7 @@ namespace DAL.Infrastructure.UnitOfWork
             _groupRepository = new GroupRepository(applicationDbContext);
             _commentrepository = new CommentRepository(applicationDbContext);
             _ratingRepository = new RatingRepository(applicationDbContext);
+            _likeRepository = new LikeRepository(applicationDbContext);
         }
 
         private ApplicationDbContext _appDbContext;
@@ -27,6 +28,7 @@ namespace DAL.Infrastructure.UnitOfWork
         private IGroupRepository _groupRepository;
         private IRepository<Comment> _commentrepository;
         private IRatingRepository _ratingRepository;
+        private ILikeRepository _likeRepository;
 
         public IRecommendRepository RecommendsRepository => _recommendsRepository;
         public ITagRepository TagRepository => _tagRepository;
@@ -34,6 +36,7 @@ namespace DAL.Infrastructure.UnitOfWork
         public IGroupRepository GroupRepository => _groupRepository;
         public IRepository<Comment> Commentrepository => _commentrepository;
         public IRatingRepository RatingRepository => _ratingRepository;
+        public ILikeRepository LikeRepository => _likeRepository;
 
 
         public async Task SaveAsync()

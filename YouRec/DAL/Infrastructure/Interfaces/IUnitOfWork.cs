@@ -12,6 +12,7 @@ namespace DAL.Infrastructure.Interfaces
         IGroupRepository GroupRepository { get; }
         IRepository<Comment> Commentrepository { get; }
         IRatingRepository RatingRepository { get; }
+        ILikeRepository LikeRepository { get; }
 
         Task SaveAsync();
     }

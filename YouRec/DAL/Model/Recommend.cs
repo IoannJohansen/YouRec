@@ -34,6 +34,8 @@ namespace DAL.Model
 
         public ICollection<Rating> Ratings { get; set; }
 
-        public IdentityUser User { get; set; }
+        public ICollection<Like> Likes { get; set; }
+
+        public AppUser User { get; set; }
     }
 }

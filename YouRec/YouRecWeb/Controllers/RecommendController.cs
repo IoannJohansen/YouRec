@@ -4,6 +4,7 @@ using BLL.Interfaces;
 using DAL.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace YouRecWeb.Controllers
             var recentlyUploadedRecommends = await _recommendService.GetRecentlyUploaded();
              var recentlyUploadedRecsDto = mapper.Map<IEnumerable<Recommend>, IEnumerable<RecommendViewModel>>(recentlyUploadedRecommends);
             return new RecommendListViewModel { Recommends = recentlyUploadedRecsDto, CurrentCount = recentlyUploadedRecsDto.Count() };
-        }
+        }   
 
         [HttpGet]
         [Route("mostrated")]
@@ -48,19 +49,12 @@ namespace YouRecWeb.Controllers
         [HttpGet]
         [Route("getrecommend")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetBaseRecommendDescription(int id)
+        public async Task<IActionResult> GetRecommendDescription(int id)
         {
-            if (HttpContext.User.Identity.IsAuthenticated) 
-               return RedirectToAction(nameof(GetBaseRecommendDescription), new { id = id });
+            //if (HttpContext.User.Identity.IsAuthenticated) true;
             var baseRecommend = await _recommendService.GetBaseRecommendDescription(id);
-            var res = mapper.Map<Recommend, RecommendDescriptionViewModel>(baseRecommend);
-            return Ok(res);
-        }
-
-        public async Task<IActionResult> GetFullRecommendDescription(int id)
-        {
-
-            return Ok("From Authenticated " + id);
+            var mapperViewModel = mapper.Map<Recommend, RecommendDescriptionViewModel>(baseRecommend);
+            return Ok(mapperViewModel);
         }
     }
 }

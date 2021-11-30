@@ -21,7 +21,7 @@ export const CheckUserAuthentication = async () => {
 export function HandleSuccessLogin(authResponse, navigate, setStatus, dispatch) {
     if (authResponse.status === 200 && authResponse.data.success) {
         console.log(authResponse);
-        dispatch(login({ isAdmin: authResponse.data.isAdmin, userName: authResponse.data.username }));
+        dispatch(login({ isAdmin: false, userName: authResponse.data.username, userId: authResponse.data.userId }));
         SetJwt(authResponse.data.token);
         navigate('/Recs');
     } else {
@@ -45,7 +45,8 @@ export function SignInGoogleButton(props) {
 
     const HandlAuthResponse = (res) => {
         if (res.status === 200) {
-            dispatch(login({ isAdmin: false, userName: res.data.username }))
+            console.log(res);
+            dispatch(login({ isAdmin: res.data.isAdmin, userName: res.data.username, userId: res.data.userId }))
             SetJwt(res.data.token);
             navigate("/Recs");
         } else {
@@ -79,7 +80,7 @@ export function SignInMicrosoftButton(props) {
             Provider: "microsoft"
         }).then(res => {
             if (res.status === 200) {
-                dispatch(login({ isAdmin: false, userName: res.data.username }))
+                dispatch(login({ isAdmin: false, userName: res.data.username, userId: res.data.userId }))
                 SetJwt(res.data.token);
                 navigate("/Recs");
             } else {

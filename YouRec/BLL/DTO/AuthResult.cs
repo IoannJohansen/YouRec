@@ -17,6 +17,6 @@ namespace BLL.DTO
 
         public string Username { get; set; }
 
-        public IEnumerable<IdentityError> IdentityError { get; set; }
+        public string UserId { get; set; }
     }
 }
