@@ -32,11 +32,11 @@ class RecommendItem extends Component {
                         <CardHeader>
                             <Card.Title className="text-center">{this.state.title}</Card.Title>
                         </CardHeader>
-                        <Card.Body className="text-justify">
+                        {/* <Card.Body className="text-justify">
                             <p>
                                 {this.state.text.length > 100 ? this.state.text.substr(0, 100).concat("...") : this.state.text}
                             </p>
-                        </Card.Body>
+                        </Card.Body> */}
                         <Card.Footer className="text-muted">
                             <div className="d-flex justify-content-between">
                                 <div className="h5 text-primary">

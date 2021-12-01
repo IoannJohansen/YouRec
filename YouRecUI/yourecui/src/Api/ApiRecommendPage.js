@@ -4,7 +4,6 @@ import {
 } from '../Helper/jwtHelper';
 import {
     API_URL,
-    GET_LIKES_OF_USER,
     GET_REECOMMEND
 } from './ApiParameteres'
 

@@ -11,6 +11,7 @@ import AuthorInfo from './AuthorInfo';
 import Comments from './Comments';
 import ImageCarousel from './ImageCarousel';
 import RecommendRate from './RecommendRate';
+import MarkDownText from './Markdown';
 
 export default function RecommendDescriptionPage() {
 
@@ -41,12 +42,11 @@ export default function RecommendDescriptionPage() {
             setAuthorRating(data.data.authorRating);
             setUserId(data.data.userId);
             setAverageUserRating(data.data.averageUserRating)
-        }).then(() => {
-            GetLikesOfUser(userId).then(data => {
-                setAuthorLikes(data.data);
-            })
-        });
-    }, [id, creationDate, userId, authorLikes])
+        }).catch(err => {
+            console.log(err)
+        })
+    }, [])
+
 
     return (
         <div className="p-2 m-0 w-100 d-flex row justify-content-center">
@@ -60,28 +60,25 @@ export default function RecommendDescriptionPage() {
                     Rating of post
                 </p>
                 <p><Rating start={0} readonly initialRating={averageUserRating} stop={5} step={1} emptySymbol={<FontAwesomeIcon className="text-muted h3" icon={faStar} />} fullSymbol={<FontAwesomeIcon className="text-primary h3" icon={faStar} />} /></p>
-                <AuthorInfo authorName={authorname} authorLikes={authorLikes} />
+                <AuthorInfo authorName={authorname} userId={userId} />
                 <p className="h5 mt-3">Tags:</p>
-                    <div style={{ wordWrap: 'break-word' }}>
-                        <p className="text-primary">
-                            {
-                                [...tags].join(', ')
-                            }
-                        </p>
-                    </div>
+                <div style={{ wordWrap: 'break-word' }}>
+                    <p className="text-primary">
+                        {
+                            [...tags].join(', ')
+                        }
+                    </p>
+                </div>
             </div>
             <div className="containers col-lg-9">
-                <p>{text}</p>
+                <MarkDownText text={text} />
                 <div>
-                    <p className="h3 text-center">
+                    <p className="h3 text-center mt-3">
                         My rating
                     </p>
                     <div className="col-sm-12 text-center">
                         <Rating start={0} readonly initialRating={authorRating} stop={10} step={1} emptySymbol={<FontAwesomeIcon className="text-muted h3" icon={faStar} />} fullSymbol={<FontAwesomeIcon className="text-warning h3" icon={faStar} />} />
                     </div>
-
-                    
-
                 </div>
                 {
                     isLoggedIn ?

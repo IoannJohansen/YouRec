@@ -11,13 +11,14 @@ function RecommendsPage() {
     useEffect(() => {
         getRecentlyUploaded().then(data => {
             setRecentlyUploaded(data);
-        }).then(() => {
-            getMostRated().then(data => {
-                setMostRated(data);
-            });
         })
-
     }, []);
+
+    useEffect(() => {
+        getMostRated().then(data => {
+            setMostRated(data);
+        });
+    }, [])
 
     return (
         <>

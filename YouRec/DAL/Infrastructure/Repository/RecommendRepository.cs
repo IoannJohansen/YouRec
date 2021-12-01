@@ -56,12 +56,12 @@ namespace DAL.Infrastructure.Repository
 
         public async Task<IEnumerable<Recommend>> GetRecentlyUploaded(int amount)
         {
-            return await _applicationDbContext.Recommends.OrderByDescending(r => r.CreationDate).Take(amount).Include(r => r.Ratings).Include(r => r.Group).Include(r => r.Images).Include(r=>r.User).ToListAsync();
+            return await _applicationDbContext.Recommends.AsSplitQuery().OrderByDescending(r => r.CreationDate).Take(amount).Include(r => r.Ratings).Include(r => r.Group).Include(r => r.Images).Include(r=>r.User).ToListAsync();
         }
 
         public async Task<IEnumerable<Recommend>> GetMostRatedAsync(int amount)
         {
-            return await _applicationDbContext.Recommends.OrderByDescending(r => r.Ratings.Average(a=>a.Rate)).Take(amount).Include(r => r.Ratings).Include(r => r.Group).Include(r => r.Images).Include(r => r.User).ToListAsync();
+            return await _applicationDbContext.Recommends.AsSplitQuery().OrderByDescending(r => r.Ratings.Average(a=>a.Rate)).Take(amount).Include(r => r.Ratings).Include(r => r.Group).Include(r => r.Images).Include(r => r.User).ToListAsync();
         }
     }
 }

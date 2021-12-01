@@ -19,7 +19,7 @@ export default function RecommendRate(props) {
             if (isRated) setRating(data.data.ratingValue);
         })
 
-    }, [props.recommendId, isLiked, isRated, rating, userId]);
+    }, [isRated]);
 
     const rateHandler = (rating) => {
         AddRating(userId, props.recommendId, rating).then(data => {
@@ -35,7 +35,7 @@ export default function RecommendRate(props) {
 
     return (
         <div className="h3 text-center m-4">
-            You can rate this recommend
+            You can rate and like my recommend
             <div className="row justify-content-center align-items-center mt-2">
                 <Rating readonly={isRated} onChange={rateHandler} start={0} initialRating={rating} stop={5} step={1} emptySymbol={<FontAwesomeIcon className="text-muted h3" icon={faStar} />} fullSymbol={<FontAwesomeIcon className="text-warning h3" icon={faStar} />} />
                 <button placeholder="You already liked it" disabled={isLiked} onClick={likeHandler} className="btn btn-success btn-lg ml-4">
