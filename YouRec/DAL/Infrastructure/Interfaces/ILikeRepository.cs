@@ -10,7 +10,7 @@ namespace DAL.Infrastructure.Interfaces
     public interface ILikeRepository
     {
         Task<Like> AddLikeAsync(Like like);
-        Task RemoveLikeAsync(Like like);
         Task<int> GetLikesCountByUserIdAsync(string userId);
+        Task<bool> IsLiked(string userId, int recommendId);
     }
 }

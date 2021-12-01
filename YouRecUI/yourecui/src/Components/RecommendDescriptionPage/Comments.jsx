@@ -1,51 +1,48 @@
 import Button from '@restart/ui/esm/Button';
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
+import { AddRating } from '../../Api/ApiRating';
 import { GetPageOfComments } from '../../Api/ApiRecommendPage';
 
 export default function Comments(props) {
 
-    //TODO: make query to api for comments
-    //TODO: state with current page and page size + api
-
     const scrollHandler = (e) => {
         const windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
-        if (document.documentElement.clientHeight + 50 > windowRelativeBottom) {
+        if ((document.documentElement.clientHeight + 100 > windowRelativeBottom) && totalCount > comments.length) {
             setFetching(true);
-
         }
-        // console.log(document.documentElement.clientHeight >  boundariesCoordinates.bottom);
     }
 
     const [commentPageNumber, setCommentPageNumber] = useState(0);
     const [comments, setComments] = useState([]);
-    const [fetching, setFetching] = useState(false);
+    const [fetching, setFetching] = useState(true);
+    const [totalCount, setTotalCount] = useState(0);
     const PAGESIZE = 10;
-
 
     useEffect(() => {
         document.addEventListener('scroll', scrollHandler)
-
         return function () {
             document.removeEventListener('scroll', scrollHandler);
         }
-
-    }, [props.id])
-
+    })
 
     useEffect(() => {
         if (fetching) {
             GetPageOfComments(props.id, commentPageNumber, PAGESIZE).then(data => {
+                if (data.status === 204) return;
                 setComments([...comments, ...data.data.items]);
-                console.log("Fetch")
-            }).then(() => {
-                setCommentPageNumber(commentPageNumber + 1);
+                setCommentPageNumber(commentPageNumber => commentPageNumber + 1);
+                setTotalCount(data.data.itemCount);
             }).finally(() => {
                 setFetching(false);
             })
         }
-
     }, [fetching])
+
+    //TODO: api call to comment controller
+    const commentSendHandler = () => {
+        
+    }
 
     return (
         <div className="text-center column justiy-content-center" style={{ overflowWrap: 'break-word' }}>

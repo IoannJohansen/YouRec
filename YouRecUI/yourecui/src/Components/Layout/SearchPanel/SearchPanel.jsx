@@ -8,7 +8,7 @@ export default function SearchPanel() {
             <Form className="d-flex justify-content-around">
                 <FormControl
                     type="search"
-                    placeholder="Search"
+                    placeholder="Type your query" 
                     className="m-1"
                     aria-label="Search"
                 />

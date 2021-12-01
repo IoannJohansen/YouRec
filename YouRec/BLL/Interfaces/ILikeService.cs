@@ -10,7 +10,6 @@ namespace BLL.Interfaces
     public interface ILikeService
     {
         Task<Like> AddLike(Like entity);
-        Task RemoveTile(Like entity);
         Task<int> GetCountLikesById(string id);
     }
 }

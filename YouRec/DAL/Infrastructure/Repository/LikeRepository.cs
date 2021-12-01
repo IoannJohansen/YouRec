@@ -25,16 +25,16 @@ namespace DAL.Infrastructure.Repository
             return (await applicationDbContext.Likes.AddAsync(like)).Entity;
         }
 
-        public async Task RemoveLikeAsync(Like like) => await Task.Run(() =>
-        {
-            applicationDbContext.Likes.Remove(like);
-        });
-
         public async Task<int> GetLikesCountByUserIdAsync(string userId)
         {
             var res1 = applicationDbContext.Likes.Include(t => t.Recommend).Where(l => l.Recommend.UserId == userId).ToList();
             var res = await applicationDbContext.Likes.Include(t => t.Recommend).CountAsync(l => l.Recommend.UserId == userId);
             return res;
+        }
+
+        public async Task<bool> IsLiked(string userId, int recommendId)
+        {
+            return await applicationDbContext.Likes.FirstOrDefaultAsync(l => l.UserId == userId && l.RecommendId == recommendId) != null;
         }
     }
 }

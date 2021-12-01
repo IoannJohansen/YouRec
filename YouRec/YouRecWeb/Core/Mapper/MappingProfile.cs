@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BLL.DTO;
 using DAL.Model;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,9 @@ namespace YouRecWeb.Core.Mapper
         
             CreateMap<Comment, CommentViewModel>().ForMember(m=>m.Username, vm => vm.MapFrom(c=>c.User.UserName));
 
+            CreateMap<LikeDto, Like>();
 
+            CreateMap<RatingDto, Rating>();
         }
     }
 }

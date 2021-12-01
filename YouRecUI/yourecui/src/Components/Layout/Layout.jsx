@@ -10,7 +10,6 @@ export default function Layout() {
     const isAdmin = useSelector(state => state.isAdmin);
     const isLoggedIn = useSelector(state => state.isLoggedIn);
 
-
     return (
         <div>
             <Navbar className="col-md-12 col-sm-12 col-xs-12" expand="lg" bg="dark" variant="dark">

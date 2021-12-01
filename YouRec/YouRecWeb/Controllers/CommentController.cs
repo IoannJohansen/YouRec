@@ -30,15 +30,18 @@ namespace YouRecWeb.Controllers
         public async Task<PaginatedObjectDto<CommentViewModel>> GetCommentsPaged(int recommendId, int numPage, int pageSize)
         {
             var paginatedComments = await _commentService.GetPagedAsync(recommendId, numPage, pageSize);
+            if (paginatedComments.Count() == 0) return null;
+            var totalCount = await _commentService.GetCountAsync(recommendId);
             var mappedComments = mapper.Map<IEnumerable<Comment>,IEnumerable<CommentViewModel>>(paginatedComments);
-            return new PaginatedObjectDto<CommentViewModel> { ItemCount = paginatedComments.Count(), Items = mappedComments };
+            return new PaginatedObjectDto<CommentViewModel> { ItemCount = totalCount, Items = mappedComments };
         }
 
-        //[Route("getcount")]
-        //public async Task<int> GetCountForRecommend(int id)
-        //{
+        [Route("addComment")]
+        [HttpPost]
+        public async Task<CommentViewModel> AddComment(CommentDto commentDto)
+        {
 
-        //    return await _commentService.GetCountAsync(id);
-        //}
+            return null;
+        }
     }
 }

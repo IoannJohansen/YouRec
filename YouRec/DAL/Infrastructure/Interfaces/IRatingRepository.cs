@@ -6,7 +6,6 @@ namespace DAL.Infrastructure.Interfaces
     public interface IRatingRepository
     {
         Task<Rating> AddAsync(Rating rating);
-        Task<Rating> UpdateAsync(Rating rating);
-        Task DeleteAsync(int id);
+        Task<Rating> GetAsync(string userId, int recommendId);
     }
 }

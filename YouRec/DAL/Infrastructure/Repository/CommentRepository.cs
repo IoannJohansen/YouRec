@@ -27,7 +27,7 @@ namespace DAL.Infrastructure.Repository
 
         public async Task<IEnumerable<Comment>> GetPagedAsync(int recommendId, int pageNum, int pageSize)
         {
-            return await _applicationDbContext.Comments.Skip(pageNum*pageSize).Where(c=>c.RecommendId==recommendId).Take(pageSize).Include(c=>c.User).ToListAsync();
+            return await _applicationDbContext.Comments.Where(c => c.RecommendId == recommendId).Skip(pageNum*pageSize).Take(pageSize).Include(c=>c.User).ToListAsync();
         }
     }
 }

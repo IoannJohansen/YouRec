@@ -1,6 +1,7 @@
 ﻿using DAL.Data;
 using DAL.Infrastructure.Interfaces;
 using DAL.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,6 @@ namespace DAL.Infrastructure.Repository
         public RatingRepository(ApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
-
         }
 
         private ApplicationDbContext _applicationDbContext;
@@ -24,15 +24,9 @@ namespace DAL.Infrastructure.Repository
             return (await _applicationDbContext.Ratings.AddAsync(rating)).Entity;
         }
 
-        public async Task<Rating> UpdateAsync(Rating rating) => await Task.Run(() =>
+        public async Task<Rating> GetAsync(string userId, int recommendId)
         {
-            return _applicationDbContext.Ratings.Update(rating).Entity;
-        });
-
-        public async Task DeleteAsync(int id) => await Task.Run(() =>
-        {
-            var ratingInDb = _applicationDbContext.Ratings.FindAsync(id).Result;
-            _applicationDbContext.Ratings.Remove(ratingInDb);
-        });
+            return await _applicationDbContext.Ratings.Where(r=>r.UserId==userId&&r.RecommendId==recommendId).FirstOrDefaultAsync();
+        }
     }
 }

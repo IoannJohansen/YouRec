@@ -1,19 +1,20 @@
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Button from '@restart/ui/esm/Button';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import { FloatingLabel, Form } from 'react-bootstrap';
 import Rating from 'react-rating';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { GetLikesOfUser, GetRecommendDescript } from '../../Api/ApiRecommendPage';
 import AuthorInfo from './AuthorInfo';
 import Comments from './Comments';
 import ImageCarousel from './ImageCarousel';
-import UserAvgRating from './UserAvgRating';
+import RecommendRate from './RecommendRate';
 
 export default function RecommendDescriptionPage() {
+
+    //TODO: add possibility to add user rating to post
+    //TODO: implement likes in app
 
     const { id } = useParams();
     const [title, settitle] = useState("");
@@ -22,15 +23,12 @@ export default function RecommendDescriptionPage() {
     const [groupName, setGroupName] = useState("");
     const [imageLinks, setImageLinks] = useState([]);
     const [tags, setTags] = useState([]);
-    const [comments, setComments] = useState([]);
     const [authorRating, setAuthorRating] = useState(0);
     const [creationDate, setCreationDate] = useState("");
     const [averageUserRating, setAverageUserRating] = useState("");
     const [authorLikes, setAuthorLikes] = useState(0);
     const [userId, setUserId] = useState("");
-
-
-    //TODO: create component for comments
+    const isLoggedIn = useSelector(state => state.isLoggedIn);
 
     useEffect(() => {
         GetRecommendDescript(id).then(data => {
@@ -45,7 +43,6 @@ export default function RecommendDescriptionPage() {
             setAuthorRating(data.data.authorRating);
             setUserId(data.data.userId);
             setAverageUserRating(data.data.averageUserRating)
-            setComments(data.data.comments);
         }).then(() => {
             GetLikesOfUser(userId).then(data => {
                 setAuthorLikes(data.data);
@@ -66,6 +63,14 @@ export default function RecommendDescriptionPage() {
                 </p>
                 <p><Rating start={0} readonly initialRating={averageUserRating} stop={5} step={1} emptySymbol={<FontAwesomeIcon className="text-muted h3" icon={faStar} />} fullSymbol={<FontAwesomeIcon className="text-primary h3" icon={faStar} />} /></p>
                 <AuthorInfo authorName={authorname} authorLikes={authorLikes} />
+                <p className="h5 mt-3">Tags:</p>
+                    <div style={{ wordWrap: 'break-word' }}>
+                        <p className="text-primary">
+                            {
+                                [...tags].join(', ')
+                            }
+                        </p>
+                    </div>
             </div>
             <div className="containers col-lg-9">
                 <p>{text}</p>
@@ -77,19 +82,17 @@ export default function RecommendDescriptionPage() {
                         <Rating start={0} readonly initialRating={authorRating} stop={10} step={1} emptySymbol={<FontAwesomeIcon className="text-muted h3" icon={faStar} />} fullSymbol={<FontAwesomeIcon className="text-warning h3" icon={faStar} />} />
                     </div>
 
-                    <p className="h5 text-center mt-3">Tags:</p>
-                    <div style={{ wordWrap: 'break-word' }}>
-                        <p className="text-primary text-center">
-                            {
-                                [...tags].join(', ')
-                            }
-                        </p>
-                    </div>
+                    
 
                 </div>
-
-                <Comments id={id} />
-
+                {
+                    isLoggedIn ?
+                        <>
+                            <RecommendRate recommendId={id} />
+                            <Comments id={id} />
+                        </> :
+                        null
+                }
             </div>
         </div>
     )

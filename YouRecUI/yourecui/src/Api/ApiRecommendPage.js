@@ -50,7 +50,7 @@ export const GetPageOfComments = async (recommendId, pageNumber, pageSize) => {
         },
         params: {
             recommendId: recommendId,
-            pageNum: pageNumber,
+            numPage: pageNumber,
             pageSize: pageSize
         }
     })

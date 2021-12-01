@@ -20,17 +20,14 @@ namespace BLL.Services
 
         public async Task<Like> AddLike(Like entity)
         {
-            return await unitOfWork.LikeRepository.AddLikeAsync(entity);
+            var newTask = await unitOfWork.LikeRepository.AddLikeAsync(entity);
+            await unitOfWork.SaveAsync();
+            return newTask;
         }
 
         public async Task<int> GetCountLikesById(string id)
         {
             return await unitOfWork.LikeRepository.GetLikesCountByUserIdAsync(id);
-        }
-
-        public async Task RemoveTile(Like entity)
-        {
-            await unitOfWork.LikeRepository.RemoveLikeAsync(entity);
         }
     }
 }

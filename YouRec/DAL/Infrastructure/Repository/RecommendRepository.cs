@@ -31,7 +31,7 @@ namespace DAL.Infrastructure.Repository
 
         public async Task<Recommend> GetDescriptionAsync(int id)
         {
-            return await _applicationDbContext.Recommends.Include(t=>t.RecommendTags).ThenInclude(t=>t.Tag).Include(r=>r.RecommendTags).Include(r => r.Group).Include(r => r.Comments).Include(r => r.Ratings).Include(r => r.Images).Include(r => r.User).FirstOrDefaultAsync(r=>r.Id == id);
+            return await _applicationDbContext.Recommends.AsSplitQuery().Include(t=>t.RecommendTags).ThenInclude(t=>t.Tag).Include(r => r.Group).Include(r => r.Ratings).Include(r => r.Images).Include(r => r.User).FirstOrDefaultAsync(r=>r.Id == id);
         }
 
         public async Task<int> GetCountAsync()
@@ -56,12 +56,12 @@ namespace DAL.Infrastructure.Repository
 
         public async Task<IEnumerable<Recommend>> GetRecentlyUploaded(int amount)
         {
-            return await _applicationDbContext.Recommends.OrderByDescending(r => r.CreationDate).Take(amount).Include(r => r.Ratings).Include(r => r.Group).Include(r => r.Images).Include(r=>r.User).ToArrayAsync();
+            return await _applicationDbContext.Recommends.OrderByDescending(r => r.CreationDate).Take(amount).Include(r => r.Ratings).Include(r => r.Group).Include(r => r.Images).Include(r=>r.User).ToListAsync();
         }
 
         public async Task<IEnumerable<Recommend>> GetMostRatedAsync(int amount)
         {
-            return await _applicationDbContext.Recommends.OrderByDescending(r => r.Ratings.Average(a=>a.Rate)).Take(amount).Include(r => r.Ratings).Include(r => r.Group).Include(r => r.Images).Include(r => r.User).ToArrayAsync();
+            return await _applicationDbContext.Recommends.OrderByDescending(r => r.Ratings.Average(a=>a.Rate)).Take(amount).Include(r => r.Ratings).Include(r => r.Group).Include(r => r.Images).Include(r => r.User).ToListAsync();
         }
     }
 }

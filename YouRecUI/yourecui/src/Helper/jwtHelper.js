@@ -15,6 +15,12 @@ export function ClearJwt() {
     localStorage.removeItem(jwtTokenname);
 }
 
+export function GetJwtAuthHeader() {
+    return {
+        "Authorization": `Bearer ${getJwt()}`
+    }
+}
+
 export function ValidateJwt(token) {
     let decodedToken = jwt.decode(token, {
         complete: true
