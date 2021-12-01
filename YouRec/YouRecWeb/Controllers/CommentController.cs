@@ -32,7 +32,7 @@ namespace YouRecWeb.Controllers
             var paginatedComments = await _commentService.GetPagedAsync(recommendId, numPage, pageSize);
             if (paginatedComments.Count() == 0) return null;
             var totalCount = await _commentService.GetCountAsync(recommendId);
-            var mappedComments = mapper.Map<IEnumerable<Comment>,IEnumerable<CommentViewModel>>(paginatedComments);
+            var mappedComments = mapper.Map<IEnumerable<Comment>, IEnumerable<CommentViewModel>>(paginatedComments);
             return new PaginatedObjectDto<CommentViewModel> { ItemCount = totalCount, Items = mappedComments };
         }
 
@@ -40,8 +40,9 @@ namespace YouRecWeb.Controllers
         [HttpPost]
         public async Task<CommentViewModel> AddComment(CommentDto commentDto)
         {
-
-            return null;
+            var mapperComment = mapper.Map<CommentDto, Comment>(commentDto);
+            var createdComment = await _commentService.CreateCommentAsync(mapperComment);
+            return mapper.Map<Comment, CommentViewModel>(createdComment);
         }
     }
 }

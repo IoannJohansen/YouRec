@@ -12,5 +12,7 @@ namespace BLL.Interfaces
         Task<int> GetCountAsync(int recommendId);
 
         Task<IEnumerable<Comment>> GetPagedAsync(int recommendId, int pageNum, int amount);
+
+        Task<Comment> CreateCommentAsync(Comment comment);
     }
 }

@@ -1,8 +1,7 @@
 import Button from '@restart/ui/esm/Button';
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { AddRating } from '../../Api/ApiRating';
-import { GetPageOfComments } from '../../Api/ApiRecommendPage';
+import { GetPageOfComments, AddComment } from '../../Api/ApiComment';
 
 export default function Comments(props) {
 
@@ -17,6 +16,8 @@ export default function Comments(props) {
     const [comments, setComments] = useState([]);
     const [fetching, setFetching] = useState(true);
     const [totalCount, setTotalCount] = useState(0);
+    const [commentMessage, setCommentMessage] = useState("");
+    const [errorComment, setErrorComment] = useState("");
     const PAGESIZE = 10;
 
     useEffect(() => {
@@ -39,9 +40,16 @@ export default function Comments(props) {
         }
     }, [fetching])
 
-    //TODO: api call to comment controller
     const commentSendHandler = () => {
-        
+        if (commentMessage.length < 2) {
+            setErrorComment("Comment must have length more then 1");
+        } else {
+            AddComment(props.userId, props.id, commentMessage).then(data => {
+                setComments([...comments, data.data])
+            }).finally(() => {
+                setCommentMessage("");
+            })
+        }
     }
 
     return (
@@ -49,10 +57,14 @@ export default function Comments(props) {
             <p className="h3">
                 Comments
             </p>
+            <p className="text-danger h5">
+                {
+                    errorComment
+                }
+            </p>
             <div className="d-flex m-auto col-md-5 col-sm-5" >
-
-                <Form.Control style={{ height: "100px" }} as="textarea" placeholder="Leave a comment here" />
-                <Button className="btn btn-primary" >Send</Button>
+                <Form.Control value={commentMessage} onChange={(e) => setCommentMessage(e.target.value)} style={{ height: "100px" }} as="textarea" placeholder="Leave a comment here" />
+                <Button onClick={commentSendHandler} className="btn btn-primary" >Send</Button>
             </div>
             <div>
                 {

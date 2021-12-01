@@ -24,6 +24,7 @@ const ADD_LIKE = "like/addLike";
 //COMMENTS
 const GET_COMMENTS = "comments/getcount";
 const GET_PAGE_COMMENTS = "comments/getcommentpaged";
+const ADD_COMMENT = "comments/addComment";
 
 //RATING
 const GET_RECOMMEND_USER_RATING = "rating/getRecommendUserInfo"
@@ -56,5 +57,6 @@ module.exports = {
     GET_PAGE_COMMENTS,
     GET_RECOMMEND_USER_RATING,
     ADD_LIKE,
-    ADD_RATING
+    ADD_RATING,
+    ADD_COMMENT
 }

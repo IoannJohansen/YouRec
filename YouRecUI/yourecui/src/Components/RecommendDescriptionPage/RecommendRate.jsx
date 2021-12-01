@@ -29,7 +29,6 @@ export default function RecommendRate(props) {
 
     const likeHandler = () => {
         AddLike(userId, props.recommendId).then(data => {
-            console.log(data);
             setIsLiked(true);
         })
     }

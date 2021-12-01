@@ -19,12 +19,19 @@ namespace BLL.Services
 
         public async Task<int> GetCountAsync(int recommendId)
         {
-            return await unitOfWork.Commentrepository.GetCountForRecommendAsync(recommendId);
+            return await unitOfWork.CommentRepository.GetCountForRecommendAsync(recommendId);
         }
 
         public async Task<IEnumerable<Comment>> GetPagedAsync(int recommendId, int pageNum, int amount)
         {
-            return await unitOfWork.Commentrepository.GetPagedAsync(recommendId, pageNum, amount);
+            return await unitOfWork.CommentRepository.GetPagedAsync(recommendId, pageNum, amount);
+        }
+
+        public async Task<Comment> CreateCommentAsync(Comment comment)
+        {
+            var createdComment = await unitOfWork.CommentRepository.AddCommentAsync(comment);
+            await unitOfWork.SaveAsync();
+            return await unitOfWork.CommentRepository.GetByIdAsync(createdComment.Id);
         }
     }
 }

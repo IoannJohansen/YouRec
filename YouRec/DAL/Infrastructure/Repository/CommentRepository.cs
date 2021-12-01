@@ -29,5 +29,15 @@ namespace DAL.Infrastructure.Repository
         {
             return await _applicationDbContext.Comments.Where(c => c.RecommendId == recommendId).Skip(pageNum*pageSize).Take(pageSize).Include(c=>c.User).ToListAsync();
         }
+
+        public async Task<Comment> AddCommentAsync(Comment comment)
+        {
+            return (await _applicationDbContext.Comments.AddAsync(comment)).Entity;
+        }
+
+        public async Task<Comment> GetByIdAsync(int id)
+        {
+            return await _applicationDbContext.Comments.Include(c => c.User).FirstOrDefaultAsync(c=>c.Id == id);
+        }
     }
 }

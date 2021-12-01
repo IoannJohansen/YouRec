@@ -5,16 +5,14 @@ import React, { useEffect, useState } from 'react';
 import Rating from 'react-rating';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { GetLikesOfUser, GetRecommendDescript } from '../../Api/ApiRecommendPage';
+import { GetRecommendDescript } from '../../Api/ApiRecommendPage';
+import { GetLikesOfUser } from '../../Api/ApiLike';
 import AuthorInfo from './AuthorInfo';
 import Comments from './Comments';
 import ImageCarousel from './ImageCarousel';
 import RecommendRate from './RecommendRate';
 
 export default function RecommendDescriptionPage() {
-
-    //TODO: add possibility to add user rating to post
-    //TODO: implement likes in app
 
     const { id } = useParams();
     const [title, settitle] = useState("");
@@ -89,7 +87,7 @@ export default function RecommendDescriptionPage() {
                     isLoggedIn ?
                         <>
                             <RecommendRate recommendId={id} />
-                            <Comments id={id} />
+                            <Comments userId={userId} id={id} />
                         </> :
                         null
                 }

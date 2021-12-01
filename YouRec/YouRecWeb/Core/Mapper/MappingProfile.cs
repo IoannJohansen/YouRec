@@ -31,6 +31,8 @@ namespace YouRecWeb.Core.Mapper
             CreateMap<LikeDto, Like>();
 
             CreateMap<RatingDto, Rating>();
+
+            CreateMap<CommentDto, Comment>();
         }
     }
 }
