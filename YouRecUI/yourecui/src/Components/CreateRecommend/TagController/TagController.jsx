@@ -12,7 +12,8 @@ export default function TagController() {
         { id: 3, name: "Bananas" },
         { id: 4, name: "Mangos" },
         { id: 5, name: "Lemons" },
-        { id: 6, name: "Apricots" }
+        { id: 6, name: "Apricots" },
+        { id: 7, name: "Badabum" }
     ])
 
     //TODO: add api call to take popular tags

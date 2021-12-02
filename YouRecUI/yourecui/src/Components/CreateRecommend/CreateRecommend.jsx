@@ -6,7 +6,7 @@ import TagController from './TagController/TagController';
 
 export default function CreateRecommend() {
 
-    const [recommendText, setRecommendText] = React.useState("Type you recommend here");
+    const [recommendText, setRecommendText] = React.useState("You recommend text with markdown");
     const [images, setImages] = useState([]);
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function CreateRecommend() {
                         <Form.Control
                             as="select"
                             size="md"
-                            className="mr-sm-2 mt-4 mb-3"
+                            className="mr-sm-2 mt-3 mb-3"
                         >
                             <option selected disabled>Groupname</option>
                             {
@@ -51,16 +51,18 @@ export default function CreateRecommend() {
                         <TagController />
 
 
+
                     </div>
                 </div>
-                {/* <div className="container">
+                <div className="mt-4">
                     <MDEditor
+                        preview="edit"
                         value={recommendText}
                         onChange={setRecommendText}
                     />
-                </div> */}
+                </div>
 
-                {/* <Button onClick={submitHandler} className="btn btn-primary">Create</Button> */}
+                <Button onClick={submitHandler} className="btn btn-primary form-row">Create</Button>
             </Form>
         </div>
     );

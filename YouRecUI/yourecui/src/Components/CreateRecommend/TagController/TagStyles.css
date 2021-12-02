@@ -68,13 +68,12 @@
 .react-tags__search-input {
     /* prevent autoresize overflowing the container */
     max-width: 100%;
-
     /* remove styles and layout from this element */
     margin: 0;
     padding: 0;
+    
     border: 0;
     outline: none;
-
     /* match the font styles */
     font-size: inherit;
     line-height: inherit;
@@ -89,6 +88,7 @@
     top: 100%;
     left: 0;
     width: 100%;
+    z-index: 100;
 }
 
 @media screen and (min-width: 30em) {
