@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import { Form, Button } from 'react-bootstrap';
 import ImageLoader from './DropZone/ImageLoader';
+import TagController from './TagController/TagController';
 
 export default function CreateRecommend() {
 
@@ -18,10 +19,11 @@ export default function CreateRecommend() {
     }
 
     //TODO: add field validation with useForm
+    //TODO: take from outer setter for newTagz
 
     return (
         <div className="container">
-            <Form className="border-dark border">
+            <Form className="border-dark border p-5">
                 <p className="h2 text-center">Create recommend</p>
 
                 <div className="d-flex justify-content-around mt-5 ">
@@ -35,7 +37,7 @@ export default function CreateRecommend() {
                         <Form.Control
                             as="select"
                             size="md"
-                            className="mr-sm-2 mt-4"
+                            className="mr-sm-2 mt-4 mb-3"
                         >
                             <option selected disabled>Groupname</option>
                             {
@@ -45,7 +47,8 @@ export default function CreateRecommend() {
 
                             }
                         </Form.Control>
-                        
+
+                        <TagController />
 
 
                     </div>

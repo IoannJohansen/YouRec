@@ -10,7 +10,7 @@ export default function ImageLoader(props) {
     }
 
     const handleSubmit = (files) => {
-
+        
         props.imageSetter(files);
     }
 
