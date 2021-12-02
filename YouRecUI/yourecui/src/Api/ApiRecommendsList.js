@@ -27,7 +27,3 @@ export const getMostRated = async () => {
     return response.data;
 }
 
-export const getTagList = async () => {
-    const response = await axios.get(API_URL + TAG_LIST);
-    return response.data;
-}

@@ -30,9 +30,7 @@ namespace YouRecWeb.Controllers
         public async Task<TagListViewModel> GetTags()
         {
            var tagList = await _tagService.GetTopTags();
-            var tagVM = new TagListViewModel();
-            tagVM.Tags = mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(tagList);
-            return tagVM;
+            return new TagListViewModel { Tags = mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(tagList) };
         }
     }
 }

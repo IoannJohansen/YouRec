@@ -52,5 +52,13 @@ namespace YouRecWeb.Controllers
             var recommendDescription = await _recommendService.GetRecommendDescription(id);
             return mapper.Map<Recommend, RecommendDescriptionViewModel>(recommendDescription);
         }
+
+        [HttpPost]
+        [Route("createpost")]
+        public async Task<RecommendViewModel> CreateRecommend(CreateRecommendDto createRecommendDto)
+        {
+
+            return null;
+        }
     }
 }

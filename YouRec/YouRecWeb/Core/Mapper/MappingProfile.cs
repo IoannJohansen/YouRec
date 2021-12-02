@@ -25,14 +25,14 @@ namespace YouRecWeb.Core.Mapper
                  memberOptions.PreCondition(l => l.Ratings.Count > 0);
                  memberOptions.MapFrom(l => l.Ratings.Average(x => x.Rate));
              });
-        
             CreateMap<Comment, CommentViewModel>().ForMember(m=>m.Username, vm => vm.MapFrom(c=>c.User.UserName));
-
             CreateMap<LikeDto, Like>();
-
             CreateMap<RatingDto, Rating>();
-
             CreateMap<CommentDto, Comment>();
+            //CreateMap<Tag, >
+
+
+
         }
     }
 }

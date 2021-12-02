@@ -45,7 +45,6 @@ export function SignInGoogleButton(props) {
 
     const HandlAuthResponse = (res) => {
         if (res.status === 200) {
-            console.log(res);
             dispatch(login({ isAdmin: res.data.isAdmin, userName: res.data.username, userId: res.data.userId }))
             SetJwt(res.data.token);
             navigate("/Recs");

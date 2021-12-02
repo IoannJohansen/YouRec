@@ -2,10 +2,7 @@
 using DAL.Infrastructure.Interfaces;
 using DAL.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL.Infrastructure.Repository
@@ -28,6 +25,11 @@ namespace DAL.Infrastructure.Repository
         public async Task<Group> GetByIdAsync(int id)
         {
             return await _applicationDbContext.Groups.FindAsync(id);
+        }
+
+        public async Task<Group> AddAsync(Group group)
+        {
+            return (await _applicationDbContext.Groups.AddAsync(group)).Entity;
         }
     }
 }

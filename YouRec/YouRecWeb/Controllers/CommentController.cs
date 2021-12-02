@@ -28,7 +28,7 @@ namespace YouRecWeb.Controllers
         [Route("getcommentpaged")]
         [HttpGet]
         public async Task<PaginatedObjectDto<CommentViewModel>> GetCommentsPaged(int recommendId, int numPage, int pageSize)
-        {
+        {   
             var paginatedComments = await _commentService.GetPagedAsync(recommendId, numPage, pageSize);
             if (paginatedComments.Count() == 0) return null;
             var totalCount = await _commentService.GetCountAsync(recommendId);

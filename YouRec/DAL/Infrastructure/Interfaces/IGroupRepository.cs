@@ -9,5 +9,6 @@ namespace DAL.Infrastructure.Interfaces
     {
         Task<IEnumerable<Group>> GetAllAsync();
         Task<Group> GetByIdAsync(int id);
+        Task<Group> AddAsync(Group group);
     }
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { TagCloud } from 'react-tagcloud';
-import { getTagList } from '../../../Api/ApiRecommendsList';
+import { getTagList } from '../../../Api/ApiTag';
 import './TagsCloud.css';
 
 const options = {
@@ -15,6 +15,7 @@ export default function TagsCloud() {
     useEffect(() => {
         getTagList().then(data => {
             setTags(data.tags);
+            
         })
     }, []);
 

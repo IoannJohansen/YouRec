@@ -4,24 +4,32 @@ import Dropzone from 'react-dropzone-uploader'
 
 export default function ImageLoader(props) {
 
-    const handleChangeStatus = ({ meta, file }, status) => {
-        //TODO: add validation for ersolution of image
-        console.log("Changed " + status + " name: " + file);
+    const handleChangeStatus = ({ meta, remove }, status) => {
+        switch (status) {
+            case 'done':
+                if ((meta.width / meta.height).toFixed(1) < 1.7 || (meta.width / meta.height).toFixed(1) > 1.8) {
+                    props.errorMessageSetter("Invalid format");
+                    remove()
+                } else {
+                    props.errorMessageSetter("");
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     const handleSubmit = (files) => {
-        
         props.imageSetter(files);
     }
 
     return (
         <div>
             <Dropzone
-                autoUpload={false}
+                autoUpload={true}
                 maxFiles={3}
                 inputContent="Drop 3 Images"
                 inputWithFilesContent={files => `${3 - files.length} more`}
-                multiple={false}
                 onChangeStatus={handleChangeStatus}
                 onSubmit={handleSubmit}
                 accept="image/*"

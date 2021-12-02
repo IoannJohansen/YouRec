@@ -9,10 +9,11 @@ const SIGN_IN_GOOGLE = "auth/google";
 const MICROSOFT_SIGN_IN = "auth/microsoft";
 const CHECK_AUTH = "auth/checkauth";
 
-//RECOMMEND LISTTS
+//RECOMMEND LISTS
 const RECENTLY_UPLOADED = "recommends/recentlyuploaded";
 const MOST_RATED = "recommends/mostrated";
 const GET_REECOMMEND = "recommends/getrecommend";
+const ADD_RECOMMEND = "recommends/createpost";
 
 //TAGS
 const TAG_LIST = "tags/getalltags";
@@ -34,8 +35,15 @@ const ADD_RATING = "rating/addRating";
 const GOOGLE_CLIENT_ID = "467666703976-2v1pdp4p8v5rtho06lo6b5uvmv09jnfd.apps.googleusercontent.com";
 const MICROSOFT_CLIENT_ID = "2a72ff00-fc7d-4aff-96ea-09f592f8dc1a";
 
+// GROUPS
+const GROUP_GET_ALL = "groups/getgroups";
+
 //PICTURES
 const PICTURE_DEFAULT = "https://images.hdqwalls.com/download/samsung-galaxy-s10-default-22-1920x1080.jpg";
+
+//CLODUINARY
+const CLOUDINARY_UPLOAD = "https://api.cloudinary.com/v1_1/dihtxymvr/upload";
+
 
 module.exports = {
     API_URL,
@@ -58,5 +66,8 @@ module.exports = {
     GET_RECOMMEND_USER_RATING,
     ADD_LIKE,
     ADD_RATING,
-    ADD_COMMENT
+    ADD_COMMENT,
+    GROUP_GET_ALL,
+    ADD_RECOMMEND,
+    CLOUDINARY_UPLOAD
 }

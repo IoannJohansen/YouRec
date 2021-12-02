@@ -21,3 +21,9 @@ export const UserNameValidationOptions = {
     minLength: { value: 5, message: "Minimal username length: 5" },
     maxLength: { value: 25, message: "Maximal username length: 25" }
 }
+
+export const TitleValidationRiles = {
+    required: { value: true, message: "Title field is required" },
+    minLength: { value: 5, message: "Minimal title length: 5" },
+    maxLength: { value: 50, message: "Maximal title length: 50" }
+}

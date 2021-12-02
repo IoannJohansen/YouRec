@@ -52,6 +52,8 @@ namespace YouRecWeb
             services.AddTransient<ILikeService, LikeService>();
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<IRatingService, RatingService>();
+            services.AddTransient<IGroupService, GroupService>();
+            services.AddTransient<IImageService, ImageService>();
 
             services.AddSingleton(Configuration);
 
