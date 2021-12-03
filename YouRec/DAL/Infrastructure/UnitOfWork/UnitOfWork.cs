@@ -1,4 +1,6 @@
-﻿using DAL.Data;
+﻿using BLL.Interfaces;
+using BLL.Services;
+using DAL.Data;
 using DAL.Infrastructure.Interfaces;
 using DAL.Infrastructure.Repository;
 using DAL.Model;
@@ -18,6 +20,7 @@ namespace DAL.Infrastructure.UnitOfWork
             _commentrepository = new CommentRepository(applicationDbContext);
             _ratingRepository = new RatingRepository(applicationDbContext);
             _likeRepository = new LikeRepository(applicationDbContext);
+            _recommendTagRepository = new RecommendTagRepository(applicationDbContext);
         }
 
         private ApplicationDbContext _appDbContext;
@@ -29,6 +32,7 @@ namespace DAL.Infrastructure.UnitOfWork
         private ICommentRepository _commentrepository;
         private IRatingRepository _ratingRepository;
         private ILikeRepository _likeRepository;
+        private IRecommendTagRepository _recommendTagRepository;
 
         public IRecommendRepository RecommendsRepository => _recommendsRepository;
         public ITagRepository TagRepository => _tagRepository;
@@ -37,6 +41,7 @@ namespace DAL.Infrastructure.UnitOfWork
         public ICommentRepository CommentRepository => _commentrepository;
         public IRatingRepository RatingRepository => _ratingRepository;
         public ILikeRepository LikeRepository => _likeRepository;
+        public IRecommendTagRepository RecommendTagRepository => _recommendTagRepository;
 
 
         public async Task SaveAsync()

@@ -8,7 +8,7 @@ import {
 import {
   login,
   logout
-} from './Store/Actions/UserActions/UserActions';
+} from './Store/ActionCreators/UserActions/UserActions';
 import {
   store
 } from './Store/Store';
@@ -31,9 +31,9 @@ const WrapperAppComponent = connect(mapStateToProps, mapActionsToProps)(App);
 
 ReactDOM.render(
   <Provider store={store} >
-    <React.StrictMode>
-      <WrapperAppComponent />
-    </React.StrictMode>
+    {/* <React.StrictMode> */}
+    <WrapperAppComponent />
+    {/* </React.StrictMode> */}
   </Provider>,
   document.getElementById('root')
 );

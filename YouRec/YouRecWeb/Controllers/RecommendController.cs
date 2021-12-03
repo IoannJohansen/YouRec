@@ -17,12 +17,18 @@ namespace YouRecWeb.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User,Admin")]
     public class RecommendController : BaseController
     {
-        public RecommendController(IRecommendService recommendService, IMapper mapper) : base(mapper)
+        public RecommendController(IRecommendService recommendService, ITagService tagService, IImageService imageService, IRecommendTagService recommendTagService, IMapper mapper) : base(mapper)
         {
-            _recommendService = recommendService;
+            this._recommendService = recommendService;
+            this._tagService = tagService;
+            this._imageService = imageService;
+            this._recommendTagService = recommendTagService;
         }
 
         private IRecommendService _recommendService;
+        private ITagService _tagService;
+        private IImageService _imageService;
+        private IRecommendTagService _recommendTagService;
 
         [HttpGet]
         [Route("recentlyuploaded")]
@@ -55,10 +61,38 @@ namespace YouRecWeb.Controllers
 
         [HttpPost]
         [Route("createpost")]
-        public async Task<RecommendViewModel> CreateRecommend(CreateRecommendDto createRecommendDto)
+        public async Task<IActionResult> CreateRecommend(CreateRecommendDto createRecommendDto)
         {
+            var createdRecommend = await _recommendService.CreateNewRecommend(createRecommendDto);
+            await AddTagsToRecommend(createdRecommend, createRecommendDto.Tags);
+            await AddImagesToRecommend(createdRecommend, createRecommendDto.ImageLinks);
 
-            return null;
+            return StatusCode(201, createdRecommend);
+        }
+
+        private async Task AddTagsToRecommend(Recommend recommend, IEnumerable<string> tags)
+        {
+            foreach (var tag in tags)
+            {
+                var tagInDb = await _tagService.GetTagByName(tag);
+                if (tagInDb != null)
+                {
+                    await _recommendTagService.AddRecommendTag(new RecommendTag { RecommendId = recommend.Id, TagId = tagInDb.Id });
+                }
+                else
+                {
+                    var createdTag = await _tagService.AddTag(new Tag { TagName = tag });
+                    await _recommendTagService.AddRecommendTag(new RecommendTag { RecommendId = recommend.Id, TagId = createdTag.Id });
+                }
+            }
+        }
+
+        private async Task AddImagesToRecommend(Recommend recommend, IEnumerable<string> imageUrls)
+        {
+            foreach (var imageUrl in imageUrls)
+            {
+                await _imageService.AddImage(new Image { Original = imageUrl, RecommendId = recommend.Id});
+            }
         }
     }
 }

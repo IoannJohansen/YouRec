@@ -1,0 +1,15 @@
+D:\Desktop\Dev\YouRec\YouRec\BLL\bin\Release\net5.0\BLL.deps.json
+D:\Desktop\Dev\YouRec\YouRec\BLL\bin\Release\net5.0\BLL.dll
+D:\Desktop\Dev\YouRec\YouRec\BLL\bin\Release\net5.0\ref\BLL.dll
+D:\Desktop\Dev\YouRec\YouRec\BLL\bin\Release\net5.0\BLL.pdb
+D:\Desktop\Dev\YouRec\YouRec\BLL\bin\Release\net5.0\DAL.dll
+D:\Desktop\Dev\YouRec\YouRec\BLL\bin\Release\net5.0\DAL.pdb
+D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Release\net5.0\BLL.csproj.AssemblyReference.cache
+D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Release\net5.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Release\net5.0\BLL.AssemblyInfoInputs.cache
+D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Release\net5.0\BLL.AssemblyInfo.cs
+D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Release\net5.0\BLL.csproj.CoreCompileInputs.cache
+D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Release\net5.0\BLL.csproj.CopyComplete
+D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Release\net5.0\BLL.dll
+D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Release\net5.0\ref\BLL.dll
+D:\Desktop\Dev\YouRec\YouRec\BLL\obj\Release\net5.0\BLL.pdb

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { logout } from '../../../Store/Actions/UserActions/UserActions';
+import { logout } from '../../../Store/ActionCreators/UserActions/UserActions';
 import { ClearJwt } from '../../../Helper/jwtHelper';
 
 function ControlGroup(props) {

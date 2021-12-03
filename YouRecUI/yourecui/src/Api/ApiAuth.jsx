@@ -4,7 +4,7 @@ import axios from 'axios';
 import { MicrosoftLogin } from "react-microsoft-login";
 import { GoogleLoginButton, MicrosoftLoginButton } from "react-social-login-buttons";
 import { GoogleLogin } from 'react-google-login';
-import { login } from '../Store/Actions/UserActions/UserActions';
+import { login } from '../Store/ActionCreators/UserActions/UserActions';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getJwt, SetJwt } from '../Helper/jwtHelper';
@@ -78,6 +78,7 @@ export function SignInMicrosoftButton(props) {
             Id_token: data.idToken.rawIdToken,
             Provider: "microsoft"
         }).then(res => {
+            console.log(res);
             if (res.status === 200) {
                 dispatch(login({ isAdmin: false, userName: res.data.username, userId: res.data.userId }))
                 SetJwt(res.data.token);

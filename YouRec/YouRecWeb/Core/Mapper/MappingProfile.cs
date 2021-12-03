@@ -29,10 +29,9 @@ namespace YouRecWeb.Core.Mapper
             CreateMap<LikeDto, Like>();
             CreateMap<RatingDto, Rating>();
             CreateMap<CommentDto, Comment>();
-            //CreateMap<Tag, >
+            CreateMap<CreateRecommendDto, Recommend>().ForMember(m => m.Name, o => o.MapFrom(o => o.Title)).ForMember(m => m.UserId, o => o.MapFrom(o => o.UserId)).ForMember(m => m.Text, o => o.MapFrom(o => o.RecommendText)).ForMember(m => m.AuthorRating, o => o.MapFrom(r => r.Rating)).ForMember(m => m.GroupId, o => o.MapFrom(o => o.GroupId));
 
-
-
+           
         }
     }
 }

@@ -8,3 +8,11 @@ export const ViewModelToSuggest = (tagVM) => {
     });
     return suggestions;
 }
+
+export const TagsToDto = (tags) => {
+    let tagVM = [];
+    tags.map((item, index) => {
+        tagVM.push(item.name);
+    })
+    return tagVM;
+}

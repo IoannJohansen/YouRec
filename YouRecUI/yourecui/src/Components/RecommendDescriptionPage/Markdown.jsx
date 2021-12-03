@@ -1,11 +1,11 @@
 import React from 'react';
-import MDEditor from '@uiw/react-md-editor';
+import MarkdownPreview from '@uiw/react-markdown-preview';
 
-export default function MarkDownText(props) {
+export default function MDText(props) {
 
     return (
         <div className="container">
-            <MDEditor.Markdown source={props.text} />
+            <MarkdownPreview source={props.text} />
         </div>
     );
 }

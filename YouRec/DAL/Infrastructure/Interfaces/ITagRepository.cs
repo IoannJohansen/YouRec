@@ -17,5 +17,6 @@ namespace DAL.Infrastructure.Interfaces
         Task<bool> TagIsExistAsync(Tag tag);
         Task<IEnumerable<Tag>> GetTopTagsAsync(int amount);
         Task<IEnumerable<Tag>> GetTopTags(int amount);
+        Task<Tag> GetTagByName(string name);
     }
 }

@@ -2,6 +2,7 @@
 using BLL.Interfaces;
 using BLL.Services.Base;
 using DAL.Infrastructure.Interfaces;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,12 @@ namespace BLL.Services
         {
         }
 
+        public async Task<Image> AddImage(Image image)
+        {
+            var newImage = await unitOfWork.ImageRepository.AddAsync(image);
+            await unitOfWork.SaveAsync();
+            return newImage;
 
-
+        }
     }
 }

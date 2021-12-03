@@ -54,6 +54,7 @@ namespace YouRecWeb
             services.AddTransient<IRatingService, RatingService>();
             services.AddTransient<IGroupService, GroupService>();
             services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<IRecommendTagService, RecommendTagService>(); 
 
             services.AddSingleton(Configuration);
 

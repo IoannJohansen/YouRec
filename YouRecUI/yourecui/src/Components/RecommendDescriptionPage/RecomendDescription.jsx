@@ -6,7 +6,6 @@ import Rating from 'react-rating';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { GetRecommendDescript } from '../../Api/ApiRecommendPage';
-import { GetLikesOfUser } from '../../Api/ApiLike';
 import AuthorInfo from './AuthorInfo';
 import Comments from './Comments';
 import ImageCarousel from './ImageCarousel';
@@ -25,7 +24,6 @@ export default function RecommendDescriptionPage() {
     const [authorRating, setAuthorRating] = useState(0);
     const [creationDate, setCreationDate] = useState("");
     const [averageUserRating, setAverageUserRating] = useState("");
-    const [authorLikes, setAuthorLikes] = useState(0);
     const [userId, setUserId] = useState("");
     const isLoggedIn = useSelector(state => state.isLoggedIn);
 

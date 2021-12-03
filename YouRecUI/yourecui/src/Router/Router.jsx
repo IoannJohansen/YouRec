@@ -7,19 +7,24 @@ import RecommendsPage from '../Components/Recommends/RecommendsPage';
 import LoginForm from '../Components/Login/LoginForm';
 import Register from '../Components/Register/RegisterForm'
 import RecommendDescriptionPage from '../Components/RecommendDescriptionPage/RecomendDescription';
+import GuardedRoute from '../hoc/guardroute';
 
 export default function Router() {
+
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
-                <Route index path="/Recs" element={<RecommendsPage />} />
-                <Route path="/Recs/:id" element={<RecommendDescriptionPage />} />
-                <Route path="/MyRecs" element={<MyRecommends />} />
-                <Route path="/CreateRec" element={<CreateRecommend />} />
-                <Route path="/SignIn" element={<LoginForm />} />
-                <Route path="/Register" element={<Register />} />
+                    <Route index path="/Recs" element={<RecommendsPage />} />
+                    <Route path="/Recs/:id" element={<RecommendDescriptionPage />} />
+                    <Route path="/MyRecs" element={<MyRecommends />} />
+                    <Route path="/CreateRec" element={
+                        <GuardedRoute>
+                            <CreateRecommend />
+                        </GuardedRoute>} />
+                    <Route path="/SignIn" element={<LoginForm />} />
+                    <Route path="/Register" element={<Register />} />
 
-                <Route path="*" element={<NoMatch />} />
+                    <Route path="*" element={<NoMatch />} />
             </Route>
         </Routes>
     );

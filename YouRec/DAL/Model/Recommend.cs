@@ -1,11 +1,7 @@
-﻿using System;
+﻿using DAL.Model.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL.Model.Base;
-using Microsoft.AspNetCore.Identity;
 
 namespace DAL.Model
 {
@@ -17,18 +13,18 @@ namespace DAL.Model
 
         public string Text { get; set; }
 
-        [Range(0,10)]
+        [Range(0, 10)]
         public int AuthorRating { get; set; }
 
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; set; }  // service | createRecommend
 
         public int GroupId { get; set; }
 
         public Group Group { get; set; }
 
-        public ICollection<Image> Images { get; set; }
+        public ICollection<Image> Images { get; set; } // service
 
-        public ICollection<RecommendTag> RecommendTags { get; set; }
+        public ICollection<RecommendTag> RecommendTags { get; set; } // service
 
         public ICollection<Comment> Comments { get; set; }
 
@@ -36,6 +32,6 @@ namespace DAL.Model
 
         public ICollection<Like> Likes { get; set; }
 
-        public AppUser User { get; set; }
+        public AppUser User { get; set; }                           // service ???
     }
 }

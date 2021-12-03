@@ -6,10 +6,11 @@ namespace BLL.Interfaces
 {
     public interface ITagService
     {
-        Task AddTagsRange(List<Tag> tag);
-        Task<IEnumerable<Tag>> GetTags(int amount);
+        Task<Tag> AddTag(Tag tag);
+        Task<IEnumerable<Tag>> GetMostUsedTags(int amount);
         Task<IEnumerable<Tag>> GetAllTags();
         Task<Tag> UpdateTag(Tag tag);
         Task<IEnumerable<Tag>> GetTopTags();
+        Task<Tag> GetTagByName(string name);
     }
 }

@@ -15,12 +15,7 @@ namespace BLL.Services
 
         }
 
-        public async Task AddTagsRange(List<Tag> tag)
-        {
-            await unitOfWork.TagRepository.AddFromListAsync(tag);
-        }
-
-        public async Task<IEnumerable<Tag>> GetTags(int amount)
+        public async Task<IEnumerable<Tag>> GetMostUsedTags(int amount)
         {
             return await unitOfWork.TagRepository.GetTopTagsAsync(amount);
         }
@@ -35,11 +30,23 @@ namespace BLL.Services
             return await unitOfWork.TagRepository.UpdateAsync(tag);
         }
 
-        const int CountOfTagsToSelect = 10;
+        const int CountOfTagsToSelect = 20;
 
         public async Task<IEnumerable<Tag>> GetTopTags()
         {
             return await unitOfWork.TagRepository.GetTopTags(CountOfTagsToSelect);
+        }
+
+        public async Task<Tag> GetTagByName(string name)
+        {
+            return await unitOfWork.TagRepository.GetTagByName(name);
+        }
+
+        public async Task<Tag> AddTag(Tag tag)
+        {
+            var createdTag = await unitOfWork.TagRepository.AddAsync(tag);
+                await unitOfWork.SaveAsync();
+            return createdTag;
         }
     }
 }

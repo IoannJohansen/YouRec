@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import MDEditor from '@uiw/react-md-editor';
 import { Form, Button } from 'react-bootstrap';
 import ImageLoader from './DropZone/ImageLoader';
 import TagController from './TagController/TagController';
@@ -11,56 +10,65 @@ import { TitleValidationRiles } from '../../Helper/Validator';
 import { getAllGroups } from '../../Api/ApiGroups';
 import { addRecommend } from '../../Api/ApiCreateRecommend';
 import { useSelector } from 'react-redux';
-import { Dropbox } from 'dropbox';
-import { CLOUDINARY_UPLOAD } from '../../Api/ApiParameteres'
-import { uploadImage } from '../../Api/ApiImage';
+
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
+import { TagsToDto } from '../../Converters/TagConverter';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateRecommend() {
-
-    const [title, setTitle] = useState("");
-    const [recommendText, setRecommendText] = useState("You recommend text with markdown");
-    const [images, setImages] = useState([]);
-    const [rating, setRating] = useState(0);
-    const [groups, setGroups] = useState([]);
-    const [selectedGroupValue, setSelectedGroupValue] = useState();
-    const [selectedtags, setSelectedtags] = useState([]);   // throw setter to tag component
-    const [imageErrMessage, setImageErrMessage] = useState("");
-    const [tagErr, setTagErr] = useState("");
-    const [imageLinks, setImageLinks] = useState([]);
-    const userId = useSelector(state => state.userId);
-
     const {
         register,
         handleSubmit,
         formState: { errors } } = useForm();
 
+    const mdParser = new MarkdownIt();
+
+    const userId = useSelector(state => state.userId);
+    const [title, setTitle] = useState("");
+    const [groups, setGroups] = useState([]);
+    const [recommendText, setRecommendText] = useState("**Hello world!!!**");
+    const [rating, setRating] = useState(0);
+    const [selectedtags, setSelectedtags] = useState([]);
+    const [selectedGroupValue, setSelectedGroupValue] = useState(1);
+    const [imageLinks, setImageLinks] = useState([]);
+    const [imageErrMessage, setImageErrMessage] = useState("");
+    const [tagErr, setTagErr] = useState("");
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        getAllGroups().then(data => {
+            setGroups(data.data)
+        })
+
+    }, [])
+
+    useEffect(() => {
+        if (groups.length !== 0)
+            setSelectedGroupValue(groups[0].id);
+    }, [groups])
+
     const submitHandler = () => {
         if (!selectedTagsValid()) return;
-        
-        if (images.length !== 0) {
-            images.forEach(img => {
-                uploadImage(img.file).then(data => {
-                    setImageLinks([...imageLinks, data]);
-                })
-            });
-        }
+
+        let tagDto = TagsToDto(selectedtags);
 
         const formData = {
             userId: userId,
             title: title,
-            reacommendText: recommendText,
-            groupName: selectedGroupValue,
-            tags: selectedtags,
-            images: images,
+            recommendText: recommendText,
+            groupId: selectedGroupValue,
+            tags: tagDto,
+            imageLinks: imageLinks,
             rating: rating
         }
 
-
-        console.log(imageLinks);
-
+        console.log(formData)
         addRecommend(formData).then(data => {
-
-            console.log(data);
+            navigate("/Recs");
+        }).catch(err => {
+            console.log(err)
         })
     }
 
@@ -72,32 +80,26 @@ export default function CreateRecommend() {
         return true;
     }
 
-    useEffect(() => {
-        getAllGroups().then(data => {
-            setGroups(data.data)
-        })
-    }, [])
-
     const rateHandler = (rating) => {
         setRating(rating);
     }
 
     const handleChangeDroupName = (event) => {
-        setSelectedGroupValue(groups[event.target.value].groupName);
+        setSelectedGroupValue(groups[event.target.value - 1].id);
     }
 
     return (
-        <div className="container">
+        <div className="container mt-2">
             <div className="border-dark border p-1">
                 <p className="h3 text-center">Create recommend</p>
                 <div className="d-flex justify-content-around mt-5 ">
                     <div className="col-6">
+                        <ImageLoader imageLinks={imageLinks} setImageLinks={setImageLinks} errorMessageSetter={setImageErrMessage} />
                         <p className="text-center text-danger">
                             {
                                 imageErrMessage
                             }
                         </p>
-                        <ImageLoader errorMessageSetter={setImageErrMessage} imageSetter={setImages} />
                     </div>
                     <div className="align-center col-md-5">
                         {errors?.title && <p className="text-danger">{errors?.title?.message}</p>}
@@ -105,14 +107,15 @@ export default function CreateRecommend() {
 
                         <Form.Control
                             onChange={handleChangeDroupName}
+                            required
                             as="select"
                             size="md"
                             className="mr-sm-2 mt-3 mb-3"
                         >
-                            <option disabled>Groupname</option>
+                            <option disabled>Select group name</option>
                             {
                                 groups.map((item, index) => (
-                                    <option key={index} value={index}>{item.groupName}</option>
+                                    <option key={index} value={item.id}>{item.groupName}</option>
                                 ))
                             }
                         </Form.Control>
@@ -126,13 +129,7 @@ export default function CreateRecommend() {
                     </div>
                 </div>
                 <div className="m-4">
-                    <MDEditor
-                        className="h-100"
-                        toolbarHeight="70"
-                        preview="edit"
-                        value={recommendText}
-                        onChange={(event) => setRecommendText(event.target.value)}
-                    />
+                    <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={e => setRecommendText(e.text)} />
                 </div>
 
                 <p className="h3 text-center mt-2">
