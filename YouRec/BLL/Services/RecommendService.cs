@@ -104,5 +104,11 @@ namespace BLL.Services
             var totalCount = await unitOfWork.RecommendsRepository.GetCountForUserIdAsync(sortDto.UserId);
             return (recommends, totalCount);
         }
+
+        public async Task DeleteById(int id)
+        {
+            await unitOfWork.RecommendsRepository.DeleteByIdAsync(id);
+            await unitOfWork.SaveAsync();
+        }
     }
 }

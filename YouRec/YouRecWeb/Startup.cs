@@ -27,9 +27,21 @@ namespace YouRecWeb
 
         public IConfiguration Configuration { get; }
 
+        readonly string AllowedOrigins = "allowedOrigins";
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: AllowedOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("localhost:3000")
+                                                            .AllowAnyHeader()
+                                                            .AllowAnyMethod()
+                                                            .AllowAnyOrigin();
+                                  });
+            });
 
             services.AddControllers();
 
@@ -63,6 +75,7 @@ namespace YouRecWeb
                 options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
             })
             .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
             {
@@ -89,15 +102,11 @@ namespace YouRecWeb
 
             app.UseHttpsRedirection();
 
+            app.UseCors(AllowedOrigins);
+
             app.UseAuthentication();
 
             app.UseRouting();
-
-            app.UseCors(options =>
-            {
-                options.AllowAnyOrigin();
-                options.AllowAnyHeader();
-            });
 
             app.UseAuthorization();
 

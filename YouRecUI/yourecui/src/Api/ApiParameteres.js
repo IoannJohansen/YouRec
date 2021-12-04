@@ -13,6 +13,7 @@ const RECENTLY_UPLOADED = "recommends/recentlyuploaded";
 const MOST_RATED = "recommends/mostrated";
 const GET_REECOMMEND = "recommends/getrecommend";
 const ADD_RECOMMEND = "recommends/createpost";
+const DELETE_RECOMMEND = "recommends/delete";
 
 //TAGS
 const TAG_LIST = "tags/getalltags";
@@ -43,7 +44,7 @@ const PICTURE_DEFAULT = "https://images.hdqwalls.com/download/samsung-galaxy-s10
 //CLODUINARY
 const CLOUDINARY_UPLOAD = "https://api.cloudinary.com/v1_1/dihtxymvr/upload";
 
-//SOTYING AND FILTER
+//SORTING AND FILTER
 const GET_SORTED = "recommends/sort";
 const GET_FOR_USER = "recommends/myrecommends";
 
@@ -73,5 +74,6 @@ module.exports = {
     ADD_RECOMMEND,
     CLOUDINARY_UPLOAD,
     GET_SORTED,
-    GET_FOR_USER
+    GET_FOR_USER,
+    DELETE_RECOMMEND
 }

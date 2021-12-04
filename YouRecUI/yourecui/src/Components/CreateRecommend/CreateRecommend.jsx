@@ -64,7 +64,6 @@ export default function CreateRecommend() {
             rating: rating
         }
 
-        console.log(formData)
         addRecommend(formData).then(data => {
             navigate("/Recs");
         }).catch(err => {

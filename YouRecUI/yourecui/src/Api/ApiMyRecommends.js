@@ -1,9 +1,11 @@
 import axios from 'axios'
 import {
+    getJwt,
     GetJwtAuthHeader
 } from '../Helper/jwtHelper'
 import {
     API_URL,
+    DELETE_RECOMMEND,
     GET_FOR_USER,
     GET_SORTED
 } from './ApiParameteres'
@@ -32,4 +34,14 @@ export const getRecommendsForUser = async (userId, pageNum, amount) => {
         headers: GetJwtAuthHeader()
     })
     return res;
+}
+
+export const deleteRecommend = async (id) => {
+    const response = await axios.delete(API_URL + DELETE_RECOMMEND, {
+        headers: GetJwtAuthHeader(),
+        params: {
+            recommendId: id
+        }
+    })
+    return response;
 }

@@ -38,7 +38,7 @@ namespace BLL.Services
             {
                 var role = await _userManager.GetRolesAsync(user);
                 var token = GenerateTokenForUser(user.UserName, user.Email, role.First(), user.Id);
-                Log.Error("Logged in success");
+                Log.Warning("Logged in success");
                 return new AuthResult { Success = true, Token = token, Username = user.Email, IsAdmin = role.First() == "Admin", UserId = user.Id };
             }
             return new AuthResult { Success = false };
@@ -109,12 +109,13 @@ namespace BLL.Services
             var email = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
             return (sub, name, email);
         }
+        
 
         private async Task<AppUser> GetExternalUser(string provider, string key, string email, string name)
         {
             var user = await _userManager.FindByEmailAsync(email);
             if (user != null) return user;
-            user = new AppUser { Email = email, UserName = email };
+            user = new AppUser { Email = email, UserName = name };
             var resultCreation = await _userManager.CreateAsync(user);
             if (resultCreation.Succeeded)
             {

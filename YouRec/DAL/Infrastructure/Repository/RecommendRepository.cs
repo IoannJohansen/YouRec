@@ -24,9 +24,10 @@ namespace DAL.Infrastructure.Repository
             return (await _applicationDbContext.Recommends.AddAsync(item)).Entity;
         }
 
-        public async Task DeleteAsync(Recommend item) => await Task.Run(() =>
+        public async Task DeleteByIdAsync(int id) => await Task.Run(() =>
         {
-            _applicationDbContext.Remove(item);
+            var recommend = _applicationDbContext.Recommends.FindAsync(id).Result;
+            _applicationDbContext.Recommends.Remove(recommend);
         });
 
         public async Task<Recommend> GetDescriptionAsync(int id)
@@ -86,12 +87,12 @@ namespace DAL.Infrastructure.Repository
 
         public async Task<IEnumerable<Recommend>> GetSortedByRatingDescPaged(int amount, int numPage, string userId)
         {
-            return await _applicationDbContext.Recommends.Where(r => r.UserId == userId).Skip(numPage * amount).Take(amount).OrderByDescending(r => r.Ratings.Average(r => r.Rate)).Include(r => r.Group).Include(r => r.Ratings).Include(r => r.Images).Include(r => r.User).ToArrayAsync();
+            return await _applicationDbContext.Recommends.Where(r => r.UserId == userId).OrderByDescending(r => r.Ratings.Average(r => r.Rate)).Skip(numPage * amount).Take(amount).Include(r => r.Group).Include(r => r.Ratings).Include(r => r.Images).Include(r => r.User).ToArrayAsync();
         }
 
         public async Task<IEnumerable<Recommend>> GetSortedByRatingAscPaged(int amount, int numPage, string userId)
         {
-            return await _applicationDbContext.Recommends.Where(r => r.UserId == userId).Skip(numPage * amount).Take(amount).OrderBy(r => r.Ratings.Average(r=>r.Rate)).Include(r => r.Group).Include(r => r.Ratings).Include(r => r.Images).Include(r => r.User).ToArrayAsync();
+            return await _applicationDbContext.Recommends.Where(r => r.UserId == userId).OrderBy(r => r.Ratings.Average(r => r.Rate)).Skip(numPage * amount).Take(amount).Include(r => r.Group).Include(r => r.Ratings).Include(r => r.Images).Include(r => r.User).ToArrayAsync();
         }
 
         public async Task<IEnumerable<Recommend>> GetForUserId(int amount, int numPage, string userId)

@@ -4,6 +4,7 @@ using BLL.Interfaces;
 using DAL.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace YouRecWeb.Controllers
 {
     [ApiController]
     [Route("api/recommends")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User,Admin")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class RecommendController : BaseController
     {
         public RecommendController(IRecommendService recommendService, ITagService tagService, IImageService imageService, IRecommendTagService recommendTagService, IMapper mapper) : base(mapper)
@@ -67,7 +68,7 @@ namespace YouRecWeb.Controllers
             var createdRecommend = await _recommendService.CreateNewRecommend(createRecommendDto);
             await AddTagsToRecommend(createdRecommend, createRecommendDto.Tags);
             await AddImagesToRecommend(createdRecommend, createRecommendDto.ImageLinks);
-            return StatusCode(201, createdRecommend);
+            return StatusCode(StatusCodes.Status201Created, createdRecommend);
         }
 
         private async Task AddTagsToRecommend(Recommend recommend, IEnumerable<string> tags)
@@ -91,16 +92,16 @@ namespace YouRecWeb.Controllers
         {
             foreach (var imageUrl in imageUrls)
             {
-                await _imageService.AddImage(new Image { Original = imageUrl, RecommendId = recommend.Id});
+                await _imageService.AddImage(new Image { Original = imageUrl, RecommendId = recommend.Id });
             }
         }
 
         [HttpGet]
         [Route("sort")]
-        public async Task<MyRecommendsPaged> GetSorted([FromQuery]RecommendsSorteddDto sortDto)
+        public async Task<MyRecommendsPaged> GetSorted([FromQuery] RecommendsSorteddDto sortDto)
         {
-            var (res, totalCount ) = await _recommendService.GetSorted(sortDto);
-            var myRecommendsPaged = new MyRecommendsPaged {  maxCount = totalCount };
+            var (res, totalCount) = await _recommendService.GetSorted(sortDto);
+            var myRecommendsPaged = new MyRecommendsPaged { maxCount = totalCount };
             myRecommendsPaged.Recommends = mapper.Map<IEnumerable<Recommend>, IEnumerable<RecommendViewModel>>(res);
             return myRecommendsPaged;
         }
@@ -113,6 +114,14 @@ namespace YouRecWeb.Controllers
             var myRecommendsPaged = new MyRecommendsPaged { maxCount = totalCount };
             myRecommendsPaged.Recommends = mapper.Map<IEnumerable<Recommend>, IEnumerable<RecommendViewModel>>(res);
             return myRecommendsPaged;
+        }
+
+        [HttpDelete]
+        [Route("delete")]
+        public async Task<IActionResult> DeleteRecommend(int recommendId)
+        {
+            await _recommendService.DeleteById(recommendId);
+            return Ok(StatusCodes.Status200OK);
         }
     }
 }
