@@ -6,56 +6,33 @@ import {
   faArrowDown,
   faArrowUp,
   faFilter,
-  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import { getForUser, getSorted } from "../../Api/ApiMyRecommends";
+import {
+  getRecommendsForUser,
+  getRecommendsSorted,
+} from "../../Api/ApiMyRecommends";
 import { useSelector } from "react-redux";
 
 export default function MyRecommendsPage() {
+  const userId = useSelector((store) => store.userId);
   const [myRecommends, setMyRecommends] = useState([]);
   const [recommendPageNumber, setrecommendPageNumber] = useState(0);
-  const [fetching, setFetching] = useState(true);
-  const [totalCount, setTotalCount] = useState(1);
+  const [fetching, setFetching] = useState(false);
+  const [totalCount, setTotalCount] = useState(0);
   const [sortOrder, setSortOrder] = useState("asc");
-  const PAGESIZE = 12;
   const [sortMode, setSortMode] = useState("1");
-  const userId = useSelector((store) => store.userId);
+  const PAGESIZE = 20;
 
   useEffect(() => {
-    getForUser(userId, recommendPageNumber, PAGESIZE).then((data) => {
-      setMyRecommends(data.data.recommends);
-      setTotalCount(data.data.maxCount);
-    });
+    if (userId.length !== 0) {
+      // getRecommendsForUser(userId, recommendPageNumber, PAGESIZE).then((data) => {
+      //   console.log(data.data);
+      //   setMyRecommends(data.data.recommends);
+      //   setTotalCount(data.data.maxCount);
+      // });
+      setFetching(true);
+    }
   }, [userId]);
-
-  // const scrollHandler = (e) => {
-  //     const windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
-  //     if ((document.documentElement.clientHeight + 100 > windowRelativeBottom) && totalCount > myRecommends.length) {
-  //         setFetching(true);
-  //     }
-  // }
-
-  // useEffect(() => {
-  //     document.addEventListener('scroll', scrollHandler)
-  //     return function () {
-  //         document.removeEventListener('scroll', scrollHandler);
-  //     }
-  // }, [])
-
-  // useEffect(() => {
-  //     if (fetching) {
-
-  //         // GetPageOfComments(props.id, commentPageNumber, PAGESIZE).then(data => {
-  //         //     if (data.status === 204) return;
-  //         //     setComments([...comments, ...data.data.items]);
-  //         //     setCommentPageNumber(commentPageNumber => commentPageNumber + 1);
-  //         //     setTotalCount(data.data.itemCount);
-  //         // }).finally(() => {
-  //         //     setFetching(false);
-  //         // })
-  //     }
-
-  // }, [fetching])
 
   const sortModeClickHandle = () => {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
@@ -65,30 +42,80 @@ export default function MyRecommendsPage() {
     setSortMode(e.target.value);
   };
 
+  // useEffect(() => {
+  //   getSortedRecommends();
+  // }, [sortMode, sortOrder]);
+
+
+
   const getSortedRecommends = () => {
-    getSorted(userId, sortOrder, sortMode, recommendPageNumber, PAGESIZE).then(
-      (data) => {
-        setMyRecommends(data.data.recommends);
-        setTotalCount(data.data.maxCount);
-      }
-    );
+    getRecommendsSorted(
+      userId,
+      sortOrder,
+      sortMode,
+      recommendPageNumber,
+      PAGESIZE
+    ).then((data) => {
+      console.log(data);
+      setMyRecommends([...myRecommends, ...data.data.recommends]);
+      setTotalCount(data.data.maxCount);
+      setrecommendPageNumber(recommendPageNumber+1);
+    }).finally(() => {
+      setFetching(false);
+    });
   };
 
   const clearSortParameteres = () => {
-    setSortMode(1);
+    setSortMode("1");
     setSortOrder("desc");
   };
+
+  const scrollHandler = (e) => {
+    const windowRelativeBottom =
+      document.documentElement.getBoundingClientRect().bottom;
+    console.log(myRecommends.length, totalCount);
+    if (
+      document.documentElement.clientHeight + 150 > windowRelativeBottom &&
+      totalCount > myRecommends.length
+    ) {
+      setFetching(true);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("scroll", scrollHandler);
+    return function () {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+  });
+
+  useEffect(() => {
+    if (fetching) {
+      console.log("Fire!");
+
+      getSortedRecommends();
+      //   GetPageOfComments(props.id, commentPageNumber, PAGESIZE)
+      //     .then((data) => {
+      //       if (data.status === 204) return;
+      //       setComments([...comments, ...data.data.items]);
+      //       setCommentPageNumber((commentPageNumber) => commentPageNumber + 1);
+      //       setTotalCount(data.data.itemCount);
+      //     })
+      //     .finally(() => {
+      //       setFetching(false);
+      //     });
+    }
+  }, [fetching]);
 
   return (
     <div>
       <div className="container justify-content-around d-flex">
-        <div className="d-flex border border-primary p-2 justify-content-between col-md-6">
+        <div className="d-flex border border-primary p-2 justify-content-center col-md-6">
           <Button onClick={sortModeClickHandle}>
             <FontAwesomeIcon
               icon={sortOrder === "asc" ? faArrowUp : faArrowDown}
             />
           </Button>
-
           <Form.Control
             value={sortMode}
             onChange={sortModeChange}
@@ -105,9 +132,6 @@ export default function MyRecommendsPage() {
           </Form.Control>
 
           <ButtonGroup>
-            <Button onClick={getSortedRecommends} className="bg-primary">
-              <FontAwesomeIcon icon={faSearch} />
-            </Button>
             <Button onClick={clearSortParameteres} className="bg-primary">
               <FontAwesomeIcon icon={faFilter} />
             </Button>
@@ -115,7 +139,7 @@ export default function MyRecommendsPage() {
         </div>
       </div>
 
-      {!myRecommends.length ? (
+      {!myRecommends.length === 0 ? (
         <p className="h2 text-muted text-center">There's no items uploaded</p>
       ) : (
         <MyRecommendsList recommends={myRecommends} />

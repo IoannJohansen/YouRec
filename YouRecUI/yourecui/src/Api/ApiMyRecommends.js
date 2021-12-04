@@ -8,7 +8,7 @@ import {
     GET_SORTED
 } from './ApiParameteres'
 
-export const getSorted = async (userId, order, sortMode, pageNum, amount) => {
+export const getRecommendsSorted = async (userId, order, sortMode, pageNum, amount) => {
     const response = await axios.get(API_URL + GET_SORTED, {
         params: {
             UserId: userId,
@@ -22,7 +22,7 @@ export const getSorted = async (userId, order, sortMode, pageNum, amount) => {
     return response;
 }
 
-export const getForUser = async (userId, pageNum, amount) => {
+export const getRecommendsForUser = async (userId, pageNum, amount) => {
     const res = await axios.get(API_URL + GET_FOR_USER, {
         params: {
             UserId: userId,

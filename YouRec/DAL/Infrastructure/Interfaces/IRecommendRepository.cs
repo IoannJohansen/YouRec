@@ -27,5 +27,6 @@ namespace DAL.Infrastructure.Interfaces
         Task<IEnumerable<Recommend>> GetSortedByRatingDescPaged(int amount, int numPage, string userId);
         Task<IEnumerable<Recommend>> GetSortedByRatingAscPaged(int amount, int numPage, string userId);
         Task<IEnumerable<Recommend>> GetForUserId(int amount, int numPage, string userId);
+        Task<int> GetCountForUserIdAsync(string userId);
     }
 }

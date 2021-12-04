@@ -1,6 +1,5 @@
 const API_URL = "https://localhost:5001/api/";
 
-
 //AUTHENTICATION
 const SIGN_UP_PATH = "auth/SignUp";
 const SIGN_IN_PATH = "auth/SignIn";

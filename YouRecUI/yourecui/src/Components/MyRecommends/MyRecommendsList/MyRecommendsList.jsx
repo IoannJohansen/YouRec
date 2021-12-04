@@ -1,11 +1,14 @@
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RecommendItem from "../MyRecommendsItem/MyRecommendsItem";
 import { Row } from "react-bootstrap";
 import { PICTURE_DEFAULT } from "../../../Api/ApiParameteres";
 
+
 export const RecomendsList = (props) => (
+
   <>
+
     <div>
       <Row xs={1} md={2} lg={3} xl={4} xxl={4} className="g-5 m-2">
         {props.recommends.map((item) => (
