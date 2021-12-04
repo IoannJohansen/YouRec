@@ -44,6 +44,9 @@ const PICTURE_DEFAULT = "https://images.hdqwalls.com/download/samsung-galaxy-s10
 //CLODUINARY
 const CLOUDINARY_UPLOAD = "https://api.cloudinary.com/v1_1/dihtxymvr/upload";
 
+//SOTYING AND FILTER
+const GET_SORTED = "recommends/sort";
+const GET_FOR_USER = "recommends/myrecommends";
 
 module.exports = {
     API_URL,
@@ -69,5 +72,7 @@ module.exports = {
     ADD_COMMENT,
     GROUP_GET_ALL,
     ADD_RECOMMEND,
-    CLOUDINARY_UPLOAD
+    CLOUDINARY_UPLOAD,
+    GET_SORTED,
+    GET_FOR_USER
 }

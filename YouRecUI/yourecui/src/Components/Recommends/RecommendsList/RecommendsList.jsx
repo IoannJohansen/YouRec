@@ -7,6 +7,7 @@ import { PICTURE_DEFAULT } from '../../../Api/ApiParameteres';
 export function RecomendsList(props) {
 
     const [recommends, setRecommends] = useState([]);
+    
     useEffect(() => {
         setRecommends(props.recommends)
     }, [props])

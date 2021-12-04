@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+using BLL.DTO;
+using BLL.Helper;
 using BLL.Interfaces;
 using BLL.Services.Base;
 using DAL.Infrastructure.Interfaces;
 using DAL.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using YouRecWeb.Model;
 
@@ -35,17 +38,69 @@ namespace BLL.Services
 
         public async Task<Recommend> CreateNewRecommend(CreateRecommendDto createRecommendDto)
         {
-            var mappedRecommend = mapper.Map<CreateRecommendDto, Recommend >(createRecommendDto);
+            var mappedRecommend = mapper.Map<CreateRecommendDto, Recommend>(createRecommendDto);
             var createdRecommend = await unitOfWork.RecommendsRepository.CreateAsync(mappedRecommend);
             createdRecommend.CreationDate = DateTime.Now;
             await unitOfWork.SaveAsync();
             return createdRecommend;
         }
 
-        public Task<Recommend> AddImages(Recommend recommend, IEnumerable<string> images)
+        public async Task<(IEnumerable<Recommend>, int)> GetSorted(RecommendsSorteddDto sortDto)
         {
+            if (sortDto.SortOrder==SortOrder.asc)
+            {
+               return await AscSort(sortDto);
+            }
+            else
+            {
+                return await DescSort(sortDto);
+            }
+        }
 
-            throw new NotImplementedException();
+        private async Task<(IEnumerable<Recommend>, int)> AscSort(RecommendsSorteddDto sortDto)
+        {
+            switch (sortDto.SortMode)
+            {
+                case SortMode.Name:
+                    var sortedByName = await unitOfWork.RecommendsRepository.GetSortedByNameAscPaged(sortDto.Amount, sortDto.PageNumber, sortDto.UserId);
+                    return (sortedByName, sortedByName.Count());
+                case SortMode.UserRating:
+                    var sortedByrating = await unitOfWork.RecommendsRepository.GetSortedByRatingAscPaged(sortDto.Amount, sortDto.PageNumber, sortDto.UserId);
+                    return (sortedByrating, sortedByrating.Count());
+                case SortMode.PublishDate:
+                    var sortedByRating = await unitOfWork.RecommendsRepository.GetSortedByDateAscPaged(sortDto.Amount, sortDto.PageNumber, sortDto.UserId);
+                    return (sortedByRating, sortedByRating.Count());
+
+                default:
+                    break;
+            }
+            return (null, 0);
+        }
+
+        private async Task<(IEnumerable<Recommend>, int)> DescSort(RecommendsSorteddDto sortDto)
+        {
+            switch (sortDto.SortMode)
+            {
+                case SortMode.Name:
+                    var sortedByName = await unitOfWork.RecommendsRepository.GetSortedByNameDescPaged(sortDto.Amount, sortDto.PageNumber, sortDto.UserId);
+                    return (sortedByName, sortedByName.Count());
+                case SortMode.UserRating:
+                    var sortedByrating = await unitOfWork.RecommendsRepository.GetSortedByRatingDescPaged(sortDto.Amount, sortDto.PageNumber, sortDto.UserId);
+                    return (sortedByrating, sortedByrating.Count());
+                case SortMode.PublishDate:
+                    var sortedByRating = await unitOfWork.RecommendsRepository.GetSortedByDateDescPaged(sortDto.Amount, sortDto.PageNumber, sortDto.UserId);
+                    return (sortedByRating, sortedByRating.Count());
+
+                default:
+                    break;
+            }
+            return (null, 0);
+        }
+
+        public async Task<(IEnumerable<Recommend>, int)> GetForUserId(RecommendsSorteddDto sortDto)
+        {
+            var recommends = await unitOfWork.RecommendsRepository.GetForUserId(sortDto.Amount, sortDto.PageNumber, sortDto.UserId);
+            return (recommends, recommends.Count());
         }
     }
 }

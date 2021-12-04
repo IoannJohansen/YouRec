@@ -21,7 +21,7 @@ function RecommendsPage() {
     }, [])
 
     return (
-        <>
+        <div>
             <Tabs transition defaultActiveKey="Recently uploaded" id="uncontrolled-tab-example" className="mb-3">
                 <Tab eventKey="Recently uploaded" title="Recently uploaded">
                     {recentlyUploaded.currentCount <= 0 ? <p className="h2 text-muted text-center">There's no items uploaded</p> : <RecomendsList recommends={recentlyUploaded.recommends} />}
@@ -33,7 +33,7 @@ function RecommendsPage() {
                     <TagsCloud />
                 </Tab>
             </Tabs>
-        </>
+        </div>
     );
 }
 

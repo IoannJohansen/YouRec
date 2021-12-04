@@ -15,6 +15,7 @@ namespace BLL.Interfaces
         Task<IEnumerable<Recommend>> GetMostRated();
         Task<Recommend> GetRecommendDescription(int recommendId);
         Task<Recommend> CreateNewRecommend(CreateRecommendDto createRecommendDto);
-        Task<Recommend> AddImages(Recommend recommend, IEnumerable<string> images);
+        Task<(IEnumerable<Recommend>,int)> GetSorted(RecommendsSorteddDto sortDto);
+        Task<(IEnumerable<Recommend>,int)> GetForUserId(RecommendsSorteddDto sortDto);
     }
 }

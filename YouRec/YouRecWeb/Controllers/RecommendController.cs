@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BLL.DTO;
 using BLL.Interfaces;
 using DAL.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -66,7 +67,6 @@ namespace YouRecWeb.Controllers
             var createdRecommend = await _recommendService.CreateNewRecommend(createRecommendDto);
             await AddTagsToRecommend(createdRecommend, createRecommendDto.Tags);
             await AddImagesToRecommend(createdRecommend, createRecommendDto.ImageLinks);
-
             return StatusCode(201, createdRecommend);
         }
 
@@ -93,6 +93,26 @@ namespace YouRecWeb.Controllers
             {
                 await _imageService.AddImage(new Image { Original = imageUrl, RecommendId = recommend.Id});
             }
+        }
+
+        [HttpGet]
+        [Route("sort")]
+        public async Task<MyRecommendsPaged> GetSorted([FromQuery]RecommendsSorteddDto sortDto)
+        {
+            var (res, totalCount ) = await _recommendService.GetSorted(sortDto);
+            var myRecommendsPaged = new MyRecommendsPaged {  maxCount = totalCount };
+            myRecommendsPaged.Recommends = mapper.Map<IEnumerable<Recommend>, IEnumerable<RecommendViewModel>>(res);
+            return myRecommendsPaged;
+        }
+
+        [HttpGet]
+        [Route("myrecommends")]
+        public async Task<MyRecommendsPaged> GetRecommendsForUser([FromQuery] RecommendsSorteddDto sortDto)
+        {
+            var (res, totalCount) = await _recommendService.GetForUserId(sortDto);
+            var myRecommendsPaged = new MyRecommendsPaged { maxCount = totalCount };
+            myRecommendsPaged.Recommends = mapper.Map<IEnumerable<Recommend>, IEnumerable<RecommendViewModel>>(res);
+            return myRecommendsPaged;
         }
     }
 }

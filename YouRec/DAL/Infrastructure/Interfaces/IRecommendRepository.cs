@@ -16,8 +16,16 @@ namespace DAL.Infrastructure.Interfaces
         Task DeleteAsync(Recommend item);
         Task<Recommend> UpdateAsync(Recommend item);
         Task<int> GetCountAsync();
-        Task<IEnumerable<Recommend>> GetFilteredAsync(Expression<Func<Recommend, bool>> predicate);
+        Task<IEnumerable<Recommend>> GetFiltered(Expression<Func<Recommend, bool>> predicate);
         Task<IEnumerable<Recommend>> GetRecentlyUploaded(int amount);
         Task<IEnumerable<Recommend>> GetMostRatedAsync(int amount);
+
+        Task<IEnumerable<Recommend>> GetSortedByNameAscPaged(int amount, int numPage, string userId);
+        Task<IEnumerable<Recommend>> GetSortedByNameDescPaged(int amount, int numPage, string userId);
+        Task<IEnumerable<Recommend>> GetSortedByDateDescPaged(int amount, int numPage, string userId);
+        Task<IEnumerable<Recommend>> GetSortedByDateAscPaged(int amount, int numPage, string userId);
+        Task<IEnumerable<Recommend>> GetSortedByRatingDescPaged(int amount, int numPage, string userId);
+        Task<IEnumerable<Recommend>> GetSortedByRatingAscPaged(int amount, int numPage, string userId);
+        Task<IEnumerable<Recommend>> GetForUserId(int amount, int numPage, string userId);
     }
 }

@@ -22,7 +22,6 @@ export default function RecommendDescriptionPage() {
     const [imageLinks, setImageLinks] = useState([]);
     const [tags, setTags] = useState([]);
     const [authorRating, setAuthorRating] = useState(0);
-    const [creationDate, setCreationDate] = useState("");
     const [averageUserRating, setAverageUserRating] = useState("");
     const [userId, setUserId] = useState("");
     const isLoggedIn = useSelector(state => state.isLoggedIn);
@@ -36,7 +35,6 @@ export default function RecommendDescriptionPage() {
             setAuthorname(data.data.userName);
             setTags(data.data.tags);
             setGroupName(data.data.groupName)
-            setCreationDate(moment(data.data.creationDate).format("DD.MM.YYYY hh:mm"));
             setAuthorRating(data.data.authorRating);
             setUserId(data.data.userId);
             setAverageUserRating(data.data.averageUserRating)
@@ -68,7 +66,8 @@ export default function RecommendDescriptionPage() {
                     </p>
                 </div>
             </div>
-            <div className="containers col-lg-9">
+
+            <div className="container">
                 <MarkDownText text={text} />
                 <div>
                     <p className="h3 text-center mt-3">

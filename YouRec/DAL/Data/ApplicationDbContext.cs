@@ -11,6 +11,7 @@ namespace DAL.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration) : base(options)
         {
             this.Configuration = configuration;
+            Database.Migrate();
         }
 
         private IConfiguration Configuration;
@@ -41,7 +42,7 @@ namespace DAL.Data
 
         private void SeedGroups(ModelBuilder builder)
         {
-            builder.Entity<Group>().HasData(new Group { Id = 1, GroupName = "Games" }, new Group { Id = 2, GroupName = "Movies" }, new Group { Id = 3, GroupName = "Smoking" }, new Group { Id = 4, GroupName = "Papaya" });
+            builder.Entity<Group>().HasData(new Group { Id = 1, GroupName = "Games" }, new Group { Id = 2, GroupName = "Movies" }, new Group { Id = 3, GroupName = "Anime" }, new Group { Id = 4, GroupName = "Sport" }, new Group { Id = 5, GroupName = "Technique"} , new Group { Id = 6, GroupName = "Books"} , new Group { Id = 7, GroupName = "Food" } );
         }
 
         private void SeedRoles(ModelBuilder builder)
