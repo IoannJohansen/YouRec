@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[10.1.1, )"
             },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.15.2, )"
+            },
             "Google.Apis.Auth": {
               "target": "Package",
               "version": "[1.55.0, )"
@@ -259,6 +263,10 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.15.2, )"
+            },
             "Google.Apis.Auth": {
               "target": "Package",
               "version": "[1.55.0, )"

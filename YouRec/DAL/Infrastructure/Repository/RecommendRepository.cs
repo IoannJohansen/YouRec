@@ -104,5 +104,10 @@ namespace DAL.Infrastructure.Repository
         {
             return await _applicationDbContext.Recommends.CountAsync(r=>r.UserId==userId);
         }
+
+        public async Task<Recommend> GetById(int id)
+        {
+            return await _applicationDbContext.Recommends.FirstOrDefaultAsync(r=>r.Id==id);
+        }
     }
 }

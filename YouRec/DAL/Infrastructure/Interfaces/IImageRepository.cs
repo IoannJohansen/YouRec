@@ -9,7 +9,11 @@ namespace DAL.Infrastructure.Interfaces
         Task<Image> AddAsync(Image image);
         Task DeleteAsync(Image image);
         Task DeleteByIdAsync(int id);
-        Task<IEnumerable<Image>> GetByRecommendIdAsync(int recommendId);
+        Task<IEnumerable<Image>> GetImagesByRecommendIdAsync(int recommendId);
         Task<Image> GetByIdAsync(int id);
+        Task DeleteByLinkAsync(string link);
+        Task DeleteAllImagesForRecommendId(int recommendId);
+        Task AddImages(IEnumerable<Image> images);
+        Task<IEnumerable<string>> GetLinksById(int recommendId);
     }
 }

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import Rating from 'react-rating';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { GetRecommendDescript } from '../../Api/ApiRecommendPage';
+import { GetRecommendDescript } from '../../Api/ApiRecommends';
 import AuthorInfo from './AuthorInfo';
 import Comments from './Comments';
 import ImageCarousel from './ImageCarousel';

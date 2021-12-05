@@ -16,3 +16,14 @@ export const TagsToDto = (tags) => {
     })
     return tagVM;
 }
+
+export const TagNamesToSuggestions = (tags) => {
+    let suggest = [];
+    tags.map((tag, index) => {
+        suggest.push({
+            id: index,
+            name: tag
+        })
+    })
+    return suggest;
+}

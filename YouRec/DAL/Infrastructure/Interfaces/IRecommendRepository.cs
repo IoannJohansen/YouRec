@@ -19,7 +19,7 @@ namespace DAL.Infrastructure.Interfaces
         Task<IEnumerable<Recommend>> GetFiltered(Expression<Func<Recommend, bool>> predicate);
         Task<IEnumerable<Recommend>> GetRecentlyUploaded(int amount);
         Task<IEnumerable<Recommend>> GetMostRatedAsync(int amount);
-
+        Task<Recommend> GetById(int id);
 
         Task<IEnumerable<Recommend>> GetSortedByNameAscPaged(int amount, int numPage, string userId);
         Task<IEnumerable<Recommend>> GetSortedByNameDescPaged(int amount, int numPage, string userId);

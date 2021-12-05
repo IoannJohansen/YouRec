@@ -18,5 +18,8 @@ namespace BLL.Interfaces
         Task<(IEnumerable<Recommend>,int)> GetSorted(RecommendsSorteddDto sortDto);
         Task<(IEnumerable<Recommend>,int)> GetForUserId(RecommendsSorteddDto sortDto);
         Task DeleteById(int id);
+        Task<Recommend> GetByID(int id);
+        Task<Recommend> UpdateRecommendInfo(UpdateRecommendDto recommend);
+        Task UpdateImages(UpdateRecommendDto updateRecommendDto);
     }
 }

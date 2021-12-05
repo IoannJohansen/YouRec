@@ -2,6 +2,7 @@ using AutoMapper;
 using BLL.Core.Auth.Jwt;
 using BLL.Interfaces;
 using BLL.Services;
+using CloudinaryDotNet;
 using DAL.Data;
 using DAL.Infrastructure.Interfaces;
 using DAL.Infrastructure.UnitOfWork;
@@ -14,6 +15,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Linq;
 using YouRecWeb.Core.Mapper;
 
 namespace YouRecWeb
@@ -34,14 +37,24 @@ namespace YouRecWeb
             services.AddCors(options =>
             {
                 options.AddPolicy(name: AllowedOrigins,
-                                  builder =>
-                                  {
-                                      builder.WithOrigins("localhost:3000")
-                                                            .AllowAnyHeader()
-                                                            .AllowAnyMethod()
-                                                            .AllowAnyOrigin();
-                                  });
+                builder =>
+                {
+                    builder.WithOrigins("localhost:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();
+                });
             });
+
+            var cloudName = Configuration["CloudinarySettings:CloudName"];
+            var apiKey = Configuration["CloudinarySettings:ApiKey"];
+            var apiSecret = Configuration["CloudinarySettings:ApiSecret"];
+
+            if (new[] { cloudName, apiKey, apiSecret }.Any(string.IsNullOrWhiteSpace))
+            {
+                throw new ArgumentException("Please specify Cloudinary account details!");
+            }
+            services.AddSingleton(new Cloudinary(new Account(cloudName, apiKey, apiSecret)));
 
             services.AddControllers();
 
@@ -90,6 +103,7 @@ namespace YouRecWeb
                 options.Password.RequireDigit = true;
                 options.Password.RequireUppercase = false;
                 options.User.RequireUniqueEmail = true;
+                options.User.AllowedUserNameCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅ¨ÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàáâãäå¸æçèéêëìíîïğñòóôõö÷øùúûüışÿ ";
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
         }
 

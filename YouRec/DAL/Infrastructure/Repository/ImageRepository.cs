@@ -1,6 +1,7 @@
 ﻿using DAL.Data;
 using DAL.Infrastructure.Interfaces;
 using DAL.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,9 +39,34 @@ namespace DAL.Infrastructure.Repository
             return await _applicationDbContext.Images.FindAsync(id);
         }
 
-        public async Task<IEnumerable<Image>> GetByRecommendIdAsync(int recommendId) => await Task.Run(() =>
+        public async Task<IEnumerable<Image>> GetImagesByRecommendIdAsync(int recommendId) => await Task.Run(() =>
         {
-            return _applicationDbContext.Images.Where(i => i.Id == recommendId);
+            return _applicationDbContext.Images.Where(i => i.RecommendId == recommendId).ToArrayAsync();
         });
+
+        public async Task DeleteByLinkAsync(string link)
+        {
+            var image = await _applicationDbContext.Images.FirstOrDefaultAsync(i => i.Original == link);
+            _applicationDbContext.Images.RemoveRange(image);
+        }
+
+        public async Task DeleteAllImagesForRecommendId(int recommendId) => await Task.Run(() =>
+        {
+            
+            var images = _applicationDbContext.Images.Where(i => i.RecommendId == recommendId);
+            _applicationDbContext.Images.RemoveRange(images);
+        });
+
+        public async Task AddImages(IEnumerable<Image> images)
+        {
+            await _applicationDbContext.AddRangeAsync(images);
+        }
+
+        public async Task<IEnumerable<string>> GetLinksById(int recommendId)
+        {
+            return await _applicationDbContext.Images.Where(i => i.RecommendId == recommendId).Select(i=>i.Original).ToArrayAsync();
+        }
+
+        
     }
 }

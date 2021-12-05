@@ -10,6 +10,6 @@ namespace BLL.Interfaces
     public interface IImageService
     {
         Task<Image> AddImage(Image image);
-
+        Task DeleteByLink(string link);
     }
 }

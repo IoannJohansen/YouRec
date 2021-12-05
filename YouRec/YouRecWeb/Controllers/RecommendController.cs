@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BLL.DTO;
 using BLL.Interfaces;
+using CloudinaryDotNet;
 using DAL.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -27,10 +28,10 @@ namespace YouRecWeb.Controllers
             this._recommendTagService = recommendTagService;
         }
 
-        private IRecommendService _recommendService;
-        private ITagService _tagService;
-        private IImageService _imageService;
-        private IRecommendTagService _recommendTagService;
+        private readonly IRecommendService _recommendService;
+        private readonly ITagService _tagService;
+        private readonly IImageService _imageService;
+        private readonly IRecommendTagService _recommendTagService;
 
         [HttpGet]
         [Route("recentlyuploaded")]
@@ -122,6 +123,17 @@ namespace YouRecWeb.Controllers
         {
             await _recommendService.DeleteById(recommendId);
             return Ok(StatusCodes.Status200OK);
+        }
+
+        [HttpPut]
+        [Route("update")]
+        public async Task<IActionResult> UpdateRecommend(UpdateRecommendDto updateRecommendDto)
+        {
+            await _recommendService.UpdateImages(updateRecommendDto);
+            await _recommendService.UpdateRecommendInfo(updateRecommendDto);
+            var recommend = await _recommendService.GetByID(updateRecommendDto.RecommendId);
+            await AddTagsToRecommend(recommend, updateRecommendDto.Tags);
+            return Ok(recommend);
         }
     }
 }

@@ -103,3 +103,5 @@ D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Google.Apis.Core
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.AspNetCore.Authorization.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.AspNetCore.Metadata.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\AutoMapper.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\CloudinaryDotNet.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.Extensions.WebEncoders.dll

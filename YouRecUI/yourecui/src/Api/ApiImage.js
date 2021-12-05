@@ -14,4 +14,3 @@ export const uploadImage = async (img) => {
     const file = await response.json();
     return file.secure_url;
 }
-

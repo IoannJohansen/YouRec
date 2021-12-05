@@ -1,29 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import ImageLoader from './DropZone/ImageLoader';
-import TagController from './TagController/TagController';
+import ImageLoader from '../../CreateRecommend/DropZone/ImageLoader';
+import TagEditor from '../TagEditor/TagEditor';
 import Rating from 'react-rating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
-import { TitleValidationRiles } from '../../Helper/Validator';
-import { getAllGroups } from '../../Api/ApiGroups';
-import { addRecommend } from '../../Api/ApiRecommends';
+import { TitleValidationRiles } from '../../../Helper/Validator';
+import { getAllGroups } from '../../../Api/ApiGroups';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
-import { TagsToDto } from '../../Converters/TagConverter';
-import { useNavigate } from 'react-router-dom';
+import { TagNamesToSuggestions, TagsToDto } from '../../../Converters/TagConverter';
+import { useParams } from 'react-router-dom';
+import { GetRecommendDescript, updateRecommend } from '../../../Api/ApiRecommends';
+import { GetImageByUrl } from '../../../Api/ApiImage';
+import Carousel from 'react-grid-carousel';
+import ImageCarousel from '../../RecommendDescriptionPage/ImageCarousel';
 
-export default function CreateRecommend() {
+export default function UpdateRecommend() {
     const {
         register,
         handleSubmit,
         formState: { errors } } = useForm();
 
     const mdParser = new MarkdownIt();
+    const navigate = useNavigate();
+
 
     const userId = useSelector(state => state.userId);
     const [title, setTitle] = useState("");
@@ -31,41 +37,41 @@ export default function CreateRecommend() {
     const [recommendText, setRecommendText] = useState("**Hello world!!!**");
     const [rating, setRating] = useState(0);
     const [selectedtags, setSelectedtags] = useState([]);
-    const [selectedGroupValue, setSelectedGroupValue] = useState(1);
+    const [selectedGroupValue, setSelectedGroupValue] = useState("");
     const [imageLinks, setImageLinks] = useState([]);
     const [imageErrMessage, setImageErrMessage] = useState("");
     const [tagErr, setTagErr] = useState("");
-    const navigate = useNavigate()
+    const [newImageLinks, setNewImageLinks] = useState([]);
+    const { id } = useParams();
+
+
+    useEffect(() => {
+        GetRecommendDescript(id).then(data => {
+            const formatedTags = TagNamesToSuggestions(data.data.tags);
+            setSelectedtags(formatedTags);
+            setTitle(data.data.name);
+            setRating(data.data.authorRating);
+            setImageLinks(data.data.imageLinks);
+            setRecommendText(data.data.text);
+            setSelectedGroupValue(data.data.groupName);
+        })
+    }, [id])
 
     useEffect(() => {
         getAllGroups().then(data => {
-            setGroups(data.data)
+            setGroups(data.data);
         })
-
     }, [])
-
-    useEffect(() => {
-        if (groups.length !== 0)
-            setSelectedGroupValue(groups[0].id);
-    }, [groups])
 
     const submitHandler = () => {
         if (!selectedTagsValid()) return;
-
+        let groupId = groups.filter(group => group.groupName === selectedGroupValue)[0].id;
         let tagDto = TagsToDto(selectedtags);
-
-        const formData = {
-            userId: userId,
-            title: title,
-            recommendText: recommendText,
-            groupId: selectedGroupValue,
-            tags: tagDto,
-            imageLinks: imageLinks,
-            rating: rating
-        }
-
-        addRecommend(formData).then(data => {
-            navigate("/Recs");
+        updateRecommend(userId, title, recommendText, groupId, tagDto, newImageLinks, rating, id).then(data => {
+            if (data.status === 200) {
+                console.log(data);
+                navigate("/Recs/" + id);
+            }
         }).catch(err => {
             console.log(err)
         })
@@ -84,16 +90,20 @@ export default function CreateRecommend() {
     }
 
     const handleChangeDroupName = (event) => {
-        setSelectedGroupValue(groups[event.target.value - 1].id);
+        setSelectedGroupValue(event.target.value);
     }
 
     return (
         <div className="container mt-2">
             <div className="border-dark border p-1">
-                <p className="h3 text-center">Create recommend</p>
-                <div className="d-flex justify-content-around mt-5 ">
-                    <div className="col-6">
-                        <ImageLoader imageLinks={imageLinks} setImageLinks={setImageLinks} errorMessageSetter={setImageErrMessage} />
+                <p className="h3 text-center">Update recommend</p>
+                <div className="d-flex row p-3 justify-content-around mt-5 ">
+                    <div className="col-xs-8 col-md-6 mb-2">
+                        <div className="border border-dark ">
+                            <ImageCarousel images={imageLinks} />
+                        </div>
+                        <br />
+                        <ImageLoader imageLinks={newImageLinks} setImageLinks={setNewImageLinks} errorMessageSetter={setImageErrMessage} />
                         <p className="text-center text-danger">
                             {
                                 imageErrMessage
@@ -102,19 +112,21 @@ export default function CreateRecommend() {
                     </div>
                     <div className="align-center col-md-5">
                         {errors?.title && <p className="text-danger">{errors?.title?.message}</p>}
-                        <Form.Control maxLength={40} {...register("title", TitleValidationRiles)} size="md" value={title} onChange={event => setTitle(event.target.value)} type="text" placeholder="Title" />
-
+                        <label className="h6">Title</label>
+                        <Form.Control vale="true" autoFocus maxLength={40} {...register("title", TitleValidationRiles)} size="md" value={title} onChange={event => setTitle(event.target.value)} type="text" placeholder="Title" />
+                        <label className="mt-3 h6">Group</label>
                         <Form.Control
                             onChange={handleChangeDroupName}
-                            required
                             as="select"
+                            defaultChecked={3}
+                            defaultValue={selectedGroupValue}
                             size="md"
-                            className="mr-sm-2 mt-3 mb-3"
+                            className="mr-sm-2 mb-3"
                         >
                             <option disabled>Select group name</option>
                             {
                                 groups.map((item, index) => (
-                                    <option key={index} value={item.id}>{item.groupName}</option>
+                                    item.groupName === selectedGroupValue ? <option selected key={index} value={item.groupName}>{item.groupName}</option> : <option key={index} value={item.groupName}>{item.groupName}</option>
                                 ))
                             }
                         </Form.Control>
@@ -123,12 +135,15 @@ export default function CreateRecommend() {
                                 tagErr
                             }
                         </p>
-                        <TagController tagSetter={setSelectedtags} />
+                        <div className="mb-3">
+                            <label className="h6">Tags</label>
+                            <TagEditor selectedtags={selectedtags} tagSetter={setSelectedtags} />
 
+                        </div>
                     </div>
                 </div>
                 <div className="m-4">
-                    <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={e => setRecommendText(e.text)} />
+                    <MdEditor value={recommendText} style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={e => setRecommendText(e.text)} />
                 </div>
 
                 <p className="h3 text-center mt-2">

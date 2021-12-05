@@ -14,6 +14,7 @@ const MOST_RATED = "recommends/mostrated";
 const GET_REECOMMEND = "recommends/getrecommend";
 const ADD_RECOMMEND = "recommends/createpost";
 const DELETE_RECOMMEND = "recommends/delete";
+const UPDATE_RECOMMEND =  "recommends/update";
 
 //TAGS
 const TAG_LIST = "tags/getalltags";
@@ -75,5 +76,6 @@ module.exports = {
     CLOUDINARY_UPLOAD,
     GET_SORTED,
     GET_FOR_USER,
-    DELETE_RECOMMEND
+    DELETE_RECOMMEND,
+    UPDATE_RECOMMEND
 }

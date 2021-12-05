@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import RecommendItem from "../MyRecommendsItem/MyRecommendsItem";
 import { Row } from "react-bootstrap";
 import { PICTURE_DEFAULT } from "../../../Api/ApiParameteres";
-import { deleteRecommend } from "../../../Api/ApiMyRecommends";
+import { deleteRecommend } from "../../../Api/ApiRecommends";
 
 
 

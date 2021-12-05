@@ -4,12 +4,10 @@ import ReactTags from 'react-tag-autocomplete';
 import { getTagList } from '../../../Api/ApiTag';
 import './TagStyles.css';
 
-export default function TagController(props) {
+export default function TagEditor(props) {
 
     const reactTags = useRef()
-    const [tags, setTags] = useState([])
-
-    const [suggestions, setSuggestions] = useState([])
+    const [suggestions, setSuggestions] = useState([]);
 
     useEffect(() => {
         getTagList().then(data => {
@@ -19,22 +17,19 @@ export default function TagController(props) {
     }, [])
 
     const onDelete = useCallback((tagIndex) => {
-        setTags(tags.filter((_, i) => i !== tagIndex))
-        props.tagSetter([...tags]);
-    }, [tags])
+        props.tagSetter(props.selectedtags.filter((_, i) => i !== tagIndex))
+    }, [props.selectedtags])
 
     const onAddition = useCallback((newTag) => {
-        setTags([...tags, newTag])
-        props.tagSetter([...tags, newTag]);
-    }, [tags])
+        props.tagSetter([...props.selectedtags, newTag])
+    }, [props.selectedtags])
 
     return (
         <>
             <ReactTags
-                
                 ref={reactTags}
-                tags={tags}
-                allowNew
+                tags={props.selectedtags}
+                allowNew={true}
                 suggestions={suggestions}
                 onDelete={onDelete}
                 onAddition={onAddition}

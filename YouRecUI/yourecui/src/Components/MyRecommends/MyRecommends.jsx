@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
   getRecommendsSorted,
-} from "../../Api/ApiMyRecommends";
+} from "../../Api/ApiRecommends";
 import { useSelector } from "react-redux";
 
 export default function MyRecommendsPage() {

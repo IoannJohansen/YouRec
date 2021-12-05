@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
-import { getMostRated, getRecentlyUploaded } from '../../Api/ApiRecommendsList';
+import { getMostRated, getRecentlyUploaded } from '../../Api/ApiRecommends';
 import RecomendsList from './RecommendsList/RecommendsList';
 import TagsCloud from './TagCloud/TagsCloud';
 

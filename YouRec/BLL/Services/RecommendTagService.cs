@@ -4,6 +4,7 @@ using BLL.Services.Base;
 using DAL.Infrastructure.Interfaces;
 using DAL.Model;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BLL.Services
@@ -19,6 +20,17 @@ namespace BLL.Services
             var createdRecommendtag = await unitOfWork.RecommendTagRepository.AddTagToRecommendAsync(recommendTag);
             await unitOfWork.SaveAsync();
             return createdRecommendtag;
+        }
+
+        public async Task AddRecommendTags(IEnumerable<RecommendTag> recommendTags)
+        {
+            await unitOfWork.RecommendTagRepository.AddRecommendTags(recommendTags);
+            
+        }
+
+        public async Task DeleteRecommendTag(int tagId, int recommendId)
+        {
+            await unitOfWork.RecommendTagRepository.DeleteRecommendTag(tagId, recommendId);
         }
     }
 }
