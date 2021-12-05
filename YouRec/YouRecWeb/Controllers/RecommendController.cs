@@ -111,7 +111,7 @@ namespace YouRecWeb.Controllers
         [Route("myrecommends")]
         public async Task<MyRecommendsPaged> GetRecommendsForUser([FromQuery] RecommendsSorteddDto sortDto)
         {
-            var (res, totalCount) = await _recommendService.GetForUserId(sortDto);
+           var (res, totalCount) = await _recommendService.GetForUserId(sortDto);
             var myRecommendsPaged = new MyRecommendsPaged { maxCount = totalCount };
             myRecommendsPaged.Recommends = mapper.Map<IEnumerable<Recommend>, IEnumerable<RecommendViewModel>>(res);
             return myRecommendsPaged;
@@ -135,5 +135,16 @@ namespace YouRecWeb.Controllers
             await AddTagsToRecommend(recommend, updateRecommendDto.Tags);
             return Ok(recommend);
         }
+
+        [HttpGet]
+        [Route("fulltext")]
+        [AllowAnonymous]
+        public async Task<int> GetRecommendfromFullTexted(string searchParameteres)
+        {
+            var res = await _recommendService.GetfromFulltexted(searchParameteres);
+
+            return res.Count();
+        }
+        
     }
 }

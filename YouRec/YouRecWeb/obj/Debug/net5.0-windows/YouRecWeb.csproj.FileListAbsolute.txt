@@ -105,3 +105,8 @@ D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.AspNet
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\AutoMapper.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\CloudinaryDotNet.dll
 D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Microsoft.Extensions.WebEncoders.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\EasyData.Core.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Korzh.EasyQuery.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Korzh.EasyQuery.AspNetCore.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\bin\Debug\net5.0-windows\Korzh.EasyQuery.Linq.dll
+D:\Desktop\Dev\YouRec\YouRec\YouRecWeb\obj\Debug\net5.0-windows\YouRecWeb.MvcApplicationPartsAssemblyInfo.cs

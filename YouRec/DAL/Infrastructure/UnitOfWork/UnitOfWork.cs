@@ -21,18 +21,20 @@ namespace DAL.Infrastructure.UnitOfWork
             _ratingRepository = new RatingRepository(applicationDbContext);
             _likeRepository = new LikeRepository(applicationDbContext);
             _recommendTagRepository = new RecommendTagRepository(applicationDbContext);
+            _userRepository = new UserRepository(applicationDbContext);
         }
 
         private ApplicationDbContext _appDbContext;
 
-        private IRecommendRepository _recommendsRepository;
-        private ITagRepository _tagRepository;
-        private IImageRepository _imageRepository;
-        private IGroupRepository _groupRepository;
-        private ICommentRepository _commentrepository;
-        private IRatingRepository _ratingRepository;
-        private ILikeRepository _likeRepository;
-        private IRecommendTagRepository _recommendTagRepository;
+        private readonly IRecommendRepository _recommendsRepository;
+        private readonly ITagRepository _tagRepository;
+        private readonly IImageRepository _imageRepository;
+        private readonly IGroupRepository _groupRepository;
+        private readonly ICommentRepository _commentrepository;
+        private readonly IRatingRepository _ratingRepository;
+        private readonly ILikeRepository _likeRepository;
+        private readonly IRecommendTagRepository _recommendTagRepository;
+        private readonly IUserRepository _userRepository;
 
         public IRecommendRepository RecommendsRepository => _recommendsRepository;
         public ITagRepository TagRepository => _tagRepository;
@@ -43,6 +45,7 @@ namespace DAL.Infrastructure.UnitOfWork
         public ILikeRepository LikeRepository => _likeRepository;
         public IRecommendTagRepository RecommendTagRepository => _recommendTagRepository;
 
+        public IUserRepository UserRepository => _userRepository;
 
         public async Task SaveAsync()
         {

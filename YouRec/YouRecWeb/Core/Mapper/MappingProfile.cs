@@ -31,7 +31,7 @@ namespace YouRecWeb.Core.Mapper
             CreateMap<CommentDto, Comment>();
             CreateMap<CreateRecommendDto, Recommend>().ForMember(m => m.Name, o => o.MapFrom(o => o.Title)).ForMember(m => m.UserId, o => o.MapFrom(o => o.UserId)).ForMember(m => m.Text, o => o.MapFrom(o => o.RecommendText)).ForMember(m => m.AuthorRating, o => o.MapFrom(r => r.Rating)).ForMember(m => m.GroupId, o => o.MapFrom(o => o.GroupId));
 
-           
+            CreateMap<AppUser, UserViewModel>().ForMember(m => m.UserName, o => o.MapFrom(f => f.UserName)).ForMember(m => m.Email, o => o.MapFrom(o => o.Email)).ForMember(m => m.Id, o => o.MapFrom(o => o.Id));
         }
     }
 }

@@ -32,6 +32,8 @@ namespace DAL.Data
 
         public virtual DbSet<Like> Likes { get; set; }
 
+        //public virtual DbSet<AppUser> AspNetUsers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -9,6 +9,8 @@ import Register from "../Components/Register/RegisterForm";
 import RecommendDescriptionPage from "../Components/RecommendDescriptionPage/RecomendDescription";
 import GuardedRoute from "../hoc/guardroute";
 import UpdateRecommend from "../Components/MyRecommends/UpdatePage/UpdateRecommend";
+import AdminPage from "../Components/AdminPanel/AdminPage";
+import UserPage from "../Components/AdminPanel/UserPage";
 
 export default function Router() {
   return (
@@ -35,6 +37,17 @@ export default function Router() {
         <Route path="/SignIn" element={<LoginForm />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/update/:id" element={<UpdateRecommend />} />
+        <Route path="/admin" element={
+          <GuardedRoute>
+            <AdminPage />
+          </GuardedRoute>
+        } />
+        <Route path="/admin/:id" element={
+          <GuardedRoute>
+            <UserPage />
+          </GuardedRoute>
+        } />
+
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>

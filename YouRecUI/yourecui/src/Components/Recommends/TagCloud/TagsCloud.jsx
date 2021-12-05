@@ -27,7 +27,7 @@ export default function TagsCloud() {
             {
                 tags.length > 0 ?
                     <TagCloud
-                        className="TagCloud col-6"
+                        className="TagCloud col-3"
                         minSize={15}
                         disableRandomColor={false}
                         maxSize={35}

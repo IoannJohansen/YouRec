@@ -5,8 +5,6 @@ import { Row } from "react-bootstrap";
 import { PICTURE_DEFAULT } from "../../../Api/ApiParameteres";
 import { deleteRecommend } from "../../../Api/ApiRecommends";
 
-
-
 export const RecomendsList = (props) => {
 
   const [recommendList, setRecommendList] = useState([]);

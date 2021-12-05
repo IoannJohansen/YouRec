@@ -22,11 +22,13 @@ class RecommendItem extends Component {
       imageRef: props.imageRef,
       rating: props.rating,
       author: props.author,
-      publishDate: moment(props.PublishDateTime).format("DD.MM.YYYY hh:mm"),
+      publishDate: moment(props.PublishDateTime).format("DD.MM.YYYY hh:mm")
     };
   }
 
-
+  deleteButtonHandler = () => {
+    this.props.selfRemover(this.props.id)
+  }
 
   render() {
     return (
@@ -54,7 +56,7 @@ class RecommendItem extends Component {
                 <Link to={"/Recs/" + this.state.id} style={{ color: 'inherit', textDecoration: 'inherit' }}>
                   <Button variant="primary" size="md"><FontAwesomeIcon icon={faEye} /></Button>
                 </Link>
-                <Button onClick={() => this.props.selfRemover(this.props.id)} variant="danger" size="md"><FontAwesomeIcon icon={faTrash} /></Button>
+                <Button onClick={() => this.deleteButtonHandler()} variant="danger" size="md"><FontAwesomeIcon icon={faTrash} /></Button>
               </div>
             </div>
             <p className="m-0 text-muted text-left small">

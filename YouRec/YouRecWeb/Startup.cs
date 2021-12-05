@@ -46,6 +46,8 @@ namespace YouRecWeb
                 });
             });
 
+            services.AddEasyQuery();
+
             var cloudName = Configuration["CloudinarySettings:CloudName"];
             var apiKey = Configuration["CloudinarySettings:ApiKey"];
             var apiSecret = Configuration["CloudinarySettings:ApiSecret"];
@@ -80,6 +82,7 @@ namespace YouRecWeb
             services.AddTransient<IGroupService, GroupService>();
             services.AddTransient<IImageService, ImageService>();
             services.AddTransient<IRecommendTagService, RecommendTagService>(); 
+            services.AddTransient<IUserService, UserService>();
 
             services.AddSingleton(Configuration);
 
@@ -103,7 +106,7 @@ namespace YouRecWeb
                 options.Password.RequireDigit = true;
                 options.Password.RequireUppercase = false;
                 options.User.RequireUniqueEmail = true;
-                options.User.AllowedUserNameCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅ¨ÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàáâãäå¸æçèéêëìíîïğñòóôõö÷øùúûüışÿ ";
+                options.User.AllowedUserNameCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅ¨ÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàáâãäå¸æçèéêëìíîïğñòóôõö÷øùúûüışÿ1234567890_- ";
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
         }
 

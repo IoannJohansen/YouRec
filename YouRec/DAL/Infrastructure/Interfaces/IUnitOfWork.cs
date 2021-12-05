@@ -15,6 +15,7 @@ namespace DAL.Infrastructure.Interfaces
         IRatingRepository RatingRepository { get; }
         ILikeRepository LikeRepository { get; }
         IRecommendTagRepository RecommendTagRepository { get; }
+        IUserRepository UserRepository { get; }
 
         Task SaveAsync();
     }

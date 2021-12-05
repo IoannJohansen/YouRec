@@ -164,5 +164,10 @@ namespace BLL.Services
             string publicId = Regex.Match(url, @"\/\w*", RegexOptions.RightToLeft).Value.Substring(1);
             await _cloudinary.DeleteResourcesAsync(ResourceType.Image, publicId);
         }
+
+        public async Task<IEnumerable<Recommend>> GetfromFulltexted(string query)
+        {
+            return await unitOfWork.RecommendsRepository.GetFulltexted(query);
+        }
     }
 }

@@ -49,6 +49,9 @@ const CLOUDINARY_UPLOAD = "https://api.cloudinary.com/v1_1/dihtxymvr/upload";
 const GET_SORTED = "recommends/sort";
 const GET_FOR_USER = "recommends/myrecommends";
 
+//ADMIN
+const GET_USERS = "admin/getusers";
+
 module.exports = {
     API_URL,
     SIGN_IN_PATH,
@@ -77,5 +80,6 @@ module.exports = {
     GET_SORTED,
     GET_FOR_USER,
     DELETE_RECOMMEND,
-    UPDATE_RECOMMEND
+    UPDATE_RECOMMEND,
+    GET_USERS
 }

@@ -5,9 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ClearJwt, ValidateJwt } from '../../Helper/jwtHelper.js';
 
 class App extends Component {
-
   componentDidMount() {
-    // console.log(this.props)
     const { login } = this.props;
     if (localStorage.getItem("jwt") != null) {
       const token = localStorage.getItem("jwt");

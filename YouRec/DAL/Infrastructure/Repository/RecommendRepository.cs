@@ -1,6 +1,7 @@
 ﻿using DAL.Data;
 using DAL.Infrastructure.Interfaces;
 using DAL.Model;
+using Korzh.EasyQuery.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -40,20 +41,10 @@ namespace DAL.Infrastructure.Repository
             return await _applicationDbContext.Recommends.CountAsync();
         }
 
-        public async Task<IEnumerable<Recommend>> GetItemsAsync()
-        {
-            return await _applicationDbContext.Recommends.ToListAsync();
-        }
-
         public async Task<Recommend> UpdateAsync(Recommend item) => await Task.Run(() =>
         {
             return _applicationDbContext.Recommends.Update(item).Entity;
         });
-
-        public async Task<IEnumerable<Recommend>> GetFiltered(Expression<Func<Recommend, bool>> predicate)
-        {
-            return await _applicationDbContext.Recommends.Where(predicate).ToListAsync();
-        }
 
         public async Task<IEnumerable<Recommend>> GetRecentlyUploaded(int amount)
         {
@@ -108,6 +99,12 @@ namespace DAL.Infrastructure.Repository
         public async Task<Recommend> GetById(int id)
         {
             return await _applicationDbContext.Recommends.FirstOrDefaultAsync(r=>r.Id==id);
+        }
+
+        public async Task<IEnumerable<Recommend>> GetFulltexted(string queryParameter)
+        {
+
+            return null;
         }
     }
 }

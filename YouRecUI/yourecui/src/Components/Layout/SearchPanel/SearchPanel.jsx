@@ -2,13 +2,20 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FormControl, Nav, Form, Button } from 'react-bootstrap';
 
+// const []
+
+const handleSearch = () => {
+
+}
+
+//TODO: ADD full text
 export default function SearchPanel() {
     return (
         <Nav>
             <Form className="d-flex justify-content-around">
                 <FormControl
                     type="search"
-                    placeholder="Type your query" 
+                    placeholder="Type your query"
                     className="m-1"
                     aria-label="Search"
                 />

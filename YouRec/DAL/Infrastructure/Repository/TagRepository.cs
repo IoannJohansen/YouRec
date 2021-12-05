@@ -65,5 +65,10 @@ namespace DAL.Infrastructure.Repository
         {
             return await _applicationDbContext.Tags.FirstOrDefaultAsync(t=>t.TagName==name);
         }
+
+        public async Task DeleteRange(IEnumerable<Tag> tags) => await Task.Run(() =>
+        {
+            _applicationDbContext.Tags.RemoveRange(tags);
+        });
     }
 }

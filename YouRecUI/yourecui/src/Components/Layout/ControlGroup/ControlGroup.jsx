@@ -29,33 +29,30 @@ function ControlGroup(props) {
 
   return (
     <Nav>
-      <ButtonGroup>
-        <Link className="btn btn-primary text-light" to="/">
-          <FontAwesomeIcon icon={faCog} />
-        </Link>
-        <Link className="btn btn-primary text-light" to="/">
-          <FontAwesomeIcon icon={faUser} />
-        </Link>
+      <ButtonGroup className="justify-content-center">
         {isAdmin ? (
-          <Button>
-            <Link className="text-light" to="/">
+          <Link className="text-light" to="/admin">
+            <Button>
               <FontAwesomeIcon icon={faStarOfLife} />
-            </Link>
-          </Button>
-        ) : null}
-        {isLoggedIn ? (
-          <Button
-            variant="danger"
-            onClick={() => signOutClick()}
-            className="text-light"
-          >
-            <FontAwesomeIcon icon={faSignOutAlt} />
-          </Button>
-        ) : (
-          <Link className="btn btn-primary text-light" to="/SignIn">
-            <FontAwesomeIcon icon={faSignInAlt} />
+            </Button>
           </Link>
-        )}
+        ) : null}
+        {
+          isLoggedIn ? (
+            <Button
+              variant="danger"
+              onClick={() => signOutClick()}
+              className="text-light"
+            >
+              <FontAwesomeIcon icon={faSignOutAlt} />
+            </Button>
+          ) : (
+            <Link className="text-light" to="/SignIn">
+              <Button>
+                <FontAwesomeIcon icon={faSignInAlt} />
+              </Button>
+            </Link>
+          )}
       </ButtonGroup>
     </Nav>
   );

@@ -21,5 +21,6 @@ namespace BLL.Interfaces
         Task<Recommend> GetByID(int id);
         Task<Recommend> UpdateRecommendInfo(UpdateRecommendDto recommend);
         Task UpdateImages(UpdateRecommendDto updateRecommendDto);
+        Task<IEnumerable<Recommend>> GetfromFulltexted(string query);
     }
 }

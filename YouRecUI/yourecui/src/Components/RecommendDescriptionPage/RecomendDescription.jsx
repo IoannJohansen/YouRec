@@ -1,6 +1,5 @@
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import Rating from 'react-rating';
 import { useSelector } from 'react-redux';
@@ -43,13 +42,12 @@ export default function RecommendDescriptionPage() {
         })
     }, [])
 
-
     return (
         <div className="p-2 m-0 w-100 d-flex row justify-content-center">
-            <div className="col-lg-5 col-md-12 col-sm-12">
+            <div className="col-lg-6 col-md-12 col-sm-12">
                 <ImageCarousel images={imageLinks} />
             </div>
-            <div className="col-lg-4 col-sm-12 col-xs-12 d-flex flex-column text-xs-right text-lg-right text-xs-center text-sm-center ">
+            <div className="col-lg-4 col-sm-12 col-md-12 col-xs-12 flex-column text-lg-right text-xs-center text-sm-center ">
                 <p className="h3">{title} </p>
                 <p className="text-muted h4">{groupName}</p>
                 <p className="h4 mt-3">
