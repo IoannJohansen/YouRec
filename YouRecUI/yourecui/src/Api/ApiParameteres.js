@@ -51,6 +51,7 @@ const GET_FOR_USER = "recommends/myrecommends";
 
 //ADMIN
 const GET_USERS = "admin/getusers";
+const ADD_RECOMMEND_WITH_ID = "admin/createPostWithId";
 
 module.exports = {
     API_URL,
@@ -81,5 +82,6 @@ module.exports = {
     GET_FOR_USER,
     DELETE_RECOMMEND,
     UPDATE_RECOMMEND,
-    GET_USERS
+    GET_USERS,
+    ADD_RECOMMEND_WITH_ID
 }

@@ -21,9 +21,7 @@ export default function Layout() {
                     <ControlGroup isAdmin={isAdmin} isLoggedIn={isLoggedIn} />
                 </Navbar.Collapse>
             </Navbar>
-            <main>
-                <Outlet />
-            </main>
+            <Outlet />
         </div>
     )
 }

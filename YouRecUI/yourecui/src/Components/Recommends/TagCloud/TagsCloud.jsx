@@ -15,25 +15,22 @@ export default function TagsCloud() {
     useEffect(() => {
         getTagList().then(data => {
             setTags(data.tags);
-            
         })
     }, []);
 
 
-    // TODO: ADD ONCLICK EVENT : REDIRECT TO SEARCH LIST WITH SELECTED TAG
     return (
         // <p bg="primary" className="text-center h3">Available tags</p>
         <div className="container">
             {
                 tags.length > 0 ?
                     <TagCloud
-                        className="TagCloud col-3"
-                        minSize={15}
+                        className="TagCloud col-5"
+                        minSize={18}
                         disableRandomColor={false}
-                        maxSize={35}
+                        maxSize={40}
                         colorOptions={options}
                         tags={tags}
-                        onClick={tag => alert(`'${tag.value}' was selected!`)}
                     /> : <p className="h2 text-center text-muted">There is no tags added</p>
             }
         </div>

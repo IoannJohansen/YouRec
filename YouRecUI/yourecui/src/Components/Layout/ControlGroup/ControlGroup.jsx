@@ -17,8 +17,6 @@ import { useNavigate } from "react-router-dom";
 
 function ControlGroup(props) {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const isAdmin = useSelector((state) => state.isAdmin);
   const navigate = useNavigate();
 
   const signOutClick = () => {
@@ -30,7 +28,7 @@ function ControlGroup(props) {
   return (
     <Nav>
       <ButtonGroup className="justify-content-center">
-        {isAdmin ? (
+        {props.isAdmin ? (
           <Link className="text-light" to="/admin">
             <Button>
               <FontAwesomeIcon icon={faStarOfLife} />
@@ -38,7 +36,7 @@ function ControlGroup(props) {
           </Link>
         ) : null}
         {
-          isLoggedIn ? (
+          props.isLoggedIn ? (
             <Button
               variant="danger"
               onClick={() => signOutClick()}

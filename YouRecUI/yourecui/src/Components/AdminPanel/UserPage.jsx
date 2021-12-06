@@ -3,7 +3,6 @@ import { Row } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { PICTURE_DEFAULT } from '../../Api/ApiParameteres';
 import { deleteRecommend, getRecommendsForUser } from '../../Api/ApiRecommends';
-import MyRecommendsPage from '../MyRecommends/MyRecommends';
 import RecommendItem from '../MyRecommends/MyRecommendsItem/MyRecommendsItem';
 
 export default function UserPage() {
@@ -15,7 +14,6 @@ export default function UserPage() {
     useEffect(() => {
         getRecommendsForUser(userId.id, 0, pageSize).then(data => {
             setRecommends(data.data.recommends)
-            console.log(data);
         })
     }, [userId])
 

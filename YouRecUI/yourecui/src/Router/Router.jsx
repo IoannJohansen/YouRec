@@ -11,6 +11,7 @@ import GuardedRoute from "../hoc/guardroute";
 import UpdateRecommend from "../Components/MyRecommends/UpdatePage/UpdateRecommend";
 import AdminPage from "../Components/AdminPanel/AdminPage";
 import UserPage from "../Components/AdminPanel/UserPage";
+import AdminCreate from "../Components/AdminPanel/AdminCreate";
 
 export default function Router() {
   return (
@@ -36,7 +37,10 @@ export default function Router() {
         />
         <Route path="/SignIn" element={<LoginForm />} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/update/:id" element={<UpdateRecommend />} />
+        <Route path="/update/:id" element={
+          <GuardedRoute>
+            <UpdateRecommend />
+          </GuardedRoute>} />
         <Route path="/admin" element={
           <GuardedRoute>
             <AdminPage />
@@ -47,7 +51,11 @@ export default function Router() {
             <UserPage />
           </GuardedRoute>
         } />
-
+        <Route path="/create/:id" element={
+          <GuardedRoute>
+            <AdminCreate />
+          </GuardedRoute>
+        } />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>

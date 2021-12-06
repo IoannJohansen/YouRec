@@ -1,5 +1,6 @@
+import Button from '@restart/ui/esm/Button';
 import React, { useEffect, useState } from 'react';
-import { Row, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getUsers } from '../../Api/ApiAdmin';
 
@@ -23,23 +24,26 @@ export default function AdminPage() {
                 <Table className="container table" striped hover responsive-xs bordered>
                     <thead >
                         <tr className="text-center row">
-                            <td className="col">#</td>
                             <td className="col">Username</td>
                             <td className="col">email</td>
-                            <td className="col">id</td>
+                            <td className="col"></td>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             userList.map((item, index) => (
-                                <Link style={{ color: 'inherit', textDecoration: 'inherit', width: 'inherit' }} to={"/admin/" + item.id} key={item.id}>
-                                    <tr className="row text-center">
-                                        <td className="col">{index}</td>
-                                        <td className="col">{item.userName}</td>
-                                        <td className="col">{item.email}</td>
-                                        <td className="col">{item.id}</td>
-                                    </tr>
-                                </Link>
+                                <tr className="row text-center">
+                                    <td className="col">{item.userName}</td>
+                                    <td className="col">
+                                        <Link style={{ color: 'inherit', textDecoration: 'inherit', width: 'inherit' }} to={"/admin/" + item.id} key={item.id}>
+                                            <Button className="btn btn-primary">Watch recs</Button>
+                                        </Link></td>
+                                    <td className="col">
+                                        <Link style={{ color: 'inherit', textDecoration: 'inherit', width: 'inherit' }} to={"/create/" + item.id} key={item.id}>
+                                            <Button className="btn btn-primary">Create new rec</Button>
+                                        </Link>
+                                    </td>
+                                </tr>
                             ))
                         }
                     </tbody>
