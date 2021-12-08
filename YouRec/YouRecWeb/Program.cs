@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Identity;
 
 namespace YouRecWeb
 {
@@ -27,7 +28,6 @@ namespace YouRecWeb
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args).ConfigureAppConfiguration((hostContext, builder) =>
             {
-                builder.AddUserSecrets<Program>();
             })
             .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>

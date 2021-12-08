@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BLL.DTO;
 using BLL.Interfaces;
-using CloudinaryDotNet;
 using DAL.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -72,7 +71,7 @@ namespace YouRecWeb.Controllers
             return StatusCode(StatusCodes.Status201Created, createdRecommend);
         }
 
-        private async Task AddTagsToRecommend(Recommend recommend, IEnumerable<string> tags)
+        protected async Task AddTagsToRecommend(Recommend recommend, IEnumerable<string> tags)
         {
             foreach (var tag in tags)
             {
@@ -89,7 +88,7 @@ namespace YouRecWeb.Controllers
             }
         }
 
-        private async Task AddImagesToRecommend(Recommend recommend, IEnumerable<string> imageUrls)
+        protected async Task AddImagesToRecommend(Recommend recommend, IEnumerable<string> imageUrls)
         {
             foreach (var imageUrl in imageUrls)
             {
@@ -111,7 +110,7 @@ namespace YouRecWeb.Controllers
         [Route("myrecommends")]
         public async Task<MyRecommendsPaged> GetRecommendsForUser([FromQuery] RecommendsSorteddDto sortDto)
         {
-           var (res, totalCount) = await _recommendService.GetForUserId(sortDto);
+            var (res, totalCount) = await _recommendService.GetForUserId(sortDto);
             var myRecommendsPaged = new MyRecommendsPaged { maxCount = totalCount };
             myRecommendsPaged.Recommends = mapper.Map<IEnumerable<Recommend>, IEnumerable<RecommendViewModel>>(res);
             return myRecommendsPaged;
@@ -142,9 +141,8 @@ namespace YouRecWeb.Controllers
         public async Task<int> GetRecommendfromFullTexted(string searchParameteres)
         {
             var res = await _recommendService.GetfromFulltexted(searchParameteres);
-
             return res.Count();
         }
-        
+
     }
 }

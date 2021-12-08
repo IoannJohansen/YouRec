@@ -16,7 +16,7 @@ namespace BLL.Core.Auth.MIcrosoft
         public TokenValidator(IConfiguration configuration)
         {
             this.configuration = configuration;
-            this.tenantId = configuration["Authentication:Microsoft:TenantId"];
+            this.tenantId = configuration["AuthenticationMicrosoftTenantId"];
         }
 
         private readonly string tenantId;

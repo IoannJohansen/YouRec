@@ -16,7 +16,7 @@ export default function Layout() {
                 <Navbar.Brand className="text-center h1">UREC</Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-around" >
-                    <SearchPanel />
+                    {/* <SearchPanel /> */}
                     <NavHeader />
                     <ControlGroup isAdmin={isAdmin} isLoggedIn={isLoggedIn} />
                 </Navbar.Collapse>

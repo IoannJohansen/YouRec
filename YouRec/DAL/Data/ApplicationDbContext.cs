@@ -49,16 +49,16 @@ namespace DAL.Data
 
         private void SeedRoles(ModelBuilder builder)
         {
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "User", NormalizedName = "USER", Id = Configuration["USER:RoleID"] }, new IdentityRole { Name = "Admin", NormalizedName = "ADMIN", Id = Configuration["ADMIN:RoleID"] });
+            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "User", NormalizedName = "USER", Id = Configuration["USERRoleID"] }, new IdentityRole { Name = "Admin", NormalizedName = "ADMIN", Id = Configuration["ADMINRoleID"] });
         }
 
         private void SeedUsers(ModelBuilder builder)
         {
             var passwordHasher = new PasswordHasher<AppUser>();
-            var admin = new AppUser { Email = Configuration["ADMIN:Email"], NormalizedEmail = Configuration["ADMIN:Email"].ToUpper(), UserName = "Admin", PasswordHash = passwordHasher.HashPassword(null, Configuration["ADMIN:Password"]) };
+            var admin = new AppUser { Email = Configuration["ADMINEmail"], NormalizedEmail = Configuration["ADMINEmail"].ToUpper(), UserName = "Admin", PasswordHash = passwordHasher.HashPassword(null, Configuration["ADMINPassword"]) };
             builder.Entity<AppUser>().HasData(admin);
             
-            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> { RoleId = Configuration["ADMIN:RoleID"], UserId = admin.Id });
+            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> { RoleId = Configuration["ADMINRoleID"], UserId = admin.Id });
         }
     }
 }

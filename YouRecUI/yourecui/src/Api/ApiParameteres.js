@@ -14,7 +14,7 @@ const MOST_RATED = "recommends/mostrated";
 const GET_REECOMMEND = "recommends/getrecommend";
 const ADD_RECOMMEND = "recommends/createpost";
 const DELETE_RECOMMEND = "recommends/delete";
-const UPDATE_RECOMMEND =  "recommends/update";
+const UPDATE_RECOMMEND = "recommends/update";
 
 //TAGS
 const TAG_LIST = "tags/getalltags";

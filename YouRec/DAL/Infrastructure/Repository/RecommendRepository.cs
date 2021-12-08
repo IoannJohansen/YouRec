@@ -101,10 +101,20 @@ namespace DAL.Infrastructure.Repository
             return await _applicationDbContext.Recommends.FirstOrDefaultAsync(r=>r.Id==id);
         }
 
-        public async Task<IEnumerable<Recommend>> GetFulltexted(string queryParameter)
+        public async Task<IEnumerable<Recommend>> GetFullTexted(string queryParameter)
         {
+            List<Recommend> result = (from c in _applicationDbContext.Comments join r in _applicationDbContext.Recommends on c.Id equals r.Id join rt in _applicationDbContext.RecommendTags on r.Id equals rt.Id join t in _applicationDbContext.Tags on rt.RecommendId equals t.Id
+                                      select new
+                                      {
+                                          RecId = r.Id,
+                                          Text = r.Text,
+                                          Name = r.Name,
+                                          Comment = c.CommentMessage,
+                                          TagName = t.TagName,
+                                          UserId = r.UserId
+                                      }).FullTextSearchQuery(queryParameter).Select(r => new Recommend { Id=r.RecId ,Text = r.Text, Name = r.Name, UserId = r.UserId }).ToList();
 
-            return null;
+            return result;
         }
     }
 }

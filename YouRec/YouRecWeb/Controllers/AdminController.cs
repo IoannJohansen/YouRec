@@ -55,7 +55,7 @@ namespace YouRecWeb.Controllers
             return StatusCode(StatusCodes.Status201Created, createdRecommend);
         }
 
-        private async Task AddTagsToRecommend(Recommend recommend, IEnumerable<string> tags)
+        protected async Task AddTagsToRecommend(Recommend recommend, IEnumerable<string> tags)
         {
             foreach (var tag in tags)
             {
@@ -72,7 +72,7 @@ namespace YouRecWeb.Controllers
             }
         }
 
-        private async Task AddImagesToRecommend(Recommend recommend, IEnumerable<string> imageUrls)
+        protected async Task AddImagesToRecommend(Recommend recommend, IEnumerable<string> imageUrls)
         {
             foreach (var imageUrl in imageUrls)
             {

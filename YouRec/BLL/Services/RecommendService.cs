@@ -167,7 +167,7 @@ namespace BLL.Services
 
         public async Task<IEnumerable<Recommend>> GetfromFulltexted(string query)
         {
-            return await unitOfWork.RecommendsRepository.GetFulltexted(query);
+            return await unitOfWork.RecommendsRepository.GetFullTexted(query);
         }
     }
 }

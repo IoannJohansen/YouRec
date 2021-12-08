@@ -48,9 +48,9 @@ namespace YouRecWeb
 
             services.AddEasyQuery();
 
-            var cloudName = Configuration["CloudinarySettings:CloudName"];
-            var apiKey = Configuration["CloudinarySettings:ApiKey"];
-            var apiSecret = Configuration["CloudinarySettings:ApiSecret"];
+            var cloudName = Configuration["CloudinarySettingsCloudName"];
+            var apiKey = Configuration["CloudinarySettingsApiKey"];
+            var apiSecret = Configuration["CloudinarySettingsApiSecret"];
 
             if (new[] { cloudName, apiKey, apiSecret }.Any(string.IsNullOrWhiteSpace))
             {
@@ -60,9 +60,11 @@ namespace YouRecWeb
 
             services.AddControllers();
 
+            services.AddSwaggerGen();
+
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionString:DefaultConnection"]);
+                options.UseSqlServer(Configuration["Default"]);
             });
 
             var mapperConfig = new MapperConfiguration(config =>
@@ -116,6 +118,13 @@ namespace YouRecWeb
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                options.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 

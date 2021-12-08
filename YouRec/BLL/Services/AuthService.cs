@@ -65,7 +65,7 @@ namespace BLL.Services
         public async Task<AuthResult> LoginGoogle(SocialNetworkRequestDto socialNetworkRequest)
         {
             Payload payload = await ValidateAsync(socialNetworkRequest.Id_token);
-            if (payload.Audience.Equals(configuration["Authentication:Google:ClientId"]))
+            if (payload.Audience.Equals(configuration["AuthenticationGoogleClientId"]))
             {
                 var user = await GetExternalUser(socialNetworkRequest.Provider, payload.Subject, payload.Email, payload.GivenName);
                 var token = GenerateTokenForUser(payload.GivenName, user.Email, UserRole.User.ToString(), user.Id);

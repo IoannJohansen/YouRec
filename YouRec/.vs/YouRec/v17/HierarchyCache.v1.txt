@@ -1,0 +1,411 @@
+﻿++Solution 'YouRec' ‎(3 of 3 projects)
+i:{00000000-0000-0000-0000-000000000000}:YouRec.sln
+++DAL
+i:{00000000-0000-0000-0000-000000000000}:DAL
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\dal\bin\debug\net5.0\dal.dll
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\dal\bin\debug\net5.0\dal.dll
+++Dependencies
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:>768
+i:{96f647fe-732a-4367-8736-83b649502005}:>1114
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>769
+++Data
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\data\
+++ApplicationDbContext.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\data\applicationdbcontext.cs
+++Infrastructure
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\
+++Interfaces
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\interfaces\
+++ICommentRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\icommentrepository.cs
+++IGroupRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\igrouprepository.cs
+++IImageRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\iimagerepository.cs
+++ILikeRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\ilikerepository.cs
+++IRatingRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\iratingrepository.cs
+++IRecommendRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\irecommendrepository.cs
+++IRecommendTagRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\irecommendtagrepository.cs
+++IRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\irepository.cs
+++ITagRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\itagrepository.cs
+++IUnitOfWork.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\iunitofwork.cs
+++IUserRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\interfaces\iuserrepository.cs
+++Repository
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\repository\
+++CommentRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\repository\commentrepository.cs
+++GroupRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\repository\grouprepository.cs
+++ImageRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\repository\imagerepository.cs
+++LikeRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\repository\likerepository.cs
+++RatingRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\repository\ratingrepository.cs
+++RecommendRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\repository\recommendrepository.cs
+++RecommendTagRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\repository\recommendtagrepository.cs
+++TagRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\repository\tagrepository.cs
+++UserRepository.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\repository\userrepository.cs
+++UnitOfWork
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\unitofwork\
+++Migrations
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\migrations\
+++Model
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\model\
+++Base
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\base\
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\controllers\base\
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\base\
+++AppUser.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\appuser.cs
+++Comment.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\comment.cs
+++Group.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\group.cs
+++Image.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\image.cs
+++Like.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\like.cs
+++Rating.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\rating.cs
+++Recommend.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\recommend.cs
+++RecommendTag.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\recommendtag.cs
+++Tag.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\tag.cs
+++Analyzers
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:analyzers
+i:{96f647fe-732a-4367-8736-83b649502005}:analyzers
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:analyzers
+++Frameworks
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:frameworks
+i:{96f647fe-732a-4367-8736-83b649502005}:frameworks
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:frameworks
+++Packages
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:packages
+i:{96f647fe-732a-4367-8736-83b649502005}:packages
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:packages
+++UnitOfWork.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\infrastructure\unitofwork\unitofwork.cs
+++20211130113952_initMig.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\migrations\20211130113952_initmig.cs
+++20211203163737_seedDataUpdate.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\migrations\20211203163737_seeddataupdate.cs
+++ApplicationDbContextModelSnapshot.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\migrations\applicationdbcontextmodelsnapshot.cs
+++BaseEntity.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\model\base\baseentity.cs
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:c:\program files (x86)\dotnet\sdk\6.0.100\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{96f647fe-732a-4367-8736-83b649502005}:c:\program files (x86)\dotnet\sdk\6.0.100\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:c:\program files (x86)\dotnet\sdk\6.0.100\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:c:\program files (x86)\dotnet\sdk\6.0.100\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{96f647fe-732a-4367-8736-83b649502005}:c:\program files (x86)\dotnet\sdk\6.0.100\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:c:\program files (x86)\dotnet\sdk\6.0.100\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++Microsoft.EntityFrameworkCore.Analyzers
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:c:\users\johny\.nuget\packages\microsoft.entityframeworkcore.analyzers\5.0.12\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+i:{96f647fe-732a-4367-8736-83b649502005}:c:\users\johny\.nuget\packages\microsoft.entityframeworkcore.analyzers\5.0.12\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:c:\users\johny\.nuget\packages\microsoft.entityframeworkcore.analyzers\5.0.12\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+++Microsoft.NETCore.App
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\microsoft.netcore.app
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\microsoft.netcore.app
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\microsoft.netcore.app
+++Korzh.EasyQuery.AspNetCore (7.1.2)
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:>1141
+i:{96f647fe-732a-4367-8736-83b649502005}:>1164
+++Korzh.EasyQuery.Linq (7.1.2)
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:>1146
+i:{96f647fe-732a-4367-8736-83b649502005}:>1173
+++Microsoft.AspNetCore.Identity.EntityFrameworkCore (5.0.12)
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:>1144
+i:{96f647fe-732a-4367-8736-83b649502005}:>1171
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1153
+++Microsoft.EntityFrameworkCore (5.0.12)
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:>1140
+i:{96f647fe-732a-4367-8736-83b649502005}:>1163
+++Microsoft.EntityFrameworkCore.Design (5.0.12)
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:>1143
+i:{96f647fe-732a-4367-8736-83b649502005}:>1166
+++Microsoft.EntityFrameworkCore.SqlServer (5.0.12)
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:>1142
+i:{96f647fe-732a-4367-8736-83b649502005}:>1165
+++Microsoft.EntityFrameworkCore.Tools (5.0.12)
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:>1145
+++20211130113952_initMig.Designer.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\migrations\20211130113952_initmig.designer.cs
+++20211203163737_seedDataUpdate.Designer.cs
+i:{c26513a1-d1d0-4370-81a4-0a397fc9d26a}:d:\desktop\dev\yourec\yourec\dal\migrations\20211203163737_seeddataupdate.designer.cs
+++YouRecWeb
+i:{00000000-0000-0000-0000-000000000000}:YouRecWeb
+++Connected Services 
+i:{96f647fe-732a-4367-8736-83b649502005}:>1115
+++Microsoft identity platform
+i:{96f647fe-732a-4367-8736-83b649502005}:>2173
+++Microsoft identity platform dependency is detected
+i:{96f647fe-732a-4367-8736-83b649502005}:>2174
+++Secrets.json (Local)
+i:{96f647fe-732a-4367-8736-83b649502005}:>2167
+++SQL Server Database (Default)
+i:{96f647fe-732a-4367-8736-83b649502005}:>2171
+++Dependency mssql1 is missing and needs to be configured for current profile.
+++Azure.Extensions.AspNetCore.Configuration.Secrets (1.0.0)
+i:{96f647fe-732a-4367-8736-83b649502005}:>1302
+++Azure.Identity (1.4.0)
+i:{96f647fe-732a-4367-8736-83b649502005}:>1301
+++CloudinaryDotNet (1.15.2)
+i:{96f647fe-732a-4367-8736-83b649502005}:>1174
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1159
+++Google.Apis.Auth (1.55.0)
+i:{96f647fe-732a-4367-8736-83b649502005}:>1170
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1152
+++Microsoft.AspNetCore.Authentication.Google (5.0.12)
+i:{96f647fe-732a-4367-8736-83b649502005}:>1169
+++Microsoft.AspNetCore.Authentication.JwtBearer (5.0.12)
+i:{96f647fe-732a-4367-8736-83b649502005}:>1172
+++Microsoft.AspNetCore.Authorization (5.0.12)
+i:{96f647fe-732a-4367-8736-83b649502005}:>1168
+++Microsoft.EntityFrameworkCore.Tools (5.0.1)
+i:{96f647fe-732a-4367-8736-83b649502005}:>1309
+++Microsoft.Extensions.Configuration.UserSecrets (6.0.0)
+i:{96f647fe-732a-4367-8736-83b649502005}:>1162
+++Serilog.AspNetCore (4.1.0)
+i:{96f647fe-732a-4367-8736-83b649502005}:>1167
+++Swashbuckle.AspNetCore (6.2.3)
+i:{96f647fe-732a-4367-8736-83b649502005}:>1856
+++Projects
+i:{96f647fe-732a-4367-8736-83b649502005}:projects
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:projects
+++BLL
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\bll\bin\debug\net5.0\bll.dll
+i:{00000000-0000-0000-0000-000000000000}:BLL
+++Properties
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\properties\
+++PublishProfiles
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\properties\publishprofiles\
+++ServiceDependencies
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\properties\servicedependencies\
+++launchSettings.json
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\properties\launchsettings.json
+++serviceDependencies.json
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\properties\servicedependencies.json
+++Controllers
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\controllers\
+++AdminController.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\controllers\admincontroller.cs
+++AuthorizationController.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\controllers\authorizationcontroller.cs
+++CommentController.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\controllers\commentcontroller.cs
+++GroupController.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\controllers\groupcontroller.cs
+++LikeController.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\controllers\likecontroller.cs
+++RatingController.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\controllers\ratingcontroller.cs
+++RecommendController.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\controllers\recommendcontroller.cs
+++TagController.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\controllers\tagcontroller.cs
+++Core
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\core\
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\core\
+++Mapper
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\core\mapper\
+++MappingProfile.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\core\mapper\mappingprofile.cs
+++CommentViewModel.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\model\commentviewmodel.cs
+++MyRecommendsPaged.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\model\myrecommendspaged.cs
+++RecommendDescriptionViewModel.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\model\recommenddescriptionviewmodel.cs
+++RecommendListViewModel.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\model\recommendlistviewmodel.cs
+++RecommendViewModel.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\model\recommendviewmodel.cs
+++TagListViewModel.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\model\taglistviewmodel.cs
+++TagViewModel.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\model\tagviewmodel.cs
+++UserAuthViewModel.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\model\userauthviewmodel.cs
+++UserListViewModel.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\model\userlistviewmodel.cs
+++UserViewModel.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\model\userviewmodel.cs
+++appsettings.json
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\appsettings.json
+++libman.json
+++Program.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\program.cs
+++Startup.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\startup.cs
+++Microsoft.AspNetCore.Analyzers
+i:{96f647fe-732a-4367-8736-83b649502005}:c:\program files (x86)\dotnet\sdk\6.0.100\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{96f647fe-732a-4367-8736-83b649502005}:c:\program files (x86)\dotnet\sdk\6.0.100\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{96f647fe-732a-4367-8736-83b649502005}:c:\program files (x86)\dotnet\sdk\6.0.100\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++System.Text.Json.SourceGeneration
+i:{96f647fe-732a-4367-8736-83b649502005}:c:\users\johny\.nuget\packages\system.text.json\6.0.0\analyzers\dotnet\roslyn4.0\cs\system.text.json.sourcegeneration.dll
+++Microsoft.AspNetCore.App
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\microsoft.aspnetcore.app
+++YouRecWeb20211206134432 - Zip Deploy.pubxml
+++YouRecWeb20211206134432 - Zip Deploy
+++serviceDependencies.local.json
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\properties\servicedependencies.local.json
+++serviceDependencies.YouRecWeb20211206134432 - Zip Deploy.json
+++BaseController.cs
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\controllers\base\basecontroller.cs
+++appsettings.Development.json
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\appsettings.development.json
+++mssql1.arm.json
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\properties\servicedependencies\yourecweb20211206160138 - zip deploy\mssql1.arm.json
+++profile.arm.json
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\properties\servicedependencies\yourecweb20211206160138 - zip deploy\profile.arm.json
+++secrets1.arm.json
+++DTO
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\
+++AuthResult.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\authresult.cs
+++CommentDto.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\commentdto.cs
+++CreateRecommendDto.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\createrecommenddto.cs
+++LikeDto.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\likedto.cs
+++LoginRequestDto.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\loginrequestdto.cs
+++PaginatedObjectDto.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\paginatedobjectdto.cs
+++RatingDto.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\ratingdto.cs
+++RecommendsSorteddDto.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\recommendssortedddto.cs
+++RegisterRequestDto.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\registerrequestdto.cs
+++SocialNetworkRequestDto.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\socialnetworkrequestdto.cs
+++UpdateRecommendDto.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\updaterecommenddto.cs
+++UserRecommendRatingInfo.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\dto\userrecommendratinginfo.cs
+++Helpers
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\helpers\
+++SortMode.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\helpers\sortmode.cs
+++SortOrder.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\helpers\sortorder.cs
+++UserRole.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\helpers\userrole.cs
+++IAuthService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\interfaces\iauthservice.cs
+++ICommentService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\interfaces\icommentservice.cs
+++IGroupService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\interfaces\igroupservice.cs
+++IImageService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\interfaces\iimageservice.cs
+++ILikeService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\interfaces\ilikeservice.cs
+++IRatingService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\interfaces\iratingservice.cs
+++IRecommendService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\interfaces\irecommendservice.cs
+++IRecommendTagService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\interfaces\irecommendtagservice.cs
+++ITagService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\interfaces\itagservice.cs
+++IUserService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\interfaces\iuserservice.cs
+++Services
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\
+++AuthService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\authservice.cs
+++CommentService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\commentservice.cs
+++GroupService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\groupservice.cs
+++ImageService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\imageservice.cs
+++LikeService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\likeservice.cs
+++RatingService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\ratingservice.cs
+++RecommendService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\recommendservice.cs
+++RecommendTagService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\recommendtagservice.cs
+++TagService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\tagservice.cs
+++UserService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\userservice.cs
+++Auth
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\core\auth\
+++BaseService.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\services\base\baseservice.cs
+++AutoMapper (10.1.1)
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1157
+++Microsoft.AspNet.Mvc (5.2.7)
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1155
+++Microsoft.AspNetCore.Authentication.Facebook (5.0.12)
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1150
+++Microsoft.AspNetCore.Identity (2.2.0)
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1151
+++Microsoft.AspNetCore.Mvc.Abstractions (2.2.0)
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1156
+++Microsoft.IdentityModel (7.0.0)
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1154
+++Microsoft.IdentityModel.Protocols.OpenIdConnect (6.14.1)
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1148
+++Serilog (2.10.0)
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1158
+++System.IdentityModel.Tokens.Jwt (6.14.1)
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:>1149
+++Jwt
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\core\auth\jwt\
+++MIcrosoft
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\core\auth\microsoft\
+++JwtOptions.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\core\auth\jwt\jwtoptions.cs
+++KeyGenerator.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\core\auth\jwt\keygenerator.cs
+++MicrosoftTokenParameteres.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\core\auth\microsoft\microsofttokenparameteres.cs
+++TokenValidator.cs
+i:{381d8d21-4bbd-4fae-9b55-650447dccf9b}:d:\desktop\dev\yourec\yourec\bll\core\auth\microsoft\tokenvalidator.cs
+++Azure Key Vault
+i:{96f647fe-732a-4367-8736-83b649502005}:>2169
+++Azure Key Vault dependency is detected
+i:{96f647fe-732a-4367-8736-83b649502005}:>2170
+++Secrets.json (Local) dependency is detected
+i:{96f647fe-732a-4367-8736-83b649502005}:>2168
+++Secrets (VaultUri)
+++Dependency secrets1 is missing and needs to be configured for current profile.
+++Azure Key Vault (YouRecWebvault)
+++local
+++Azure SQL Database (YouRecWeb_db)
+++No service dependencies discovered
+++SQL Server Database dependency with connectionId 'Default' is detected
+++YouRecWeb20211206160138 - Zip Deploy.pubxml
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\properties\publishprofiles\yourecweb20211206160138 - zip deploy.pubxml
+++YouRecWeb20211206160138 - Zip Deploy
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\properties\servicedependencies\yourecweb20211206160138 - zip deploy\
+++serviceDependencies.YouRecWeb20211206160138 - Zip Deploy.json
+i:{96f647fe-732a-4367-8736-83b649502005}:d:\desktop\dev\yourec\yourec\yourecweb\properties\servicedependencies.yourecweb20211206160138 - zip deploy.json

@@ -19,8 +19,8 @@ namespace BLL.Core.Auth.MIcrosoft
                     ValidateAudience = true,
                     ValidateIssuer = true,
                     ValidateLifetime = true,
-                    ValidAudiences = new[] { configuration["Authentication:Microsoft:AppId"] },
-                    ValidIssuer = string.Format(VALIDISSUER, configuration["Authentication:Microsoft:TenantId"]) ,
+                    ValidAudiences = new[] { configuration["AuthenticationMicrosoftAppId"] },
+                    ValidIssuer = string.Format(VALIDISSUER, configuration["AuthenticationMicrosoftTenantId"]) ,
                     IssuerSigningKeys = config.SigningKeys 
             };
         }

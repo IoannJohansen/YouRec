@@ -25,6 +25,7 @@ namespace YouRecWeb.Controllers
 
         [Route("getcountforuser")]
         [AllowAnonymous]
+        [HttpGet]
         public async Task<int> GetLikeCountByUserId(string userId)
         {
             return await likeService.GetCountLikesById(userId);
